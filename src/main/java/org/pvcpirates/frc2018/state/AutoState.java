@@ -1,6 +1,6 @@
-package org.pvcpirates.frc2018.state;
+package org.pvcpirates.frc2019.state;
 
-import org.pvcpirates.frc2018.robot.Hardware;
+import org.pvcpirates.frc2019.robot.Hardware;
 
 public class AutoState extends State {
 

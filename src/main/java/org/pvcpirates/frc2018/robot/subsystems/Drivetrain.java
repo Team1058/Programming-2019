@@ -1,9 +1,9 @@
-package org.pvcpirates.frc2018.robot.subsystems;
+package org.pvcpirates.frc2019.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import org.pvcpirates.frc2018.robot.Hardware;
-import org.pvcpirates.frc2018.util.RobotMap;
+import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.util.RobotMap;
 
 public class Drivetrain extends BaseSubsystem {
     private static Hardware hardware = Hardware.getInstance();

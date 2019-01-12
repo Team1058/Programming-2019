@@ -1,11 +1,11 @@
-package org.pvcpirates.frc2018.teleop;
+package org.pvcpirates.frc2019.teleop;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import org.pvcpirates.frc2018.gamepads.BaseGamepad;
-import org.pvcpirates.frc2018.gamepads.GamepadEnum;
-import org.pvcpirates.frc2018.robot.Hardware;
-import org.pvcpirates.frc2018.robot.subsystems.Drivetrain;
-import org.pvcpirates.frc2018.util.GamepadHelper;
+import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.GamepadEnum;
+import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
+import org.pvcpirates.frc2019.util.GamepadHelper;
 
 public class DriveOpenLoop extends TeleopCommand {
 

@@ -1,11 +1,11 @@
-package org.pvcpirates.frc2018;
+package org.pvcpirates.frc2019;
 
-import org.pvcpirates.frc2018.commands.Command;
-import org.pvcpirates.frc2018.commands.DriveFor;
-import org.pvcpirates.frc2018.robot.Hardware;
-import org.pvcpirates.frc2018.robot.Robot;
-import org.pvcpirates.frc2018.state.AutoState;
-import org.pvcpirates.frc2018.state.TeleopState;
+import org.pvcpirates.frc2019.commands.Command;
+import org.pvcpirates.frc2019.commands.DriveFor;
+import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.robot.Robot;
+import org.pvcpirates.frc2019.state.AutoState;
+import org.pvcpirates.frc2019.state.TeleopState;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;

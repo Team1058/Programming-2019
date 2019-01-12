@@ -1,8 +1,5 @@
 package org.pvcpirates.frc2018.gamepads;
 
-import org.pvcpirates.frc2018.teleop.CubeGrabber;
-import org.pvcpirates.frc2018.teleop.MoveArmPolar;
-import org.pvcpirates.frc2018.teleop.MoveToExtraSetpoints;
 
 public class OperatorGamepad extends BaseGamepad {
 
@@ -12,11 +9,8 @@ public class OperatorGamepad extends BaseGamepad {
 
     @Override
     void mapCommandsToController() {
-        teleopCommands.add(new CubeGrabber(this));
-        //Manual Movement
-        teleopCommands.add(new MoveArmPolar(this));
-        //Old Setpoints
-        //teleopCommands.add(new MoveToSetpoint(this));
+        // Add operator commands here
+        // For example: teleopCommands.add(new Command(this));
        
     }
 }

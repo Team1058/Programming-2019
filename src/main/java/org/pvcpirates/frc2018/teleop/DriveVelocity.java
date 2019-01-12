@@ -10,7 +10,6 @@ import org.pvcpirates.frc2018.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2018.util.GamepadHelper;
 
 public class DriveVelocity extends TeleopCommand {
-    //FIXME PID REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
     private static final double kP = 0;
     private static final double kI = 0;
     private static final double kD = 0;

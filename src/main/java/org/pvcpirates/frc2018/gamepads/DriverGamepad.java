@@ -9,7 +9,7 @@ public class DriverGamepad extends BaseGamepad {
     }
 
     void mapCommandsToController() {
-    	//Drive only with percent vbus
+    	// Drive only with percent vbus
         teleopCommands.add(new DriveOpenLoop(this));
     }
 

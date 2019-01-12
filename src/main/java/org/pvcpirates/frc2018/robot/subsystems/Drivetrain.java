@@ -5,14 +5,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.pvcpirates.frc2018.robot.Hardware;
 import org.pvcpirates.frc2018.util.RobotMap;
 
-//import com.kauailabs.navx.frc.AHRS;
-
 public class Drivetrain extends BaseSubsystem {
-    //14:50:12 14:50:60
     private static Hardware hardware = Hardware.getInstance();
 
     public static void stopAll() {
-        //shut everything off
+        // Shut everything off
         hardware.leftDrive1.set(ControlMode.PercentOutput, 0);
         hardware.rightDrive1.set(ControlMode.PercentOutput, 0);
     }
@@ -23,7 +20,6 @@ public class Drivetrain extends BaseSubsystem {
     }
 
     public static void setPIDF(double p, double i, double d, double f) {
-        //Why ctre whyyyyyy
         hardware.leftDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
         hardware.leftDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
         hardware.leftDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);

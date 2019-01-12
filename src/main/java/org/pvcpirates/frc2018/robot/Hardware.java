@@ -1,8 +1,8 @@
-package org.pvcpirates.frc2018.robot;
+package org.pvcpirates.frc2019.robot;
 
-import static org.pvcpirates.frc2018.util.RobotMap.Constants.ROBOT_TIMEOUT;
+import static org.pvcpirates.frc2019.util.RobotMap.Constants.ROBOT_TIMEOUT;
 
-import org.pvcpirates.frc2018.util.RobotMap;
+import org.pvcpirates.frc2019.util.RobotMap;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;

@@ -1,6 +1,6 @@
-package org.pvcpirates.frc2018.state;
+package org.pvcpirates.frc2019.state;
 
-import org.pvcpirates.frc2018.Status;
+import org.pvcpirates.frc2019.Status;
 
 public abstract class State {
     public Status status;

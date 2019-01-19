@@ -8,6 +8,7 @@ import org.pvcpirates.frc2019.util.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class Drivetrain extends BaseSubsystem {
     public final TalonSRX leftDrive1 = new TalonSRX(RobotMap.CANTalonIds.LEFT_DRIVE_1);
@@ -32,14 +33,16 @@ public class Drivetrain extends BaseSubsystem {
 
         rightDrive1.setInverted(true);
         rightDrive2.setInverted(true);
-
         leftDrive1.setInverted(true);
         leftDrive2.setInverted(true);
 
+        leftDrive1.setNeutralMode(NeutralMode.Brake);
+        leftDrive2.setNeutralMode(NeutralMode.Brake);
+        rightDrive1.setNeutralMode(NeutralMode.Brake);
+        rightDrive2.setNeutralMode(NeutralMode.Brake);
 
         leftDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
         rightDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
-
 
         leftDrive2.follow(leftDrive1);
         rightDrive2.follow(rightDrive1);

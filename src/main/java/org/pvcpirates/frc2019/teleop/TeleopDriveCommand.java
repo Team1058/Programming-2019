@@ -20,7 +20,8 @@ public class TeleopDriveCommand extends TeleopCommand {
     public void exec(){
 
 
-        if (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband)){
+        if (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
+            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband)){
                 
             double leftJoyYAxis = this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y);
             double rightJoyXAxis = -this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X);
@@ -28,15 +29,17 @@ public class TeleopDriveCommand extends TeleopCommand {
             double leftDriveSpeed = -FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis));
             double rightDriveSpeed = FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis));
 
+            SmartDashboard.putNumber("leftDriveSpeed", leftDriveSpeed);
+            SmartDashboard.putNumber("rightDriveSpeed", rightDriveSpeed);
             SmartDashboard.putNumber("leftJoyYAxis", leftJoyYAxis);
-            System.out.println("leftJoyYAxis" + leftJoyYAxis);
+            System.out. println("leftJoyYAxis" + leftJoyYAxis);
             SmartDashboard.putNumber("rightJoyXAxis", rightJoyXAxis);
             System.out.println("rightJoyXAxis" + rightJoyXAxis);
 
             //the first drive speed is negative so the left motor goes
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
         }else{
-            hardware.drivetrain.setDrive(ControlMode.Velocity, 0, 0);
+            hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
         }
     }
 

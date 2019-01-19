@@ -11,6 +11,5 @@ public class OperatorGamepad extends BaseGamepad {
     void mapCommandsToController() {
         // Add operator commands here
         // For example: teleopCommands.add(new Command(this));
-       
     }
 }

@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.util.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
@@ -85,6 +84,5 @@ public class Drivetrain extends BaseSubsystem {
         rightDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);
         rightDrive1.config_kF(0, f, RobotMap.Constants.ROBOT_TIMEOUT);
     }
-
 
 }

@@ -4,8 +4,6 @@ import org.pvcpirates.frc2019.teleop.TeleopDriveCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
-
 public class DriverGamepad extends BaseGamepad {
 
     public static double driverStickDeadband = SmartDashboard.getNumber("Driver driverStickDeadband", -0.0078125) ;
@@ -21,13 +19,12 @@ public class DriverGamepad extends BaseGamepad {
     @Override
     public double getAxis(GamepadEnum axisEnum) {
        double rawAxis = super.getAxis(axisEnum);
-       // If rawAxis is in deadband, return 0
+    
         if(Math.abs(rawAxis) <= Math.abs(driverStickDeadband)){
             return 0;
         }else {
             return rawAxis;
         }
-       // else, return rawAxis
     }
 
 }

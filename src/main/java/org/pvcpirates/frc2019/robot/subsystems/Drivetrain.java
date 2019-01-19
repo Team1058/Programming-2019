@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.util.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class Drivetrain extends BaseSubsystem {
@@ -16,6 +17,11 @@ public class Drivetrain extends BaseSubsystem {
 
 
     public void initialize() {
+        initializeDriveMotors();
+        initializeSetDrivePIDValues();
+    }
+
+    private void initializeDriveMotors(){
         leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, RobotMap.Constants.ROBOT_TIMEOUT);
         leftDrive1.setSensorPhase(false);
 
@@ -37,6 +43,21 @@ public class Drivetrain extends BaseSubsystem {
 
         leftDrive2.follow(leftDrive1);
         rightDrive2.follow(rightDrive1);
+    }
+
+    private void initializeSetDrivePIDValues(){
+        leftDrive1.configClosedLoopPeakOutput(0, .95);
+        rightDrive1.configClosedLoopPeakOutput(0, .95);
+
+        leftDrive1.config_kF(0, .104);
+        leftDrive1.config_kP(0, .01);
+        leftDrive1.config_kI(0, 0);
+        leftDrive1.config_kD(0, 0);
+    
+        rightDrive1.config_kF(0, .115);
+        rightDrive1.config_kP(0, .1);
+        rightDrive1.config_kI(0, 0);
+        rightDrive1.config_kD(0, 0);
     }
 
     public void stopAll() {

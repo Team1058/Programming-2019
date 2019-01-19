@@ -24,6 +24,5 @@ public class Delay extends Command {
 	public void exec() {
 		this.setStatus(Status.STOP);
 	}
-	
 
 }

@@ -8,7 +8,6 @@ import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 public class TeleopDriveCommand extends TeleopCommand {
     
     public TeleopDriveCommand(BaseGamepad gp) {
@@ -16,9 +15,7 @@ public class TeleopDriveCommand extends TeleopCommand {
     }
 
     @Override
-
     public void exec(){
-
 
         if (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband)){
@@ -32,9 +29,7 @@ public class TeleopDriveCommand extends TeleopCommand {
             SmartDashboard.putNumber("leftDriveSpeed", leftDriveSpeed);
             SmartDashboard.putNumber("rightDriveSpeed", rightDriveSpeed);
             SmartDashboard.putNumber("leftJoyYAxis", leftJoyYAxis);
-            System.out. println("leftJoyYAxis" + leftJoyYAxis);
             SmartDashboard.putNumber("rightJoyXAxis", rightJoyXAxis);
-            System.out.println("rightJoyXAxis" + rightJoyXAxis);
 
             //the first drive speed is negative so the left motor goes
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
@@ -50,6 +45,4 @@ public class TeleopDriveCommand extends TeleopCommand {
       public double FeetPerSecondToTalonVelocity(double feetPerSec){
         return ((feetPerSec*12)/6.0/Math.PI)*1024.0*11.25/10.0;
       }
-
-
 }

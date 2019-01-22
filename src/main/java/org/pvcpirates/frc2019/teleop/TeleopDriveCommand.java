@@ -40,6 +40,12 @@ public class TeleopDriveCommand extends TeleopCommand {
 
 
     public double TalonVelocityToFeetPerSecond(double talonVel){
+        /* 11.25 = how many encoder rotations(not ticks) per 1 wheel rotation
+         *  1024 = how many encoder ticks per one encoder rotation
+         *  10 = convert from ticks/ms to ticks per second
+         *  6 = wheel diameter, (2 * pi * radius)
+         *  12 = convert from inches/second to feet/second
+        */
         return ((((talonVel/11.25)/1024.0)*10.0)*6.0*Math.PI)/12;
       }
       public double FeetPerSecondToTalonVelocity(double feetPerSec){

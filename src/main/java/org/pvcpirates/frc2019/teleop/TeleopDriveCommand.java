@@ -20,22 +20,20 @@ public class TeleopDriveCommand extends TeleopCommand {
         if (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband)){
                 
-            double percentOfTotalSpeed;
+            double percentOfTotalSpeed = 1;
                     
             if (this.gamepad.getButton(GamepadEnum.LEFT_BUMPER) == true){
               percentOfTotalSpeed = .5;
             }else if (this.gamepad.getButton(GamepadEnum.RIGHT_BUMPER) == true){
               percentOfTotalSpeed = .25;
-            }else {
-              percentOfTotalSpeed = 1;
             }
 
             double leftJoyYAxis = this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y);
             double rightJoyXAxis = -this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X);
 
-            //10 is maximum speed, multiplies by the subtracted/sum of both joysticks to get correct speed
-            //So it doesn't do either turn or drive straight, multiplied by how much of the speed gotton before
-            //should be used
+            /* 10 is maximum speed, multiplies by the subtracted/sum of both joysticks to get correct speed
+            *  So it doesn't do either turn or drive straight, multiplied by how much of the speed gotton before
+            *  should be used */
             double leftDriveSpeed = -FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
             double rightDriveSpeed = FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
 

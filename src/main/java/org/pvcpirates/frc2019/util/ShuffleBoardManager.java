@@ -9,7 +9,4 @@ public class ShuffleBoardManager {
 
     public ShuffleBoardManager(){
     }
-
-    public static void initializeShuffleBoard(){
-    }
 }

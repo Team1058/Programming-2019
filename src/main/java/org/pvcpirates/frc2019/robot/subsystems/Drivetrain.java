@@ -77,6 +77,11 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive1.config_kP(0, SmartDashboard.getNumber("drive_P", DRIVE_P));
         leftDrive1.config_kI(0, SmartDashboard.getNumber("drive_I", DRIVE_I));
         leftDrive1.config_kD(0, SmartDashboard.getNumber("drive_D", DRIVE_D));
+
+        rightDrive1.config_kF(0, SmartDashboard.getNumber("drive_F", DRIVE_F));
+        rightDrive1.config_kP(0, SmartDashboard.getNumber("drive_P", DRIVE_P));
+        rightDrive1.config_kI(0, SmartDashboard.getNumber("drive_I", DRIVE_I));
+        rightDrive1.config_kD(0, SmartDashboard.getNumber("drive_D", DRIVE_D));
     }
 
     public void stopAll() {

@@ -13,7 +13,6 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
-   ShuffleBoardManager.initializeShuffleBoard();
 	  robot.setState(new TeleopState());
 	  robot.state.init();
 	}

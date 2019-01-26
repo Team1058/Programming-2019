@@ -27,7 +27,6 @@ public class Drivetrain extends BaseSubsystem {
     public static double RIGHTDRIVE_P = 0.1;
     public static double RIGHTDRIVE_I = 0;
     public static double RIGHTDRIVE_D = 0;
-// TALON SRX
     public final TalonSRX leftDrive1 = new TalonSRX(RobotMap.CANTalonIds.LEFT_DRIVE_1);
     public final TalonSRX rightDrive1 = new TalonSRX(RobotMap.CANTalonIds.RIGHT_DRIVE_1);
     public final TalonSRX leftDrive2 = new TalonSRX(RobotMap.CANTalonIds.LEFT_DRIVE_2);

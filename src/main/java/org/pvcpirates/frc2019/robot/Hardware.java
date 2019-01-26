@@ -1,9 +1,7 @@
 package org.pvcpirates.frc2019.robot;
 
 import org.pvcpirates.frc2019.robot.subsystems.*;
-
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.SPI;
 
 public class Hardware {

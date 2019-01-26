@@ -1,14 +1,7 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.util.RobotMap;
-
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;

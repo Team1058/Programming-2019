@@ -1,14 +1,11 @@
 package org.pvcpirates.frc2019.teleop;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.util.*;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TeleopDriveCommand extends TeleopCommand {
     

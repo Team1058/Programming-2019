@@ -19,7 +19,7 @@ public class Drivetrain extends BaseSubsystem {
     // DRIVETRAIN PIDs;
     public static double DRIVE_PEAK_OUTPUT = .95;
     public static double DRIVE_F = .115;
-    public static double DRIVE_P = 0.1;
+    public static double DRIVE_P = .15;
     public static double DRIVE_I = 0;
     public static double DRIVE_D = 0;
 
@@ -57,31 +57,20 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive2.follow(leftDrive1);
         rightDrive2.follow(rightDrive1);
     }
-    
-    public void initializeDrivetrainPIDGetShuffle(){
-        // LeftDrive PID Values;
-        ShuffleBoardManager.pidTab.add("drive_F", DRIVE_F);
-        ShuffleBoardManager.pidTab.add("drive_P", DRIVE_P);
-        ShuffleBoardManager.pidTab.add("drive_I", DRIVE_I);
-        ShuffleBoardManager.pidTab.add("drive_D", DRIVE_D);
-
-        ShuffleBoardManager.pidTab.addPersistent("drive_loopoutput", DRIVE_PEAK_OUTPUT); 
-    }
 
     public void initializeSetDrivePIDValues(){
-        initializeDrivetrainPIDGetShuffle();
         leftDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
         rightDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
 
-        leftDrive1.config_kF(0, SmartDashboard.getNumber("drive_F", DRIVE_F));
-        leftDrive1.config_kP(0, SmartDashboard.getNumber("drive_P", DRIVE_P));
-        leftDrive1.config_kI(0, SmartDashboard.getNumber("drive_I", DRIVE_I));
-        leftDrive1.config_kD(0, SmartDashboard.getNumber("drive_D", DRIVE_D));
+        leftDrive1.config_kF(0, ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F));
+        leftDrive1.config_kP(0, ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P));
+        leftDrive1.config_kI(0, ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I));
+        leftDrive1.config_kD(0, ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D));
 
-        rightDrive1.config_kF(0, SmartDashboard.getNumber("drive_F", DRIVE_F));
-        rightDrive1.config_kP(0, SmartDashboard.getNumber("drive_P", DRIVE_P));
-        rightDrive1.config_kI(0, SmartDashboard.getNumber("drive_I", DRIVE_I));
-        rightDrive1.config_kD(0, SmartDashboard.getNumber("drive_D", DRIVE_D));
+        rightDrive1.config_kF(0, ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F));
+        rightDrive1.config_kP(0, ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P));
+        rightDrive1.config_kI(0, ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I));
+        rightDrive1.config_kD(0, ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D));
     }
 
     public void stopAll() {
@@ -93,18 +82,6 @@ public class Drivetrain extends BaseSubsystem {
     public void setDrive(ControlMode controlMode, double left, double right) {
         leftDrive1.set(controlMode, left);
         rightDrive1.set(controlMode, right);
-    }
-
-    public void setPIDF(double p, double i, double d, double f) {
-        leftDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
-        leftDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
-        leftDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);
-        leftDrive1.config_kF(0, f, RobotMap.Constants.ROBOT_TIMEOUT);
-
-        rightDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
-        rightDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
-        rightDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);
-        rightDrive1.config_kF(0, f, RobotMap.Constants.ROBOT_TIMEOUT);
     }
 
 }

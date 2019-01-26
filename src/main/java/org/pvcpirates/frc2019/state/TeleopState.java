@@ -14,6 +14,7 @@ public class TeleopState extends State {
     
     @Override
     public void init() {
+		Hardware.getInstance().initializeHardware();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
 

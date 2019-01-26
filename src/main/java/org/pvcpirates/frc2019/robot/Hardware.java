@@ -10,13 +10,17 @@ public class Hardware {
  
     private static Hardware ourInstance;
 
-    public final Drivetrain drivetrain = new Drivetrain();
+    public Drivetrain drivetrain = new Drivetrain();
     public AHRS navx = new AHRS(SPI.Port.kMXP);
 
     private Hardware() {
+        initializeHardware();
+    }
+
+    public void initializeHardware(){
         drivetrain.initialize();
         navx.reset();
-    }	
+    }
 
 	public static Hardware getInstance() {
 		if (ourInstance == null) {

@@ -43,8 +43,6 @@ public class TeleopDriveCommand extends TeleopCommand {
             SmartDashboard.putNumber("leftJoyYAxis", leftJoyYAxis);
             SmartDashboard.putNumber("rightJoyXAxis", rightJoyXAxis);
             
-           
-            
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
         }else{
             // 0,0 because if nothing is pressed nothing should be moving

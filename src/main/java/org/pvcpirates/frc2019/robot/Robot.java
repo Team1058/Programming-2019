@@ -19,6 +19,8 @@ public class Robot {
     }
 
     public void setState(State state) {
+        if (state != null)
+            state.stop();
         this.state = state;
     }
 }

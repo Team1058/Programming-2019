@@ -60,12 +60,12 @@ public class Drivetrain extends BaseSubsystem {
     
     public void initializeDrivetrainPIDGetShuffle(){
         // LeftDrive PID Values;
-        ShuffleBoardManager.pidTab.add("leftdrive_F", DRIVE_F);
-        ShuffleBoardManager.pidTab.add("leftdrive_P", DRIVE_P);
-        ShuffleBoardManager.pidTab.add("leftdrive_I", DRIVE_I);
-        ShuffleBoardManager.pidTab.add("leftdrive_D", DRIVE_D);
+        ShuffleBoardManager.pidTab.add("drive_F", DRIVE_F);
+        ShuffleBoardManager.pidTab.add("drive_P", DRIVE_P);
+        ShuffleBoardManager.pidTab.add("drive_I", DRIVE_I);
+        ShuffleBoardManager.pidTab.add("drive_D", DRIVE_D);
 
-        ShuffleBoardManager.pidTab.addPersistent("leftdrive_loopoutput", DRIVE_PEAK_OUTPUT); 
+        ShuffleBoardManager.pidTab.addPersistent("drive_loopoutput", DRIVE_PEAK_OUTPUT); 
     }
 
     public void initializeSetDrivePIDValues(){

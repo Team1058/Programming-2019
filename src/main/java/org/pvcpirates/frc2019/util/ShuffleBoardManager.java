@@ -12,7 +12,4 @@ public class ShuffleBoardManager {
 
     public static void initializeShuffleBoard(){
     }
-
-    
-    
 }

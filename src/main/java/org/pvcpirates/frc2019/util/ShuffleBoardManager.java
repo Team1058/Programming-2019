@@ -1,10 +1,7 @@
 package org.pvcpirates.frc2019.util;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
-import edu.wpi.first.wpilibj.smartdashboard.*;
-
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
-
 import edu.wpi.first.networktables.NetworkTableEntry;
 
 public class ShuffleBoardManager {

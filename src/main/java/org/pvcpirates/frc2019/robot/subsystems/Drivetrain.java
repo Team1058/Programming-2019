@@ -66,19 +66,19 @@ public class Drivetrain extends BaseSubsystem {
     }
     
     public void initializeDrivetrainPIDGetShuffle(){
-        // LeftDrive PID Values;
-        ShuffleBoardManager.pidTab.add("leftdrive_F", LEFTDRIVE_F);
-        /*ShuffleBoardManager.pidTab.add("leftdrive_P",LEFTDRIVE_P);
-        ShuffleBoardManager.pidTab.add("leftdrive_I", LEFTDRIVE_I);
-        ShuffleBoardManager.pidTab.add("leftdrive_D", LEFTDRIVE_D);
-        // RightDrive PID Values
-        ShuffleBoardManager.pidTab.add("rightdrive_F", RIGHTDRIVE_F);
-        ShuffleBoardManager.pidTab.add("rightdrive_P", RIGHTDRIVE_P);
-        ShuffleBoardManager.pidTab.add("rightdrive_I",RIGHTDRIVE_I);
-        ShuffleBoardManager.pidTab.add("rightdrive_D", RIGHTDRIVE_D);
-        ShuffleBoardManager.pidTab.add("leftdrive_loopoutput", LEFT_PEAK_OUTPUT);
-        ShuffleBoardManager.pidTab.add("rightdrive_loopoutput", RIGHT_PEAK_OUTPUT);    
-        */
+     // LeftDrive PID Values;
+      ShuffleBoardManager.pidTab.add("leftdrive_F", LEFTDRIVE_F);
+      ShuffleBoardManager.pidTab.add("leftdrive_P",LEFTDRIVE_P);
+      ShuffleBoardManager.pidTab.add("leftdrive_I", LEFTDRIVE_I);
+      ShuffleBoardManager.pidTab.add("leftdrive_D", LEFTDRIVE_D);
+     // RightDrive PID Values
+      ShuffleBoardManager.pidTab.add("rightdrive_F", RIGHTDRIVE_F);
+      ShuffleBoardManager.pidTab.add("rightdrive_P", RIGHTDRIVE_P);
+      ShuffleBoardManager.pidTab.add("rightdrive_I",RIGHTDRIVE_I);
+      ShuffleBoardManager.pidTab.add("rightdrive_D", RIGHTDRIVE_D);
+
+      ShuffleBoardManager.pidTab.add("leftdrive_loopoutput", LEFT_PEAK_OUTPUT);
+      ShuffleBoardManager.pidTab.add("rightdrive_loopoutput", RIGHT_PEAK_OUTPUT);  
     }
 
     public void initializeSetDrivePIDValues(){

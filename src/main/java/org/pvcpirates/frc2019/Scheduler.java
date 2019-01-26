@@ -3,8 +3,6 @@ package org.pvcpirates.frc2019;
 import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.state.AutoState;
 import org.pvcpirates.frc2019.state.TeleopState;
-import org.pvcpirates.frc2019.util.ShuffleBoardManager;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Scheduler extends IterativeRobot {

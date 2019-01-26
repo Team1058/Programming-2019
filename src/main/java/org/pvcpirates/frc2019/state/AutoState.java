@@ -7,7 +7,7 @@ public class AutoState extends State {
 	@Override
 	public void init() {
 		// This will all get called at the start of auto
-		Hardware.getInstance().navx.reset();
+		Hardware.getInstance().initializeHardware();
 	}
 
 	@Override

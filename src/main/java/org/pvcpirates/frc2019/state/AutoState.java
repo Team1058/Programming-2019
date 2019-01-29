@@ -4,13 +4,16 @@ import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 
 import org.pvcpirates.frc2019.commands.MotionProfileTEST;
-import org.pvcpirates.frc2019.commands.MotionProfileTESTPARALLEL;
+import org.pvcpirates.frc2019.commands.FollowMotionProfile;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.Robot;
 
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Waypoint;
+
 public class AutoState extends State {
 
-	MotionProfileTESTPARALLEL test;
+	FollowMotionProfile test;
 	long startTime;
 	long endTime;
 	@Override
@@ -18,7 +21,12 @@ public class AutoState extends State {
 		// This will all get called at the start of auto
 		Hardware.getInstance().navx.reset();
 		System.out.println("Auto Init!");
-		test = new MotionProfileTESTPARALLEL();
+		Waypoint[] points = new Waypoint[] {
+			new Waypoint(-1, -1, Pathfinder.d2r(90)),
+			new Waypoint(0, 0, Pathfinder.d2r(0)),
+			new Waypoint(1, 1, Pathfinder.d2r(90)),
+		};
+		test = new FollowMotionProfile(points);
 		startTime = System.currentTimeMillis();
 		test.init();
 		

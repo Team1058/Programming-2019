@@ -12,10 +12,11 @@ public class Hardware {
 
     public final Drivetrain drivetrain = new Drivetrain();
     public AHRS navx = new AHRS(SPI.Port.kMXP);
-
+    public final Limelight limelight = new Limelight();
     private Hardware() {
         drivetrain.initialize();
         navx.reset();
+        limelight.initialize();
     }	
 
 	public static Hardware getInstance() {

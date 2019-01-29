@@ -6,6 +6,8 @@ import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 
 public class TeleopState extends State {
@@ -17,7 +19,7 @@ public class TeleopState extends State {
     public void init() {
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
-        
+        hardware = hardware.getInstance();
     }
 
     @Override
@@ -25,7 +27,8 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-        
+        SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
+        SmartDashboard.putNumberArray("XY", hardware.limelight.getTargetXY());
         
     }
 

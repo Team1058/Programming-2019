@@ -92,8 +92,10 @@ public class MotionProfileTESTPARALLEL extends Command{
 
     @Override
     public void exec() {
+		//push 8 points as this exec is called every 10ms which is NOT enough
 		for (int i = 0; i < 8; i++)
-        	motionProfileProcessor.pushPoint(false);
+			motionProfileProcessor.pushPoint(false);
+		//check if motion profile is ready
         drivetrain.rightDrive1.set(ControlMode.MotionProfile, motionProfileProcessor.getSetValue().value);
         drivetrain.leftDrive1.set(ControlMode.MotionProfile, motionProfileProcessor.getSetValue().value);
         if(drivetrain.leftDrive1.isMotionProfileFinished()){

@@ -77,6 +77,7 @@ public class MotionProfileTEST extends Command{
 		  not that usuable for the talons.
 		*/
 		Trajectory trajectory = Pathfinder.generate(points, config);
+		
 
 		//This is another path but this will create a path that can be modified so it has a left and right path that are actually usuable by the talons
 		TankModifier path = new TankModifier(trajectory);

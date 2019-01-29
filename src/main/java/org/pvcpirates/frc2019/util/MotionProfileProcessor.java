@@ -3,7 +3,10 @@ package org.pvcpirates.frc2019.util;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 
+<<<<<<< HEAD
 import org.pvcpirates.frc2019.robot.Hardware;
+=======
+>>>>>>> 79cfa1b15bbc3fa8fd706f993c8821fbc46c4fcf
 import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.RobotMap.Constants;
@@ -43,8 +46,13 @@ public class MotionProfileProcessor {
 	Notifier motionProfileBufferProcessThread = new Notifier(new MotionProfileBufferProcessThread());
 	
 	public MotionProfileProcessor(TankModifier path) {
+<<<<<<< HEAD
 		this.talonR = Hardware.getInstance().drivetrain.rightDrive1;
 		this.talonL = Hardware.getInstance().drivetrain.leftDrive1;
+=======
+		this.talonR = Robot.getInstance().hardware.drivetrain.rightDrive1;
+		this.talonL = Robot.getInstance().hardware.drivetrain.leftDrive1;
+>>>>>>> 79cfa1b15bbc3fa8fd706f993c8821fbc46c4fcf
 		this.path = path;
 		//Default this should be disabled until the motion profile is loaded into the talons
 		status = SetValueMotionProfile.Disable;
@@ -86,6 +94,10 @@ public class MotionProfileProcessor {
 		talonL.configMotionProfileTrajectoryPeriod(0, 30);
 		
 		for (int i = 0; i < path.getSourceTrajectory().length(); i++){
+<<<<<<< HEAD
+=======
+			System.out.println("currPoint"+currPoint);
+>>>>>>> 79cfa1b15bbc3fa8fd706f993c8821fbc46c4fcf
 			pushPoint(true);
 		}
 		status = SetValueMotionProfile.Enable;
@@ -150,6 +162,10 @@ public class MotionProfileProcessor {
 			talonL.getMotionProfileStatus(mpStatus);
 			if (currPoint > MotionProfiling.MIN_POINTS_NEEDED && mpStatus.btmBufferCnt > MotionProfiling.MIN_POINTS_NEEDED){
 				status = SetValueMotionProfile.Enable;
+<<<<<<< HEAD
+=======
+				System.out.println("Enable! not waiting for all points");
+>>>>>>> 79cfa1b15bbc3fa8fd706f993c8821fbc46c4fcf
 			}
 		}
 		currPoint++;

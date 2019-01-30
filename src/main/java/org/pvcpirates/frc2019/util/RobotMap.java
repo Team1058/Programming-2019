@@ -11,16 +11,18 @@ public class RobotMap {
     public static final class Constants {
         public static final int ROBOT_TIMEOUT = 10;
         public static final double INCHES_IN_METERS = 39.3701;
-     
+        //This is in inches, found in game manual, this will NEVER change (ever)
+        public static final double TOP_OF_ROCKET_HATCH_VIS_TARGET_HEIGHT = 31.5;
     }
     public static final class RobotSpecs{
-        
         public static final double WHEELBASE_WIDTH_INCHES = 22.5;
         public static final double WHEELBASE_WIDTH_METERS = 0.57;
         //Inches
         public static final double WHEEL_RADIUS = 3;
         public static final double ENC_ROTATIONS_PER_WHEEL_ROTATION = 11.25;
         public static final double ENC_TICKS_PER_ENC_ROTATION = 1024;
+        //Inches!
+        public static final double CAMERA_LENS_HEIGHT = 38.75;
     }
     
     public static final class MotionProfiling{

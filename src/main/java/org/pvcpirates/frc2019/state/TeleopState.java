@@ -5,6 +5,7 @@ import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
+import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,11 +20,8 @@ public class TeleopState extends State {
     public void init() {
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
-<<<<<<< HEAD
-        hardware = hardware.getInstance();
-=======
-        
->>>>>>> 79cfa1b15bbc3fa8fd706f993c8821fbc46c4fcf
+        hardware = Hardware.getInstance();
+        hardware.limelight.setPipeline(Pipelines.HATCH_LOW);
     }
 
     @Override
@@ -31,13 +29,12 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-<<<<<<< HEAD
         SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
-        SmartDashboard.putNumberArray("XY", hardware.limelight.getTargetXY());
-=======
-        
->>>>>>> 79cfa1b15bbc3fa8fd706f993c8821fbc46c4fcf
-        
+        SmartDashboard.putNumber("X Angle", hardware.limelight.getTargetXAngle());
+        SmartDashboard.putNumber("Y Angle", hardware.limelight.getTargetYAngle());
+        SmartDashboard.putNumber("X Pos", hardware.limelight.getXPos());
+        SmartDashboard.putNumber("Y Pos", hardware.limelight.getYPos());
+        SmartDashboard.putNumber("Diag", hardware.limelight.getDiagonalRobotToVisTarget());
     }
 
     @Override

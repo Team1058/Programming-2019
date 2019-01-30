@@ -18,6 +18,9 @@ public class Hardware {
     public void initializeHardware(){
         drivetrain.initialize();
         navx.reset();
+        //CargoManinpulator.initialize();
+        //HatchManipulator.initialize();
+        //Elevator.initialize();
     }
 
 	public static Hardware getInstance() {

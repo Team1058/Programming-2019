@@ -15,8 +15,12 @@ public class RobotMap {
         public static final double TOP_OF_ROCKET_HATCH_VIS_TARGET_HEIGHT = 31.5;
     }
     public static final class RobotSpecs{
+        //Distance from wheel to wheel
         public static final double WHEELBASE_WIDTH_INCHES = 22.5;
         public static final double WHEELBASE_WIDTH_METERS = 0.57;
+        //Distance from edge to edge
+        public static final double DRIVEBASE_WIDTH_INCHES = 28;
+        public static final double DRIVEBASE_WIDTH_METERS = .711;
         //Inches
         public static final double WHEEL_RADIUS = 3;
         public static final double ENC_ROTATIONS_PER_WHEEL_ROTATION = 11.25;

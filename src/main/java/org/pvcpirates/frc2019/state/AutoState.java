@@ -4,10 +4,14 @@ import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 
 import org.pvcpirates.frc2019.commands.FollowMotionProfile;
+import org.pvcpirates.frc2019.commands.MotionProfileTEST;
+import org.pvcpirates.frc2019.commands.MotionProfileTESTPARALLEL;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.util.RobotMap.Constants;
+import org.pvcpirates.frc2019.util.RobotMap.RobotSpecs;
 
+import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Waypoint;
 
 public class AutoState extends State {
@@ -24,9 +28,9 @@ public class AutoState extends State {
 		double x = Hardware.getInstance().limelight.getXPos()/Constants.INCHES_IN_METERS;
 		double y = Hardware.getInstance().limelight.getYPos()/Constants.INCHES_IN_METERS;
 		Waypoint[] points = new Waypoint[] {
-			new Waypoint(0, 0, 0),
-			new Waypoint(-.216, 1.16, 10),
-			new Waypoint(-.433, 2.32, 0)
+			new Waypoint(0, 0, Pathfinder.d2r(90)),
+			//new Waypoint(-.216, 1.16, 90+10),
+			new Waypoint(x, y, Pathfinder.d2r(90)),
 		};
 		test = new FollowMotionProfile(points);
 		startTime = System.currentTimeMillis();
@@ -43,10 +47,10 @@ public class AutoState extends State {
 		test.exec();
 		Robot.getInstance().hardware.drivetrain.leftDrive1.getMotionProfileStatus(mpStatus);
 		System.out.println(mpStatus.outputEnable.name());
-		if (mpStatus.outputEnable == SetValueMotionProfile.Enable){
-			endTime = System.currentTimeMillis();
-			System.out.println("That took " + (endTime - startTime) + " milliseconds");
-		}
+		// if (mpStatus.outputEnable == SetValueMotionProfile.Enable){
+		// 	endTime = System.currentTimeMillis();
+		// 	System.out.println("That took " + (endTime - startTime) + " milliseconds");
+		// }
 	}
 
 

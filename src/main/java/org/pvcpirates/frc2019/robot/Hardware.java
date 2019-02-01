@@ -17,10 +17,10 @@ public class Hardware {
 
     public void initializeHardware(){
         drivetrain.initialize();
-        navx.reset();
         //CargoManinpulator.initialize();
         //HatchManipulator.initialize();
         //Elevator.initialize();
+        navx.reset();
     }
 
 	public static Hardware getInstance() {

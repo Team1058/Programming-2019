@@ -7,12 +7,11 @@ public class Elevator extends BaseSubsystem {
 
     }
 
-    public static void setpoint(){
+    public static void setSetpoint(){
 
     }
 
     public static void getSetpoint(){
-        
-    }
 
+    }
 }

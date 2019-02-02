@@ -8,9 +8,13 @@ public class Hardware {
  
     private static Hardware ourInstance;
 
-    public Drivetrain drivetrain = new Drivetrain();
     public AHRS navx = new AHRS(SPI.Port.kMXP);
-
+    public Drivetrain drivetrain = new Drivetrain();
+    public CargoManinpulator cargoManinpulator = new CargoManinpulator();
+    public HatchManipulator hatchManipulator = new HatchManipulator();
+    public Elevator elevator = new Elevator();
+    public Flipper flipper = new Flipper();
+    
     private Hardware() {
         initializeHardware();
     }
@@ -18,10 +22,10 @@ public class Hardware {
     public void initializeHardware(){
         navx.reset();
         drivetrain.initialize();
-        //CargoManinpulator.initialize();
-        //HatchManipulator.initialize();
-        //Elevator.initialize();
-        //Flipper.initialize();
+        cargoManinpulator.initialize();
+        hatchManipulator.initialize();
+        elevator.initialize();
+        flipper.initialize();
        
     }
 

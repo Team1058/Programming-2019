@@ -8,16 +8,25 @@ public class Hardware {
  
     private static Hardware ourInstance;
 
-    public Drivetrain drivetrain = new Drivetrain();
     public AHRS navx = new AHRS(SPI.Port.kMXP);
-
+    public Drivetrain drivetrain = new Drivetrain();
+    public CargoManinpulator cargoManinpulator = new CargoManinpulator();
+    public HatchManipulator hatchManipulator = new HatchManipulator();
+    public Elevator elevator = new Elevator();
+    public Flipper flipper = new Flipper();
+    
     private Hardware() {
         initializeHardware();
     }
 
     public void initializeHardware(){
-        drivetrain.initialize();
         navx.reset();
+        drivetrain.initialize();
+        cargoManinpulator.initialize();
+        hatchManipulator.initialize();
+        elevator.initialize();
+        flipper.initialize();
+       
     }
 
 	public static Hardware getInstance() {

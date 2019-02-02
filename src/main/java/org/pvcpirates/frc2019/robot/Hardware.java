@@ -16,11 +16,13 @@ public class Hardware {
     }
 
     public void initializeHardware(){
+        navx.reset();
         drivetrain.initialize();
         //CargoManinpulator.initialize();
         //HatchManipulator.initialize();
         //Elevator.initialize();
-        navx.reset();
+        //Flipper.initialize();
+       
     }
 
 	public static Hardware getInstance() {

@@ -13,15 +13,15 @@ public class Elevator extends BaseSubsystem {
 
     }
 
-    public static void setSetpoint(){
+    public void setSetpoint(){
 
     }
 
-    public static void getSetpoint(){
+    public void getSetpoint(){
 
     }
 
-    public static void manipulatorPivot(){
+    public void manipulatorPivot(){
         //Pivot will be 0 to 180
     }
 }

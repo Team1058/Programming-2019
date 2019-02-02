@@ -13,7 +13,11 @@ public class Flipper extends BaseSubsystem {
 
     }
 
-    public static void flipperRotate(){
-        
+    public void flipperRotate(){
+
+    }
+
+    public void miniWheelRotate(){
+
     }
 }

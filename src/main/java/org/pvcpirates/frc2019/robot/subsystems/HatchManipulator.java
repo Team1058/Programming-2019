@@ -13,12 +13,20 @@ public class HatchManipulator extends BaseSubsystem {
 
     }
 
-    public static void hatchClaw(){
+    public void hatchClawIn(){
 
     }
 
-    public static void hatchSlider(){
+    public void hatchClawOut() {
+
+    }
+
+    public void hatchSliderIn(){
         
+    }
+
+    public void hatchSliderOut(){
+
     }
 
 }

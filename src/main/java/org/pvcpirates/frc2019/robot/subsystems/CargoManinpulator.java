@@ -10,15 +10,15 @@ public class CargoManinpulator extends BaseSubsystem {
 
     }
 
-    public static void cargoIn(){
+    public void cargoIn(){
 
     }
 
-    public static void cargoOut(){
+    public void cargoOut(){
 
     }
 
-    public static void cargoKeep(){
+    public void cargoKeep(){
 
     }
 }

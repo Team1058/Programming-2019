@@ -25,8 +25,8 @@ public class RobotMap {
         public static final double WHEEL_RADIUS = 3;
         public static final double ENC_ROTATIONS_PER_WHEEL_ROTATION = 11.25;
         public static final double ENC_TICKS_PER_ENC_ROTATION = 1024;
-        //Inches!
-        public static final double CAMERA_LENS_HEIGHT = 38.75;
+        //Inches! will be 43.25 
+        public static final double CAMERA_LENS_HEIGHT = 43.4;
     }
     
     public static final class MotionProfiling{

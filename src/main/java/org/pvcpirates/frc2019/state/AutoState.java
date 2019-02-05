@@ -24,9 +24,11 @@ public class AutoState extends State {
 		// This will all get called at the start of auto
 		Hardware.getInstance().navx.reset();
 		System.out.println("Auto Init!");
+		//how far to stop before the vision target in inches
+		double reduction =  12;
 		//get x and convert to meters
-		double x = Hardware.getInstance().limelight.getXPos()/Constants.INCHES_IN_METERS;
-		double y = Hardware.getInstance().limelight.getYPos()/Constants.INCHES_IN_METERS;
+		double x = Hardware.getInstance().limelight.getXYPosModified(reduction)[0]/Constants.INCHES_IN_METERS;
+		double y = Hardware.getInstance().limelight.getXYPosModified(reduction)[1]/Constants.INCHES_IN_METERS;
 		Waypoint[] points = new Waypoint[] {
 			new Waypoint(0, 0, Pathfinder.d2r(90)),
 			//new Waypoint(-.216, 1.16, 90+10),

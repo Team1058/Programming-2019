@@ -24,17 +24,45 @@ public class TeleopState extends State {
         hardware.limelight.setPipeline(Pipelines.HATCH_LOW);
     }
 
+    int avgCnt = 0;
+    double leftArea;
+    double rightArea;
     @Override
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
+
+        //Notes: our donut of consistency for percent diff is 35" inner radius 53" outer radius
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
         SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
         SmartDashboard.putNumber("X Angle", hardware.limelight.getTargetXAngle());
         SmartDashboard.putNumber("Y Angle", hardware.limelight.getTargetYAngle());
-        SmartDashboard.putNumber("X Pos", hardware.limelight.getXPos());
-        SmartDashboard.putNumber("Y Pos", hardware.limelight.getYPos());
+        SmartDashboard.putNumber("X Pos", hardware.limelight.getXYPos()[0]);
+        SmartDashboard.putNumber("Y Pos", hardware.limelight.getXYPos()[1]);
         SmartDashboard.putNumber("Diag", hardware.limelight.getDiagonalRobotToVisTarget());
+        double truncateLeft =  ((int)(hardware.limelight.getLeftVisTargetArea()* 10000.0))/100.0;
+        double truncateRight = ((int)(hardware.limelight.getRightVisTargetArea()*10000.0))/100.0;
+        double truncateLeftPipeline =  ((int)(hardware.limelight.getLeftVisTargetAreaPipeline()* 10000.0))/100.0;
+        SmartDashboard.putNumber("LeftVisTargetArea", truncateLeft);
+        SmartDashboard.putNumber("LeftVisTargetAreaPipeline", truncateLeftPipeline);
+        SmartDashboard.putNumber("RightVisTargetArea", truncateRight);
+
+        //TODO: make me an enum
+        if (avgCnt < 25){
+        
+            leftArea += truncateRight;
+            rightArea += truncateLeft;
+            avgCnt++;
+            
+        }else{
+            
+            double percentDiff = (((leftArea/avgCnt)-(rightArea/avgCnt))/(((leftArea/avgCnt)+(rightArea/avgCnt))/2));
+            SmartDashboard.putNumber("PercentDiff", percentDiff);
+            avgCnt = 0;
+            leftArea = 0;
+            rightArea = 0;
+        }
+        //SmartDashboard.putNumber("RawDiff", hardware.limelight.getLeftVisTargetArea()-hardware.limelight.getRightVisTargetArea());
     }
 
     @Override

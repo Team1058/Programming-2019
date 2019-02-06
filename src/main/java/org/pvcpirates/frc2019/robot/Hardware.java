@@ -22,7 +22,7 @@ public class Hardware {
     public void initializeHardware(){
         navx.reset();
         drivetrain.initialize();
-        cargoManinpulator.initialize();
+        cargoManipulator.initialize();
         hatchManipulator.initialize();
         elevator.initialize();
         flipper.initialize();

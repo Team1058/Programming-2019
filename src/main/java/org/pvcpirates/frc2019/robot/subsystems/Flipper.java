@@ -13,11 +13,15 @@ public class Flipper extends BaseSubsystem {
 
     }
 
-    public void flipperRotate(){
-
+    public void flipperRotate(int percentOfPercentOutput){
+        /* Talons need to have a control mode of position
+        *  PID needs to be done including gear ratios
+        *  DO NOT DO PERCENT OUTPUT*/
+        //flipperTalon1.set();
+        //flipperTalon2.set();
     }
 
-    public void miniWheelRotate(){
-
+    public void miniWheelRotate(int percentOfPercentOutput){
+        //flipperVictor.set(ControlMode.PercentOutput, percentOfPercentOutput);
     }
 }

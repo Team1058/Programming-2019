@@ -1,4 +1,26 @@
 package org.pvcpirates.frc2019.commands;
 
-public class ElevatorCommand {
+import org.pvcpirates.frc2019.teleop.TeleopCommand;
+import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.GamepadEnum;
+import org.pvcpirates.frc2019.robot.subsystems.Elevator;
+
+public class ElevatorCommand extends TeleopCommand {
+
+    private Elevator elevator = Hardware.getInstance().elevator;
+    public ElevatorCommand(BaseGamepad gp){
+        super(gp);
+    }
+    public void exec(){
+
+    }
+
+    public void init(){
+
+    }
+
+    public void finished(){
+
+    }
 }

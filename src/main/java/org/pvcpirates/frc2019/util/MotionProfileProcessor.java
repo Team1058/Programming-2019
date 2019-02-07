@@ -66,14 +66,9 @@ public class MotionProfileProcessor {
 		 * middle of an MP, and now we have the second half of a profile just
 		 * sitting in memory.
 		 */
-		talonR.clearMotionProfileTrajectories();
-		talonL.clearMotionProfileTrajectories();
-		
-		
-		status = SetValueMotionProfile.Disable;
-		talonL.set(ControlMode.MotionProfile, status.value);
-		talonR.set(ControlMode.MotionProfile, status.value);
+		Hardware.getInstance().drivetrain.stopMotionProfile();
 		currPoint = 0;
+		
 	}
 
 	//Load all the motion profile points into the talons' memory

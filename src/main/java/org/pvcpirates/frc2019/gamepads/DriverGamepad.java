@@ -1,5 +1,6 @@
 package org.pvcpirates.frc2019.gamepads;
 
+import org.pvcpirates.frc2019.teleop.TeleopAutoHatchAssist;
 import org.pvcpirates.frc2019.teleop.TeleopDriveCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,6 +15,7 @@ public class DriverGamepad extends BaseGamepad {
 
     void mapCommandsToController() {
         this.teleopCommands.add(new TeleopDriveCommand(this));
+        this.teleopCommands.add(new TeleopAutoHatchAssist(this));
     }
 
     @Override

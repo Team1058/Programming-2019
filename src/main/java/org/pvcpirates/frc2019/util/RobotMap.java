@@ -27,6 +27,8 @@ public class RobotMap {
         public static final double ENC_TICKS_PER_ENC_ROTATION = 1024;
         //Inches! will be 43.25 
         public static final double CAMERA_LENS_HEIGHT = 43.4;
+        //Notes: our donut of consistency for percent diff is 35" inner radius 53" outer radius
+        public static final double BUBBLE_RADIUS = 45;
     }
     
     public static final class MotionProfiling{

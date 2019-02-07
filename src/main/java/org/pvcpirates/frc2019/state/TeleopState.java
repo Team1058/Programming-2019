@@ -17,6 +17,7 @@ public class TeleopState extends State {
     private Hardware hardware;
     
     @Override
+
     public void init() {
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
@@ -42,13 +43,11 @@ public class TeleopState extends State {
         SmartDashboard.putNumber("Diag", hardware.limelight.getDiagonalRobotToVisTarget());
         double truncateLeft =  ((int)(hardware.limelight.getLeftVisTargetArea()* 10000.0))/100.0;
         double truncateRight = ((int)(hardware.limelight.getRightVisTargetArea()*10000.0))/100.0;
-        double truncateLeftPipeline =  ((int)(hardware.limelight.getLeftVisTargetAreaPipeline()* 10000.0))/100.0;
         SmartDashboard.putNumber("LeftVisTargetArea", truncateLeft);
-        SmartDashboard.putNumber("LeftVisTargetAreaPipeline", truncateLeftPipeline);
         SmartDashboard.putNumber("RightVisTargetArea", truncateRight);
 
         //TODO: make me an enum
-        if (avgCnt < 25){
+        if (avgCnt < 50){
         
             leftArea += truncateRight;
             rightArea += truncateLeft;
@@ -58,6 +57,9 @@ public class TeleopState extends State {
             
             double percentDiff = (((leftArea/avgCnt)-(rightArea/avgCnt))/(((leftArea/avgCnt)+(rightArea/avgCnt))/2));
             SmartDashboard.putNumber("PercentDiff", percentDiff);
+            //This equation was calculated at 40 inches
+            double calcAngle = 73.4*percentDiff - 9.12;
+            SmartDashboard.putNumber("Calculated Angle", calcAngle);
             avgCnt = 0;
             leftArea = 0;
             rightArea = 0;

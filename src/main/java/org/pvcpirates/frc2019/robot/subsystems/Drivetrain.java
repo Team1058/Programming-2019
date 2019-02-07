@@ -1,6 +1,8 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
 
+import com.ctre.phoenix.motion.MotionProfileStatus;
+import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.pvcpirates.frc2019.robot.Hardware;
@@ -115,6 +117,18 @@ public class Drivetrain extends BaseSubsystem {
         rightDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);
         rightDrive1.config_kF(0, f, RobotMap.Constants.ROBOT_TIMEOUT);
     }
+
+    public void stopMotionProfile(){
+            rightDrive1.clearMotionProfileTrajectories();
+            leftDrive1.clearMotionProfileTrajectories();
+            
+            rightDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+            leftDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+            SetValueMotionProfile status = SetValueMotionProfile.Disable;
+            leftDrive1.set(ControlMode.MotionProfile, status.value);
+            rightDrive1.set(ControlMode.MotionProfile, status.value);
+    }
+
     public static double TalonVelocityToFeetPerSecond(double talonVel){
         /*
          * 2 is from  2 * pi * r

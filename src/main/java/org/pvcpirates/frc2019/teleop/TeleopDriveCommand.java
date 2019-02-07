@@ -19,8 +19,8 @@ public class TeleopDriveCommand extends TeleopCommand {
     @Override
     public void exec(){
 
-        if (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
-            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband)){
+        if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
+            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
                 
             double percentOfTotalSpeed = 1;
                     
@@ -44,9 +44,11 @@ public class TeleopDriveCommand extends TeleopCommand {
             SmartDashboard.putNumber("rightJoyXAxis", rightJoyXAxis);
             
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
-        }else{
+            System.out.println("Velocity drive");
+        }else if(!gamepad.getButton(GamepadEnum.X_BUTTON)){
             // 0,0 because if nothing is pressed nothing should be moving
             hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
+            System.out.println("Set percent output");
         }
     }
 

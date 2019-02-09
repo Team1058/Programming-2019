@@ -71,6 +71,15 @@ public class MotionProfileProcessor {
 		
 	}
 
+	//This will reset the motion profile and it will close the threads that load the points
+	public void stop(){
+		reset();
+
+		System.out.println("Close thread");
+		motionProfileBufferProcessThread.stop();
+		motionProfileBufferProcessThread.close();
+	}
+
 	//Load all the motion profile points into the talons' memory
 	public void pushAllPoints() {
 		currPoint = 0;
@@ -108,7 +117,6 @@ public class MotionProfileProcessor {
 			//Same as before but now the left
 			pointL.position = (left.position*Constants.INCHES_IN_METERS/(2*RobotSpecs.WHEEL_RADIUS*Math.PI)) * RobotSpecs.ENC_TICKS_PER_ENC_ROTATION*RobotSpecs.ENC_ROTATIONS_PER_WHEEL_ROTATION;
 			pointL.velocity = Drivetrain.FeetPerSecondToTalonVelocity(left.velocity/.3048);
-			//System.out.println("Pushing points "+left.position);
 			
 			//Set what PID slot you want to use
 			pointR.profileSlotSelect0 = 0;

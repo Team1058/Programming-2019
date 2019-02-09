@@ -44,11 +44,9 @@ public class TeleopDriveCommand extends TeleopCommand {
             SmartDashboard.putNumber("rightJoyXAxis", rightJoyXAxis);
             
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
-            System.out.println("Velocity drive");
         }else if(!gamepad.getButton(GamepadEnum.X_BUTTON)){
             // 0,0 because if nothing is pressed nothing should be moving
             hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
-            System.out.println("Set percent output");
         }
     }
 

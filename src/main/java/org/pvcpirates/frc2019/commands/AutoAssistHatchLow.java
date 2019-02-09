@@ -8,13 +8,11 @@ public class AutoAssistHatchLow extends Command{
     
     @Override
     public void init() {
-        //System.out.println("Init");
         super.init();
     }
 
     @Override
     public void exec() {
-        //System.out.println("Exec");
         super.exec();
     }
 

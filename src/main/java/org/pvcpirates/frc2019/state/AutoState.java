@@ -19,30 +19,15 @@ import jaci.pathfinder.Waypoint;
 
 public class AutoState extends State {
 
-	AutoAssistHatchLow test;
-	long startTime;
-	long endTime;
 	@Override
 	public void init() {
 		// This will all get called at the start of auto
 		Hardware.getInstance().navx.reset();
-		System.out.println("Auto Init!");
-		test = new AutoAssistHatchLow();
-		test.init();
 	}
 
-
-	MotionProfileStatus mpStatus = new MotionProfileStatus();
 	@Override
 	public void exec() {
 		// Code here will all get called periodically (every ms) in Auto
-		test.exec();
-		Robot.getInstance().hardware.drivetrain.leftDrive1.getMotionProfileStatus(mpStatus);
-		//System.out.println(mpStatus.outputEnable.name());
-		// if (mpStatus.outputEnable == SetValueMotionProfile.Enable){
-		// 	endTime = System.currentTimeMillis();
-		// 	System.out.println("That took " + (endTime - startTime) + " milliseconds");
-		// }
 	}
 
 

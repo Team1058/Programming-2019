@@ -27,8 +27,7 @@ public class RobotMap {
         public static final double ENC_TICKS_PER_ENC_ROTATION = 1024;
         //Inches! will be 43.25 
         public static final double CAMERA_LENS_HEIGHT = 43.4;
-        //Notes: our donut of consistency for percent diff is 35" inner radius 53" outer radius
-        public static final double BUBBLE_RADIUS = 45;
+        
     }
     
     public static final class MotionProfiling{
@@ -42,10 +41,15 @@ public class RobotMap {
         //This is in _!METERS!_ per second cubed
         public static final double MAX_JERK = 50;
         //How many points the talons need loaded into the buffer before we can start the motionprofile
-        public static final int MIN_POINTS_NEEDED = 8;
+        public static final int MIN_POINTS_NEEDED = 6;
         //This is in ms, how fast we want to run the buffer processing thread
         public static final int FRAME_PERIOD = 5;
         public static final double FRAME_PERIOD_SECONDS = 0.005;
+        //This is the distance we want to stop at from the vision targets to figure out the angle of them
+        //Notes: our donut of consistency for percent diff is 35" inner radius 53" outer radius
+        public static final double BUBBLE_RADIUS = 45;
+        //How many area data points we want to average before calculating the angle
+        public static final double AREA_AVG_CNT = 50;
     }
 
 }

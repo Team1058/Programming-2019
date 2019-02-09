@@ -13,6 +13,8 @@ public class Limelight extends BaseSubsystem{
     public void initialize() {
         limelight = NetworkTableInstance.getDefault().getTable("limelight");
     }
+
+    //Returns true if the limelight sees something
     public boolean hasTarget(){
         return limelight.getEntry("tv").getNumber(0).intValue() == 1;
     }
@@ -35,6 +37,7 @@ public class Limelight extends BaseSubsystem{
         return new double[]{-valueX,valueY} ;
     }
 
+    //Find the distance from the robots center front point to the vision target as if it were drawn as a line on the ground
     public double getDiagonalRobotToVisTarget(){
         double heightDiffCameraVisTarget = RobotSpecs.CAMERA_LENS_HEIGHT - Constants.TOP_OF_ROCKET_HATCH_VIS_TARGET_HEIGHT;
         //take the height difference between the camera and vis target then use that to find the distance from the robot to the vision target as the crow flies
@@ -62,18 +65,12 @@ public class Limelight extends BaseSubsystem{
         return limelight.getEntry("ty").getNumber(0).doubleValue();
     }
 
-    public double getLeftVisTargetAreaPipeline(){
-        Pipelines prevPipline = currPipeline;
-        setPipeline(Pipelines.HATCH_LOW_LEFT);
-        double val = limelight.getEntry("ta0").getNumber(0).doubleValue();
-        setPipeline(prevPipline);
-        return val;
-    }
-
+    //gets the area of the vision target in % area of the screen
     public double getLeftVisTargetArea(){
         return limelight.getEntry("ta1").getNumber(0).doubleValue();
     }
 
+    //gets the area of the vision target in % area of the screen
     public double getRightVisTargetArea(){
         return limelight.getEntry("ta0").getNumber(0).doubleValue();
     }

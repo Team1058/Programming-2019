@@ -1,14 +1,12 @@
 package org.pvcpirates.frc2019.teleop;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TeleopDriveCommand extends TeleopCommand {
     
@@ -36,6 +34,7 @@ public class TeleopDriveCommand extends TeleopCommand {
             /* 10 is maximum speed, multiplies by the subtracted/sum of both joysticks to get correct speed
             *  So it doesn't do either turn or drive straight, multiplied by how much of the speed gotton before
             *  should be used */
+<<<<<<< HEAD
             double leftDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
             double rightDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
             SmartDashboard.putNumber("leftDriveSpeed", leftDriveSpeed);
@@ -47,9 +46,26 @@ public class TeleopDriveCommand extends TeleopCommand {
         }else if(!gamepad.getButton(GamepadEnum.X_BUTTON)){
             // 0,0 because if nothing is pressed nothing should be moving
             hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
+=======
+           double leftDriveSpeed = -FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
+           double rightDriveSpeed = FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
+           hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
+           // Update shuffleboard to reflect real time input values
+           updateDriveBaseShufleBoardEntries(leftJoyYAxis,rightJoyXAxis,leftDriveSpeed,rightDriveSpeed);
+        }else{
+          // 0,0 because if nothing is pressed nothing should be moving
+          hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
+          updateDriveBaseShufleBoardEntries(0,0,0,0);
+>>>>>>> master
         }
     }
 
+    private void updateDriveBaseShufleBoardEntries(double lJoy, double rJoy, double lSpeed, double rSpeed){
+      ShuffleBoardManager.leftJoyYaxisEntry.setDouble(lJoy);
+      ShuffleBoardManager.rightJoyYaxisEntry.setDouble(rJoy);
+      ShuffleBoardManager.leftDriveSpeedEntry.setDouble(lSpeed);
+      ShuffleBoardManager.rightDriveSpeedEntry.setDouble(rSpeed);
+    }
 
     
 }

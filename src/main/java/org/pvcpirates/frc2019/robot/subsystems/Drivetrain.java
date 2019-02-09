@@ -1,5 +1,6 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
+<<<<<<< HEAD
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
@@ -9,6 +10,10 @@ import org.pvcpirates.frc2019.util.RobotMap;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+=======
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import org.pvcpirates.frc2019.util.RobotMap;
+>>>>>>> master
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -20,7 +25,7 @@ public class Drivetrain extends BaseSubsystem {
     // DRIVETRAIN PIDs;
     public static double DRIVE_PEAK_OUTPUT = .95;
     public static double DRIVE_F = .115;
-    public static double DRIVE_P = 0.1;
+    public static double DRIVE_P = .15;
     public static double DRIVE_I = 0;
     public static double DRIVE_D = 0;
 
@@ -66,31 +71,20 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive2.follow(leftDrive1);
         rightDrive2.follow(rightDrive1);
     }
-    
-    public void initializeDrivetrainPIDGetShuffle(){
-        // LeftDrive PID Values;
-        ShuffleBoardManager.pidTab.add("drive_F", DRIVE_F);
-        ShuffleBoardManager.pidTab.add("drive_P", DRIVE_P);
-        ShuffleBoardManager.pidTab.add("drive_I", DRIVE_I);
-        ShuffleBoardManager.pidTab.add("drive_D", DRIVE_D);
-
-        ShuffleBoardManager.pidTab.addPersistent("drive_loopoutput", DRIVE_PEAK_OUTPUT); 
-    }
 
     public void initializeSetDrivePIDValues(){
-        initializeDrivetrainPIDGetShuffle();
         leftDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
         rightDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
 
-        leftDrive1.config_kF(0, SmartDashboard.getNumber("drive_F", DRIVE_F));
-        leftDrive1.config_kP(0, SmartDashboard.getNumber("drive_P", DRIVE_P));
-        leftDrive1.config_kI(0, SmartDashboard.getNumber("drive_I", DRIVE_I));
-        leftDrive1.config_kD(0, SmartDashboard.getNumber("drive_D", DRIVE_D));
+        leftDrive1.config_kF(0, ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F));
+        leftDrive1.config_kP(0, ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P));
+        leftDrive1.config_kI(0, ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I));
+        leftDrive1.config_kD(0, ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D));
 
-        rightDrive1.config_kF(0, SmartDashboard.getNumber("drive_F", DRIVE_F));
-        rightDrive1.config_kP(0, SmartDashboard.getNumber("drive_P", DRIVE_P));
-        rightDrive1.config_kI(0, SmartDashboard.getNumber("drive_I", DRIVE_I));
-        rightDrive1.config_kD(0, SmartDashboard.getNumber("drive_D", DRIVE_D));
+        rightDrive1.config_kF(0, ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F));
+        rightDrive1.config_kP(0, ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P));
+        rightDrive1.config_kI(0, ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I));
+        rightDrive1.config_kD(0, ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D));
     }
 
     public void stopAll() {
@@ -104,6 +98,7 @@ public class Drivetrain extends BaseSubsystem {
         rightDrive1.set(controlMode, right);
     }
 
+<<<<<<< HEAD
     public void setPIDF(double p, double i, double d, double f) {
         leftDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
         leftDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
@@ -141,4 +136,6 @@ public class Drivetrain extends BaseSubsystem {
         return ((feetPerSec*12)/(2.0*RobotSpecs.WHEEL_RADIUS)/Math.PI)*RobotSpecs.ENC_TICKS_PER_ENC_ROTATION*RobotSpecs.ENC_ROTATIONS_PER_WHEEL_ROTATION/10.0;
       }
 
+=======
+>>>>>>> master
 }

@@ -16,10 +16,10 @@ public class TeleopState extends State {
     private DriverGamepad driverGamepad;
     private OperatorGamepad operatorGamepad;
     private Hardware hardware;
-    
-    @Override
 
+    @Override
     public void init() {
+        Hardware.getInstance().initializeHardware();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
         hardware = Hardware.getInstance();
@@ -34,7 +34,10 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
+<<<<<<< HEAD
         SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
+=======
+>>>>>>> master
     }
 
     @Override

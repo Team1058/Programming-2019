@@ -9,8 +9,8 @@ public class HatchManipulator extends BaseSubsystem {
 
     int doubleClawSolenoidForwardPCM = 3;
     int doubleClawSolenoidReversePCM = 4;
-    int doubleSliderSolenoidForwardPCM = 6;
-    int doubleSliderSolenoidReversePCM = 7;
+    int doubleSliderSolenoidForwardPCM = 2;
+    int doubleSliderSolenoidReversePCM = 5;
 
     public final Compressor compressor = new Compressor(RobotMap.CANTalonIds.PCM);
     public final DoubleSolenoid clawSolenoid = new DoubleSolenoid(5,doubleClawSolenoidForwardPCM,doubleClawSolenoidReversePCM);

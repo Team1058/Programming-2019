@@ -4,9 +4,10 @@ import org.pvcpirates.frc2019.robot.subsystems.*;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 public class Hardware {
-    
+
+    public static ShuffleBoardManager sbm = new ShuffleBoardManager();
     private static Hardware ourInstance;
     private PowerDistributionPanel pdp = new PowerDistributionPanel(0);
     public AHRS navx = new AHRS(SPI.Port.kMXP);
@@ -37,8 +38,23 @@ public class Hardware {
 		return ourInstance;
     }
     
-    public double batteryVoltage(){
+    public void reportbatteryvoltage(){
         double voltage = pdp.getVoltage();
-        return voltage;
+        if (voltage >= 12.0){
+            sbm.pidTab.add("The Battery is ready for competition.", voltage);
+        }
+            
+        if (voltage >= 11.0 && voltage < 12.0){
+            sbm.pidTab.add("Warning! The batter is low but useable.", voltage);
+
+        }
+        if (voltage < 11.0){
+            sbm.pidTab.add("DO NOT USE THIS BATTERY! ", voltage);
+        }
+
+    
+
+        
     }
+
 }

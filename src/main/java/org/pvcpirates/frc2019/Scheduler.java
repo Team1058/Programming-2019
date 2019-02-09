@@ -55,11 +55,11 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void testInit() {
+		Hardware.getInstance().reportbatteryvoltage();
 	}
 
 	@Override
 	public void testPeriodic() {
-		double voltage =  Hardware.getInstance().batteryVoltage();
-		System.out.println("Voltage:  "+ voltage);
+	
 	}
 }

@@ -8,7 +8,7 @@ import org.pvcpirates.frc2019.robot.subsystems.Flipper;
 
 public class FlipperCommand extends TeleopCommand {
 
-    int tempPosition = 0;
+    double tempPosition = 0;
     int tempPercentOutput = 0;
 
     private Flipper flipper = Hardware.getInstance().flipper;

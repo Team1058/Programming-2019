@@ -30,7 +30,6 @@ public class HatchManipulator extends BaseSubsystem {
 
     public void grabHatch(){
         hatchClawExpand();
-
         hatchSliderIn();
     }
 
@@ -58,15 +57,15 @@ public class HatchManipulator extends BaseSubsystem {
     }
 
     public void hatchSliderIn(){
-        //if (sliderSolenoid.get() != DoubleSolenoid.Value.kReverse){
-        //    sliderSolenoid.set(DoubleSolenoid.Value.kReverse);
-        //}
+        if (sliderSolenoid.get() != DoubleSolenoid.Value.kReverse){
+            sliderSolenoid.set(DoubleSolenoid.Value.kReverse);
+        }
     }
 
     public void hatchSliderOut(){
-        //if (sliderSolenoid.get() != DoubleSolenoid.Value.kForward){
-        //    sliderSolenoid.set(DoubleSolenoid.Value.kForward);
-        //}
+        if (sliderSolenoid.get() != DoubleSolenoid.Value.kForward){
+            sliderSolenoid.set(DoubleSolenoid.Value.kForward);
+        }
     }
 
 }

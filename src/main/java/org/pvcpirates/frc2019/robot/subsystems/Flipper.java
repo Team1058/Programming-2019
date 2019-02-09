@@ -45,14 +45,14 @@ public class Flipper extends BaseSubsystem {
         flipperRotate(ShuffleBoardManager.flipperlvl1To2BackEntry.getDouble(lvl1to2BackConstant));
     }
 
-    public void flipperRotate(Double positionForFlipper){
+    public void flipperRotate(double positionForFlipper){
         /* Talons need to have a control mode of position
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT*/
         flipperTalonMain.set(ControlMode.Position, positionForFlipper);
     }
 
-    public void miniWheelRotate(Double percentOfPercentOutput){
+    public void miniWheelRotate(int percentOfPercentOutput){
         flipperMiniWheelVictor.set(ControlMode.PercentOutput, percentOfPercentOutput);
     }
 }

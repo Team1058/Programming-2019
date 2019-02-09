@@ -46,7 +46,7 @@ public class HatchManipulationCommand extends TeleopCommand {
 
        //if it isn't grabbing it goes to 'default' position
        if (isGrabbing == false){
-           hatchManipulator.defaultPosition();
+           hatchManipulator.hatchClawRetract();
        }
     }
 

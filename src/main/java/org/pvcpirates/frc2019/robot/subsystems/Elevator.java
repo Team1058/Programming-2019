@@ -16,19 +16,19 @@ import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 public class Elevator extends BaseSubsystem {
 
     //public final TalonSRX pivotTalon = new TalonSRX();
-    public final CANSparkMax elevatorSparkMax = new CANSparkMax(10,MotorType.kBrushless);
-    public final CANPIDController elevatorPIDController = new CANPIDController(elevatorSparkMax);
-    public final CANEncoder elevatorEncoder = new CANEncoder(elevatorSparkMax);
+   // public final CANSparkMax elevatorSparkMax = new CANSparkMax(10,MotorType.kBrushless);
+    //public final CANPIDController elevatorPIDController = new CANPIDController(elevatorSparkMax);
+    //public final CANEncoder elevatorEncoder = new CANEncoder(elevatorSparkMax);
     public void initialize(){
-
+        
     }
 
     public void setSetpoint(int setpoint){
-        elevatorPIDController.setReference(setpoint, ControlType.kPosition);
+      //  elevatorPIDController.setReference(setpoint, ControlType.kPosition);
     }
 
     public void getSetpoint(){
-        elevatorEncoder.getPosition();
+        //elevatorEncoder.getPosition();
     }
 
     public void manipulatorPivot(){

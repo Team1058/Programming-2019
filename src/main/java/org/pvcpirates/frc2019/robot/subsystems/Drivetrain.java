@@ -1,6 +1,5 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
-<<<<<<< HEAD
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
@@ -10,10 +9,6 @@ import org.pvcpirates.frc2019.util.RobotMap;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-=======
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import org.pvcpirates.frc2019.util.RobotMap;
->>>>>>> master
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -98,7 +93,6 @@ public class Drivetrain extends BaseSubsystem {
         rightDrive1.set(controlMode, right);
     }
 
-<<<<<<< HEAD
     public void setPIDF(double p, double i, double d, double f) {
         leftDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
         leftDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
@@ -136,6 +130,4 @@ public class Drivetrain extends BaseSubsystem {
         return ((feetPerSec*12)/(2.0*RobotSpecs.WHEEL_RADIUS)/Math.PI)*RobotSpecs.ENC_TICKS_PER_ENC_ROTATION*RobotSpecs.ENC_ROTATIONS_PER_WHEEL_ROTATION/10.0;
       }
 
-=======
->>>>>>> master
 }

@@ -53,6 +53,7 @@ public class FollowMotionProfile extends Command{
         //Get the status of the talons
         MotionProfileStatus status = new MotionProfileStatus();
         drivetrain.leftDrive1.getMotionProfileStatus(status);
+        System.out.println("Btm buffer: " + status.btmBufferCnt);
         //stop the motion profile if the top and bottom buffer count are 0 aka we dont have any more points to run
         if(status.btmBufferCnt == 0 && status.topBufferCnt == 0 && motionProfileProcessor.getSetValue() == SetValueMotionProfile.Enable){
             setStatus(Status.STOP);

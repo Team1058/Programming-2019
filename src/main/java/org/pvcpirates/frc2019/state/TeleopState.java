@@ -34,10 +34,8 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-<<<<<<< HEAD
         SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
-=======
->>>>>>> master
+        SmartDashboard.putNumber("Diag", hardware.limelight.getDiagonalRobotToVisTarget());
     }
 
     @Override

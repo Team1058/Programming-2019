@@ -3,11 +3,12 @@ package org.pvcpirates.frc2019.robot;
 import org.pvcpirates.frc2019.robot.subsystems.*;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 public class Hardware {
- 
+    
     private static Hardware ourInstance;
-
+    private PowerDistributionPanel pdp = new PowerDistributionPanel(0);
     public AHRS navx = new AHRS(SPI.Port.kMXP);
     public Drivetrain drivetrain = new Drivetrain();
     public CargoManinpulator cargoManinpulator = new CargoManinpulator();
@@ -34,5 +35,10 @@ public class Hardware {
 			ourInstance = new Hardware();
 		}
 		return ourInstance;
-	}
+    }
+    
+    public double batteryVoltage(){
+        double voltage = pdp.getVoltage();
+        return voltage;
+    }
 }

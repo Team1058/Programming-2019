@@ -1,9 +1,10 @@
 package org.pvcpirates.frc2019;
 
-import org.pvcpirates.frc2019.robot.Robot;
+import org.pvcpirates.frc2019.robot.*;
 import org.pvcpirates.frc2019.state.AutoState;
 import org.pvcpirates.frc2019.state.TeleopState;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.hal.PowerJNI;
 
 public class Scheduler extends IterativeRobot {
 
@@ -12,7 +13,8 @@ public class Scheduler extends IterativeRobot {
 	@Override
 	public void robotInit() {
 	  robot.setState(new TeleopState());
-	  robot.state.init();
+		robot.state.init();
+	
 	}
 
 	@Override
@@ -28,7 +30,8 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-	  robot.state.exec();
+		robot.state.exec();
+		
 	}
 
 	@Override
@@ -39,7 +42,7 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void teleopPeriodic() {
-	  robot.state.exec();
+		robot.state.exec();
 	}
 
 	@Override
@@ -50,4 +53,13 @@ public class Scheduler extends IterativeRobot {
 	public void disabledPeriodic() {
 	}
 
+	@Override
+	public void testInit() {
+	}
+
+	@Override
+	public void testPeriodic() {
+		double voltage =  Hardware.getInstance().batteryVoltage();
+		System.out.println("Voltage:  "+ voltage);
+	}
 }

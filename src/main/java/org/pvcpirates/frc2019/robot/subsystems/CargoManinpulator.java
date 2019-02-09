@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class CargoManinpulator extends BaseSubsystem {
 
-    //public final VictorSPX cargoVictor = new VictorSPX();
+    // public final VictorSPX cargoVictor = new VictorSPX();
     
     public void initialize(){
 

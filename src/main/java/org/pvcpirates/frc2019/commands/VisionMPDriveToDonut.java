@@ -17,12 +17,12 @@ public class VisionMPDriveToDonut extends Command{
     FollowMotionProfile followMP;
     @Override
     public void init() {
-        //how far to stop before the vision target in inches
+        // how far to stop before the vision target in inches
 		
-		//get x and convert to meters
+		// get x and convert to meters
 		double x = Hardware.getInstance().limelight.getXYPosModified(MotionProfiling.BUBBLE_RADIUS)[0]/Constants.INCHES_IN_METERS;
 		double y = Hardware.getInstance().limelight.getXYPosModified(MotionProfiling.BUBBLE_RADIUS)[1]/Constants.INCHES_IN_METERS;
-		//This is the angle we want to turn so the vistarget is centered on the line perpendicular to the robot's face
+		// This is the angle we want to turn so the vistarget is centered on the line perpendicular to the robot's face
 		double turnAngle = Hardware.getInstance().limelight.getTargetXAngle();        
 		Waypoint[] points = new Waypoint[] {
 			new Waypoint(0, 0, Pathfinder.d2r(90)),

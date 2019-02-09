@@ -93,29 +93,17 @@ public class Drivetrain extends BaseSubsystem {
         rightDrive1.set(controlMode, right);
     }
 
-    public void setPIDF(double p, double i, double d, double f) {
-        leftDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
-        leftDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
-        leftDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);
-        leftDrive1.config_kF(0, f, RobotMap.Constants.ROBOT_TIMEOUT);
-
-        rightDrive1.config_kP(0, p, RobotMap.Constants.ROBOT_TIMEOUT);
-        rightDrive1.config_kI(0, i, RobotMap.Constants.ROBOT_TIMEOUT);
-        rightDrive1.config_kD(0, d, RobotMap.Constants.ROBOT_TIMEOUT);
-        rightDrive1.config_kF(0, f, RobotMap.Constants.ROBOT_TIMEOUT);
-    }
-
     
     public void stopMotionProfile(){
-            //This will clear the motion profile from the talons memory so it doesn't try and run the next time we switch to motionprofile mode
-            rightDrive1.clearMotionProfileTrajectories();
-            leftDrive1.clearMotionProfileTrajectories();
-            //Reset the encoders just to be sure
-            rightDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
-            leftDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
-            //Disable the motion profile
-            leftDrive1.set(ControlMode.MotionProfile,  SetValueMotionProfile.Disable.value);
-            rightDrive1.set(ControlMode.MotionProfile,  SetValueMotionProfile.Disable.value);
+        // This will clear the motion profile from the talons memory so it doesn't try and run the next time we switch to motionprofile mode
+        rightDrive1.clearMotionProfileTrajectories();
+        leftDrive1.clearMotionProfileTrajectories();
+        // Reset the encoders just to be sure
+        rightDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+        leftDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+        // Disable the motion profile
+        leftDrive1.set(ControlMode.MotionProfile,  SetValueMotionProfile.Disable.value);
+        rightDrive1.set(ControlMode.MotionProfile,  SetValueMotionProfile.Disable.value);
     }
 
     public static double TalonVelocityToFeetPerSecond(double talonVel){

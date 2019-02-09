@@ -25,14 +25,13 @@ public class FollowMotionProfile extends Command{
     Waypoint[] points;
     public FollowMotionProfile(Waypoint[] points){
         this.points = points;
-        
     }
     
     @Override
     public void init() {
-        //See test commands for documentation
+        // See test commands for documentation
         setStatus(Status.INIT);
-        //Profile takes around 110ms to 400ms depending on length
+        // Profile takes around 110ms to 400ms depending on length
 		Config config = new Config(FitMethod.HERMITE_QUINTIC, Config.SAMPLES_FAST, MotionProfiling.POINT_DURATION, MotionProfiling.MAX_VELOCITY, MotionProfiling.MAX_ACCELERATION, MotionProfiling.MAX_JERK);
 		Trajectory trajectory = Pathfinder.generate(points, config);
         TankModifier path = new TankModifier(trajectory);
@@ -50,11 +49,10 @@ public class FollowMotionProfile extends Command{
         }
         drivetrain.rightDrive1.set(ControlMode.MotionProfile, motionProfileProcessor.getSetValue().value);
         drivetrain.leftDrive1.set(ControlMode.MotionProfile, motionProfileProcessor.getSetValue().value);
-        //Get the status of the talons
+        // Get the status of the talons
         MotionProfileStatus status = new MotionProfileStatus();
         drivetrain.leftDrive1.getMotionProfileStatus(status);
-        System.out.println("Btm buffer: " + status.btmBufferCnt);
-        //stop the motion profile if the top and bottom buffer count are 0 aka we dont have any more points to run
+        // stop the motion profile if the top and bottom buffer count are 0 aka we dont have any more points to run
         if(status.btmBufferCnt == 0 && status.topBufferCnt == 0 && motionProfileProcessor.getSetValue() == SetValueMotionProfile.Enable){
             setStatus(Status.STOP);
         }
@@ -62,7 +60,6 @@ public class FollowMotionProfile extends Command{
     
     @Override
     public void finished() {
-		
         motionProfileProcessor.stop();
     }
     

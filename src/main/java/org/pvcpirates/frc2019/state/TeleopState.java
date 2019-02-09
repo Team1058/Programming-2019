@@ -6,6 +6,7 @@ import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 import org.pvcpirates.frc2019.util.RobotMap.MotionProfiling;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,8 +35,8 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-        SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
-        SmartDashboard.putNumber("Diag", hardware.limelight.getDiagonalRobotToVisTarget());
+        ShuffleBoardManager.visionTargetBool.setBoolean(hardware.limelight.hasTarget());
+        ShuffleBoardManager.visionDiagEntry.setNumber(hardware.limelight.getDiagonalRobotToVisTarget());
     }
 
     @Override

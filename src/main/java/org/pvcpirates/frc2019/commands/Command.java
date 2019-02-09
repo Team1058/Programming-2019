@@ -23,7 +23,7 @@ public class Command {
     }
 
     public void exec() {
-        //LONG COMMANDS WILL NOT WORK WITH PARALLEL
+        // LONG COMMANDS WILL NOT WORK WITH PARALLEL
         if (parallel) {
             for (Command cmd : commands) {
                 if (cmd.getStatus() == Status.INIT) {

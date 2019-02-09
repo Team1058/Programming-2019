@@ -5,9 +5,9 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class Flipper extends BaseSubsystem {
 
-    //public final VictorSPX flipperVictor = new VictorSPX();
-    //public final TalonSRX flipperTalon1 = new TalonSRX();
-    //public final TalonSRX flipperTalon2 = new TalonSRX();
+    // public final VictorSPX flipperVictor = new VictorSPX();
+    // public final TalonSRX flipperTalon1 = new TalonSRX();
+    // public final TalonSRX flipperTalon2 = new TalonSRX();
 
     public void initialize(){
 

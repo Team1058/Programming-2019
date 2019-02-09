@@ -23,11 +23,11 @@ public class MotionProfileTEST extends Command{
     public MotionProfileTEST(){
 
     }
-    //Running init will take time, as it's generating a path and loading the points into the talons
-    //This is why this is a TEST    
+    // Running init will take time, as it's generating a path and loading the points into the talons
+    // This is why this is a TEST    
     @Override
     public void init() {
-        //SET WAYPOINTS
+        // SET WAYPOINTS
 		/*
 		WAYPOINT RULES
 		1. Waypoints are x,y, rotation of robot in meters, meters, and radians respectively measured from the center of the robot
@@ -78,15 +78,15 @@ public class MotionProfileTEST extends Command{
 		*/
 		Trajectory trajectory = Pathfinder.generate(points, config);
 
-		//This is another path but this will create a path that can be modified so it has a left and right path that are actually usuable by the talons
+		// This is another path but this will create a path that can be modified so it has a left and right path that are actually usuable by the talons
 		TankModifier path = new TankModifier(trajectory);
 
-		//Modify is necessary to seperate the path into both sides. The parameter is the WIDTH of the wheelbase in METERS
+		// Modify is necessary to seperate the path into both sides. The parameter is the WIDTH of the wheelbase in METERS
 		path.modify(RobotSpecs.WHEELBASE_WIDTH_METERS);
 		
-		//Create a motion profile passing in the two sides of the robot and the tank modifier path
+		// Create a motion profile passing in the two sides of the robot and the tank modifier path
         motionProfileProcessor = new MotionProfileProcessor(path);
-        //Push all points at once instead of on the fly
+        // Push all points at once instead of on the fly
         motionProfileProcessor.pushAllPoints();
 		setStatus(Status.EXEC);
     }
@@ -99,7 +99,6 @@ public class MotionProfileTEST extends Command{
         if(drivetrain.leftDrive1.isMotionProfileFinished()){
             setStatus(Status.STOP);
             motionProfileProcessor.reset();
-            System.out.println("Finished profile");
         }
     }
     

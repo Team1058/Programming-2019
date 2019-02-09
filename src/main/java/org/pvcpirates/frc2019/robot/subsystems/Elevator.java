@@ -5,9 +5,9 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class Elevator extends BaseSubsystem {
 
-    //public final VictorSPX elevatorVictor = new VictorSPX();
-    //public final TalonSRX elevatorTalon = new TalonSRX();
-    //public final TalonSRX pivotTalon = new TalonSRX();
+    // public final VictorSPX elevatorVictor = new VictorSPX();
+    // public final TalonSRX elevatorTalon = new TalonSRX();
+    // public final TalonSRX pivotTalon = new TalonSRX();
 
     public void initialize(){
 
@@ -22,6 +22,6 @@ public class Elevator extends BaseSubsystem {
     }
 
     public void manipulatorPivot(){
-        //Pivot will be 0 to 180
+        // Pivot will be 0 to 180
     }
 }

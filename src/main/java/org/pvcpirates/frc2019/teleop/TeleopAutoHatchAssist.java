@@ -18,7 +18,7 @@ public class TeleopAutoHatchAssist extends TeleopCommand {
     @Override
     public void exec(){
         if(gamepad.getButton(GamepadEnum.X_BUTTON)){
-            //Run through the command
+            // Run through the command
             if(assist.getStatus() == Status.INIT){
                 assist.init();
             }else if(assist.getStatus() == Status.EXEC){
@@ -29,7 +29,7 @@ public class TeleopAutoHatchAssist extends TeleopCommand {
             }
         }else{
 
-            //If someone lets go of the x button but the profile is NOT done then just stop the motion profile
+            // If someone lets go of the x button but the profile is NOT done then just stop the motion profile
             if (assist.getStatus() == Status.EXEC){
                 assist.finished(); 
                 assist.setStatus(Status.STOP);
@@ -37,7 +37,7 @@ public class TeleopAutoHatchAssist extends TeleopCommand {
                 Hardware.getInstance().drivetrain.stopMotionProfile();
                 done = false;
             }
-            //If it is done then finished has already been called and so just make a new command
+            // If it is done then finished has already been called and so just make a new command
             if(done == true){
                 assist = new AutoAssistHatchLow();
                 done = false;

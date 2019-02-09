@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class HatchManipulator extends BaseSubsystem {
 
-    //public final Compressor compressor = new Compressor();
-    //public final DoubleSolenoid clawSolenoid = new DoubleSolenoid();
-    //public final DoubelSolenoid sliderSolenoid = new DoubleSolenoid();
+    // public final Compressor compressor = new Compressor();
+    // public final DoubleSolenoid clawSolenoid = new DoubleSolenoid();
+    // public final DoubelSolenoid sliderSolenoid = new DoubleSolenoid();
     
     public void initialize(){
 

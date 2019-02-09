@@ -30,27 +30,23 @@ public class HatchManipulationCommand extends TeleopCommand {
     *  then when the button is released it extends the claws
     *  then retracts the slider back */
       if (this.gamepad.getButton(GamepadEnum.B_BUTTON) == true){  
-          hatchManipulator.hatchSliderOut();
+          hatchManipulator.prepGrab();
           isGrabbing = true;
       }else if(isGrabbing == true && this.gamepad.getButton(GamepadEnum.B_BUTTON) == false){
-          hatchManipulator.hatchClawExpand();
-          hatchManipulator.hatchSliderIn();
+          hatchManipulator.grabHatch();
       }
       
     /* while the x button is held the hatch slider is extended
     *  then when the button is released it retracts the claw
     *  then retracts the slider back*/
        if (this.gamepad.getButton(GamepadEnum.X_BUTTON) == true){
-           hatchManipulator.hatchSliderOut();
-           hatchManipulator.hatchClawRetract();
-           hatchManipulator.hatchSliderIn();
+           hatchManipulator.placeHatch();
            isGrabbing = false;
        }
 
        //if it isn't grabbing it goes to 'default' position
        if (isGrabbing == false){
-           hatchManipulator.hatchClawRetract();
-           hatchManipulator.hatchSliderIn();
+           hatchManipulator.defaultPosition();
        }
     }
 

@@ -18,6 +18,31 @@ public class HatchManipulator extends BaseSubsystem {
 
     }
 
+    public void defaultPosition(){
+        hatchClawRetract();
+        hatchSliderIn();
+    }
+
+    public void prepGrab(){
+        hatchSliderOut();
+    }
+
+    public void grabHatch(){
+        hatchClawExpand();
+        hatchSliderIn();
+    }
+
+    public void holdHatch(){
+        hatchClawExpand();
+        hatchSliderIn();
+    }
+
+    public void placeHatch(){
+        hatchSliderOut();
+        hatchClawRetract();
+        hatchSliderIn();
+    }
+
     public void hatchClawRetract(){
         if (clawSolenoid.get() != DoubleSolenoid.Value.kReverse){
             sliderSolenoid.set(DoubleSolenoid.Value.kReverse);

@@ -3,22 +3,32 @@ package org.pvcpirates.frc2019.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANPIDController;
+import com.revrobotics.CANEncoder;
+
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
+
+
+
 public class Elevator extends BaseSubsystem {
 
-    //public final VictorSPX elevatorVictor = new VictorSPX();
-    //public final TalonSRX elevatorTalon = new TalonSRX();
     //public final TalonSRX pivotTalon = new TalonSRX();
-
+    public final CANSparkMax elevatorSparkMax = new CANSparkMax(10,MotorType.kBrushless);
+    public final CANPIDController elevatorPIDController = new CANPIDController(elevatorSparkMax);
+    public final CANEncoder elevatorEncoder = new CANEncoder(elevatorSparkMax);
     public void initialize(){
 
     }
 
-    public void setSetpoint(){
-
+    public void setSetpoint(int setpoint){
+        elevatorPIDController.setReference(setpoint, ControlType.kPosition);
     }
 
     public void getSetpoint(){
-
+        elevatorEncoder.getPosition();
     }
 
     public void manipulatorPivot(){

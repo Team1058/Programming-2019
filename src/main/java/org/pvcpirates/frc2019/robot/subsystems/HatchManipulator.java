@@ -1,9 +1,11 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
 import org.pvcpirates.frc2019.util.RobotMap;
+import org.pvcpirates.frc2019.commands.Delay;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Timer;
 
 public class HatchManipulator extends BaseSubsystem {
 
@@ -30,6 +32,7 @@ public class HatchManipulator extends BaseSubsystem {
 
     public void grabHatch(){
         hatchClawExpand();
+        Timer.delay(0.1);
         hatchSliderIn();
     }
 
@@ -40,19 +43,21 @@ public class HatchManipulator extends BaseSubsystem {
 
     public void placeHatch(){
         hatchSliderOut();
+        Timer.delay(.225);
         hatchClawRetract();
+        Timer.delay(.1);
         hatchSliderIn();
     }
 
     public void hatchClawRetract(){
-        if (clawSolenoid.get() != DoubleSolenoid.Value.kReverse){
-            clawSolenoid.set(DoubleSolenoid.Value.kReverse);
+        if (clawSolenoid.get() != DoubleSolenoid.Value.kForward){
+            clawSolenoid.set(DoubleSolenoid.Value.kForward);
         }
     }
 
     public void hatchClawExpand() {
-        if (clawSolenoid.get() != DoubleSolenoid.Value.kForward){
-            clawSolenoid.set(DoubleSolenoid.Value.kForward);
+        if (clawSolenoid.get() != DoubleSolenoid.Value.kReverse){
+            clawSolenoid.set(DoubleSolenoid.Value.kReverse);
         }
     }
 

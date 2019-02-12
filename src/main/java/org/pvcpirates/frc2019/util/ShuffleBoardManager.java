@@ -13,12 +13,18 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry rightDriveSpeedEntry;
     public static NetworkTableEntry leftJoyYaxisEntry;
     public static NetworkTableEntry rightJoyYaxisEntry;
+    public static NetworkTableEntry flipperDefaultPositionEntry;
+    public static NetworkTableEntry flipperlvl1To2BackEntry;
+    public static NetworkTableEntry flipperlvl1To2FrontEntry;
+    public static NetworkTableEntry flipperlvl2To3BackEntry;
+    public static NetworkTableEntry flipperlvl2To3FrontEntry;
     // PID Tab Entries
     public static NetworkTableEntry fDriveEntry;
     public static NetworkTableEntry pDriveEntry;
     public static NetworkTableEntry iDriveEntry;
     public static NetworkTableEntry dDriveEntry;
     public static NetworkTableEntry loopDriveEntry;
+
 
 
     public ShuffleBoardManager(){

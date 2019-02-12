@@ -10,7 +10,7 @@ public class Hardware {
 
     public AHRS navx = new AHRS(SPI.Port.kMXP);
     public Drivetrain drivetrain = new Drivetrain();
-    public CargoManinpulator cargoManinpulator = new CargoManinpulator();
+    public CargoManipulator cargoManipulator = new CargoManipulator();
     public HatchManipulator hatchManipulator = new HatchManipulator();
     public Elevator elevator = new Elevator();
     public Flipper flipper = new Flipper();
@@ -22,7 +22,7 @@ public class Hardware {
     public void initializeHardware(){
         navx.reset();
         drivetrain.initialize();
-        cargoManinpulator.initialize();
+        cargoManipulator.initialize();
         hatchManipulator.initialize();
         elevator.initialize();
         flipper.initialize();

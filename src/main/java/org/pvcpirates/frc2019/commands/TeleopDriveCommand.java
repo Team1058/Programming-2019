@@ -1,4 +1,4 @@
-package org.pvcpirates.frc2019.teleop;
+package org.pvcpirates.frc2019.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;

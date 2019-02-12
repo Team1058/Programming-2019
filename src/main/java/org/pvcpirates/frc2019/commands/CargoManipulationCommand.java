@@ -13,12 +13,12 @@ public class CargoManipulationCommand extends TeleopCommand {
         super(gp);
     }
 
+    @Override
     public void init(){
-
     }
 
+    @Override
     public void exec(){
-
 
       /* While the Y button is held it take in cargo unless
       *  A is pushed then it will spit it out
@@ -33,8 +33,8 @@ public class CargoManipulationCommand extends TeleopCommand {
 
     }
 
+    @Override
     public void finished(){
-
     }
 
 }

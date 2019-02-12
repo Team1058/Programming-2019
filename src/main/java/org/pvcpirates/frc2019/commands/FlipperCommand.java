@@ -16,12 +16,11 @@ public class FlipperCommand extends TeleopCommand {
         super(gp);
     }
 
+    @Override
     public void init(){
-
     }   
 
     public void exec(){
-
 
         if(this.gamepad.getButton(GamepadEnum.DPAD_RIGHT)){
             flipper.flipperRotate(tempPosition);
@@ -39,8 +38,8 @@ public class FlipperCommand extends TeleopCommand {
 
     }
 
+    @Override
     public void finished(){
-
     }
 
 }

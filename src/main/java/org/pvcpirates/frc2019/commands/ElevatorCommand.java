@@ -12,15 +12,16 @@ public class ElevatorCommand extends TeleopCommand {
     public ElevatorCommand(BaseGamepad gp){
         super(gp);
     }
-    public void exec(){
 
-    }
-
+    @Override
     public void init(){
-
     }
 
-    public void finished(){
+    @Override
+    public void exec(){
+    }
 
+    @Override
+    public void finished(){
     }
 }

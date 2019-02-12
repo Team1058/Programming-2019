@@ -8,7 +8,6 @@ import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
 import org.pvcpirates.frc2019.util.RobotMap.MotionProfiling;
 
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -38,13 +37,6 @@ public class TeleopState extends State {
         SmartDashboard.putBoolean("Target", hardware.limelight.hasTarget());
         SmartDashboard.putNumber("Diag", hardware.limelight.getDiagonalRobotToVisTarget());
 
-        if (hardware.limelight.hasTarget() == true){
-            this.driverGamepad.setRumble(RumbleType.kLeftRumble, .5);
-            this.driverGamepad.setRumble(RumbleType.kRightRumble, .5);
-        }else {
-            this.driverGamepad.setRumble(RumbleType.kLeftRumble, 0);
-            this.driverGamepad.setRumble(RumbleType.kRightRumble, 0);
-        }
     }
 
     @Override

@@ -1,12 +1,14 @@
 package org.pvcpirates.frc2019.teleop;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class TeleopDriveCommand extends TeleopCommand {
     
@@ -50,6 +52,17 @@ public class TeleopDriveCommand extends TeleopCommand {
       ShuffleBoardManager.rightJoyYaxisEntry.setDouble(rJoy);
       ShuffleBoardManager.leftDriveSpeedEntry.setDouble(lSpeed);
       ShuffleBoardManager.rightDriveSpeedEntry.setDouble(rSpeed);
+    }
+
+    private void rumbleIfSeeTarget(){
+      
+      if (hardware.limelight.hasTarget() == true){
+        gamepad.setRumble(RumbleType.kLeftRumble, .5);
+        gamepad.setRumble(RumbleType.kRightRumble, .5);
+    }else {
+        gamepad.setRumble(RumbleType.kLeftRumble, 0);
+        gamepad.setRumble(RumbleType.kRightRumble, 0);
+    }
     }
 
     

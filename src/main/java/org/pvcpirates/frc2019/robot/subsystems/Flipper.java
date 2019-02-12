@@ -5,13 +5,14 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import org.pvcpirates.frc2019.util.RobotMap;
 import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 public class Flipper extends BaseSubsystem {
 
-    public final VictorSPX flipperMiniWheelVictor = new VictorSPX(7);
-    public final TalonSRX flipperTalonMain = new TalonSRX(5);
-    public final TalonSRX flipperTalonFollower = new TalonSRX(6);
+    public final VictorSPX flipperMiniWheelVictor = new VictorSPX(RobotMap.CANTalonIds.FLIPPER_MINI_WHEEL);
+    public final TalonSRX flipperTalonMain = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_MAIN);
+    public final TalonSRX flipperTalonFollower = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_FOLLOWER);
     
     public static double defaultPosConstant = 0;
     public static double lvl2to3FrontConstant = -100;

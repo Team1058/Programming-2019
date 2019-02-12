@@ -9,14 +9,9 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class HatchManipulator extends BaseSubsystem {
 
-    int doubleClawSolenoidForwardPCM = 3;
-    int doubleClawSolenoidReversePCM = 4;
-    int doubleSliderSolenoidForwardPCM = 2;
-    int doubleSliderSolenoidReversePCM = 5;
-
     public final Compressor compressor = new Compressor(RobotMap.CANTalonIds.PCM);
-    public final DoubleSolenoid clawSolenoid = new DoubleSolenoid(5,doubleClawSolenoidForwardPCM,doubleClawSolenoidReversePCM);
-    public final DoubleSolenoid sliderSolenoid = new DoubleSolenoid(5,doubleSliderSolenoidForwardPCM,doubleSliderSolenoidReversePCM);
+    public final DoubleSolenoid clawSolenoid = new DoubleSolenoid(5,RobotMap.PCMIDS.doubleClawSolenoidForwardPCM, RobotMap.PCMIDS.doubleClawSolenoidReversePCM);
+    public final DoubleSolenoid sliderSolenoid = new DoubleSolenoid(5,RobotMap.PCMIDS.doubleSliderSolenoidForwardPCM,RobotMap.PCMIDS.doubleSliderSolenoidReversePCM);
     public void initialize(){
         compressor.setClosedLoopControl(true);
     }
@@ -33,11 +28,6 @@ public class HatchManipulator extends BaseSubsystem {
     public void grabHatch(){
         hatchClawExpand();
         Timer.delay(0.1);
-        hatchSliderIn();
-    }
-
-    public void holdHatch(){
-        hatchClawExpand();
         hatchSliderIn();
     }
 

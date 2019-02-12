@@ -1,7 +1,7 @@
 package org.pvcpirates.frc2019.gamepads;
 
 import edu.wpi.first.wpilibj.Joystick;
-import org.pvcpirates.frc2019.teleop.TeleopCommand;
+import org.pvcpirates.frc2019.commands.TeleopCommand;
 
 import java.util.Vector;
 

@@ -9,6 +9,8 @@ import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
 import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 import org.pvcpirates.frc2019.util.RobotMap.MotionProfiling;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -27,16 +29,18 @@ public class TeleopState extends State {
         hardware.limelight.setPipeline(Pipelines.HATCH_LOW);
     }
 
-    int avgCnt = 0;
-    double leftArea;
-    double rightArea;
     @Override
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
+
         ShuffleBoardManager.visionTargetBool.setBoolean(hardware.limelight.hasTarget());
         ShuffleBoardManager.visionDiagEntry.setNumber(hardware.limelight.getDiagonalRobotToVisTarget());
+        //SmartDashboard.putNumberArray("x", hardware.limelight.limelight.getEntry("camtran").getDoubleArray(new double[]{}));
+        System.out.println(hardware.limelight.limelight.getEntry("camtran").getDoubleArray(new double[]{}).length);
+        System.out.println(NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(new Number[]{}).length);
+        //System.out.println(hardware.limelight.limelight.getSubTable("camtran").getEntry("x").getDouble());
     }
 
     @Override

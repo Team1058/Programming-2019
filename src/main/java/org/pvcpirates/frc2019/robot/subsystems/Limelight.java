@@ -7,7 +7,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Limelight extends BaseSubsystem{
-    NetworkTable limelight;
+    public NetworkTable limelight;
     public Pipelines currPipeline;
     @Override
     public void initialize() {

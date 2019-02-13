@@ -2,6 +2,8 @@ package org.pvcpirates.frc2019.util;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
+import org.pvcpirates.frc2019.robot.subsystems.Flipper;
+
 import edu.wpi.first.networktables.NetworkTableEntry;
 
 public class ShuffleBoardManager {
@@ -25,6 +27,11 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry iDriveEntry;
     public static NetworkTableEntry dDriveEntry;
     public static NetworkTableEntry loopDriveEntry;
+    public static NetworkTableEntry fFlipperEntry;
+    public static NetworkTableEntry pFlipperEntry;
+    public static NetworkTableEntry iFlipperEntry;
+    public static NetworkTableEntry dFlipperEntry;
+    
     // Comp Tab Entries
     public static NetworkTableEntry visionTargetBool;
 
@@ -56,6 +63,11 @@ public class ShuffleBoardManager {
         pDriveEntry = pidTab.add("drive_P", Drivetrain.DRIVE_P).getEntry();
         iDriveEntry = pidTab.add("drive_I", Drivetrain.DRIVE_I).getEntry();
         dDriveEntry = pidTab.add("drive_D", Drivetrain.DRIVE_D).getEntry();
+
+        fFlipperEntry = pidTab.add("flipper_F", Flipper.FLIPPER_F).getEntry();
+        pFlipperEntry = pidTab.add("flipper_P", Flipper.FLIPPER_P).getEntry();
+        iFlipperEntry = pidTab.add("flipper_I", Flipper.FLIPPER_I).getEntry();
+        dFlipperEntry = pidTab.add("flipper_D", Flipper.FLIPPER_D).getEntry();
         loopDriveEntry = pidTab.add("drive_LoopOutput", Drivetrain.DRIVE_PEAK_OUTPUT).getEntry();
     }
 }

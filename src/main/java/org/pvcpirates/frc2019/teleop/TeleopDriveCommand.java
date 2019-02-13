@@ -19,6 +19,8 @@ public class TeleopDriveCommand extends TeleopCommand {
     @Override
     public void exec(){
 
+      rumbleIfSeeTarget();
+
         if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
                 

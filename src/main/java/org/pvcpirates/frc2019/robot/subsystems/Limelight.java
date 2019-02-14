@@ -13,8 +13,7 @@ public class Limelight extends BaseSubsystem{
     @Override
     public void initialize() {
         limelight = NetworkTableInstance.getDefault().getTable("limelight");
-        //TODO: Find a better location for this
-        Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
+        
     }
 
     // Returns true if the limelight sees something

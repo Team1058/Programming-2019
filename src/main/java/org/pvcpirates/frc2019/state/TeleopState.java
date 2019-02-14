@@ -34,13 +34,9 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-
         ShuffleBoardManager.visionTargetBool.setBoolean(hardware.limelight.hasTarget());
         ShuffleBoardManager.visionDiagEntry.setNumber(hardware.limelight.getDiagonalRobotToVisTarget());
-        //SmartDashboard.putNumberArray("x", hardware.limelight.limelight.getEntry("camtran").getDoubleArray(new double[]{}));
-        System.out.println(hardware.limelight.limelight.getEntry("camtran").getDoubleArray(new double[]{}).length);
-        System.out.println(NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(new Number[]{}).length);
-        //System.out.println(hardware.limelight.limelight.getSubTable("camtran").getEntry("x").getDouble());
+        
     }
 
     @Override

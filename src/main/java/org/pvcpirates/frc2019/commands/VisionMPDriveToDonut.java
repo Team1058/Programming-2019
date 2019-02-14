@@ -32,6 +32,7 @@ public class VisionMPDriveToDonut extends Command{
 		followMP = new FollowMotionProfile(points);
 		followMP.init();
         setStatus(Status.EXEC);
+        System.out.println("VisionMP");
     }
 
     @Override

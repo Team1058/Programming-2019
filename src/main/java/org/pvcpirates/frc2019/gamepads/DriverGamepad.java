@@ -1,7 +1,8 @@
 package org.pvcpirates.frc2019.gamepads;
 
-import org.pvcpirates.frc2019.teleop.TeleopAutoHatchAssist;
-import org.pvcpirates.frc2019.teleop.TeleopDriveCommand;
+import org.pvcpirates.frc2019.commands.HatchManipulationCommand;
+import org.pvcpirates.frc2019.commands.TeleopAutoHatchAssist;
+import org.pvcpirates.frc2019.commands.TeleopDriveCommand;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

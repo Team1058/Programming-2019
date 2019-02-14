@@ -1,4 +1,4 @@
-package org.pvcpirates.frc2019.teleop;
+package org.pvcpirates.frc2019.commands;
 
 import org.pvcpirates.frc2019.Status;
 import org.pvcpirates.frc2019.commands.AutoAssistHatchLow;

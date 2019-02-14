@@ -13,6 +13,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry rightDriveSpeedEntry;
     public static NetworkTableEntry leftJoyYaxisEntry;
     public static NetworkTableEntry rightJoyYaxisEntry;
+    public static NetworkTableEntry visionDiagEntry;
     public static NetworkTableEntry flipperDefaultPositionEntry;
     public static NetworkTableEntry flipperlvl1To2BackEntry;
     public static NetworkTableEntry flipperlvl1To2FrontEntry;
@@ -24,6 +25,8 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry iDriveEntry;
     public static NetworkTableEntry dDriveEntry;
     public static NetworkTableEntry loopDriveEntry;
+    // Comp Tab Entries
+    public static NetworkTableEntry visionTargetBool;
 
 
 
@@ -33,13 +36,19 @@ public class ShuffleBoardManager {
     public static void initializeShuffleBoard(){
         initializeMaintainanceTab();
         initializePIDTab();
+        initializeCompetitionTab();
+    }
+
+    private static void initializeCompetitionTab(){
+        visionTargetBool = competitionTab.add("visionTarget",false).getEntry();
     }
 
     private static void initializeMaintainanceTab(){
         leftDriveSpeedEntry = maintainanceTab.add("leftDriveSpeed", 0).getEntry();
         rightDriveSpeedEntry = maintainanceTab.add("rightDriveSpeed",0).getEntry();
         leftJoyYaxisEntry = maintainanceTab.add("leftJoyYAxis", 0).getEntry();
-        rightJoyYaxisEntry = maintainanceTab.add("rightJoyXAxis",0).getEntry(); 
+        rightJoyYaxisEntry = maintainanceTab.add("rightJoyXAxis",0).getEntry();
+        visionDiagEntry = maintainanceTab.add("visionDiag",0).getEntry();
     }
 
     private static void initializePIDTab(){

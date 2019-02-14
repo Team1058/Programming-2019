@@ -31,6 +31,6 @@ public class Elevator extends BaseSubsystem {
     }
 
     public void manipulatorPivot(){
-        //Pivot will be 0 to 180
+        // Pivot will be 0 to 180
     }
 }

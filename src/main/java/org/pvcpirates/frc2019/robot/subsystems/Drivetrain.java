@@ -1,11 +1,19 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
+
+import com.ctre.phoenix.motion.MotionProfileStatus;
+import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.pvcpirates.frc2019.util.RobotMap;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.pvcpirates.frc2019.util.ShuffleBoardManager;
+import org.pvcpirates.frc2019.util.RobotMap.RobotSpecs;
 
 public class Drivetrain extends BaseSubsystem {
 
@@ -29,6 +37,7 @@ public class Drivetrain extends BaseSubsystem {
     private void initializeDriveMotors(){
         leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, RobotMap.Constants.ROBOT_TIMEOUT);
         leftDrive1.setSensorPhase(false);
+        leftDrive2.setSensorPhase(false);
 
         rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, RobotMap.Constants.ROBOT_TIMEOUT);
         rightDrive1.setSensorPhase(false);
@@ -36,8 +45,8 @@ public class Drivetrain extends BaseSubsystem {
 
         rightDrive1.setInverted(true);
         rightDrive2.setInverted(true);
-        leftDrive1.setInverted(true);
-        leftDrive2.setInverted(true);
+        leftDrive1.setInverted(false);
+        leftDrive2.setInverted(false);
 
         leftDrive1.setNeutralMode(NeutralMode.Brake);
         leftDrive2.setNeutralMode(NeutralMode.Brake);
@@ -46,6 +55,13 @@ public class Drivetrain extends BaseSubsystem {
 
         leftDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
         rightDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+        
+        leftDrive1.clearMotionProfileTrajectories();
+		rightDrive1.clearMotionProfileTrajectories();
+        leftDrive1.clearMotionProfileHasUnderrun();
+        rightDrive1.clearMotionProfileHasUnderrun();
+        leftDrive1.clearStickyFaults();
+        rightDrive1.clearStickyFaults();
 
         leftDrive2.follow(leftDrive1);
         rightDrive2.follow(rightDrive1);
@@ -76,5 +92,30 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive1.set(controlMode, left);
         rightDrive1.set(controlMode, right);
     }
+
+    
+    public void stopMotionProfile(){
+        // This will clear the motion profile from the talons memory so it doesn't try and run the next time we switch to motionprofile mode
+        rightDrive1.clearMotionProfileTrajectories();
+        leftDrive1.clearMotionProfileTrajectories();
+        // Reset the encoders just to be sure
+        rightDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+        leftDrive1.getSensorCollection().setQuadraturePosition(0, RobotMap.Constants.ROBOT_TIMEOUT);
+        // Disable the motion profile
+        leftDrive1.set(ControlMode.MotionProfile,  SetValueMotionProfile.Disable.value);
+        rightDrive1.set(ControlMode.MotionProfile,  SetValueMotionProfile.Disable.value);
+    }
+
+    public static double TalonVelocityToFeetPerSecond(double talonVel){
+        /*
+         * 2 is from  2 * pi * r
+         *  10 = convert from ticks/ms to ticks per second
+         *  12 = convert from inches/second to feet/second
+        */
+        return ((((talonVel/RobotSpecs.ENC_ROTATIONS_PER_WHEEL_ROTATION)/RobotSpecs.ENC_TICKS_PER_ENC_ROTATION)*10.0)*2*RobotSpecs.WHEEL_RADIUS*Math.PI)/12;
+      }
+      public static double FeetPerSecondToTalonVelocity(double feetPerSec){
+        return ((feetPerSec*12)/(2.0*RobotSpecs.WHEEL_RADIUS)/Math.PI)*RobotSpecs.ENC_TICKS_PER_ENC_ROTATION*RobotSpecs.ENC_ROTATIONS_PER_WHEEL_ROTATION/10.0;
+      }
 
 }

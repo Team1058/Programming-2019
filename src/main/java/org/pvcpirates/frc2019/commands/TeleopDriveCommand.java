@@ -1,11 +1,14 @@
 package org.pvcpirates.frc2019.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
+import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class TeleopDriveCommand extends TeleopCommand {
     
@@ -16,8 +19,10 @@ public class TeleopDriveCommand extends TeleopCommand {
     @Override
     public void exec(){
 
-        if (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
-            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband)){
+      rumbleIfSeeTarget();
+
+        if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
+            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
                 
             double percentOfTotalSpeed = 1;
                     
@@ -27,21 +32,20 @@ public class TeleopDriveCommand extends TeleopCommand {
               percentOfTotalSpeed = .25;
             }
 
-            double leftJoyYAxis = this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y);
+            double leftJoyYAxis = -this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y);
             double rightJoyXAxis = -this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X);
 
             /* 10 is maximum speed, multiplies by the subtracted/sum of both joysticks to get correct speed
             *  So it doesn't do either turn or drive straight, multiplied by how much of the speed gotton before
             *  should be used */
-           double leftDriveSpeed = -FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
-           double rightDriveSpeed = FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
-           hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
-           // Update shuffleboard to reflect real time input values
-           updateDriveBaseShufleBoardEntries(leftJoyYAxis,rightJoyXAxis,leftDriveSpeed,rightDriveSpeed);
-        }else{
-          // 0,0 because if nothing is pressed nothing should be moving
-          hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
-          updateDriveBaseShufleBoardEntries(0,0,0,0);
+            double leftDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
+            double rightDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
+            hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
+             // Update shuffleboard to reflect real time input values
+            updateDriveBaseShufleBoardEntries(leftJoyYAxis,rightJoyXAxis,leftDriveSpeed,rightDriveSpeed);
+        }else if(!gamepad.getButton(GamepadEnum.X_BUTTON)){
+            // 0,0 because if nothing is pressed nothing should be moving
+            hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
         }
     }
 
@@ -52,16 +56,16 @@ public class TeleopDriveCommand extends TeleopCommand {
       ShuffleBoardManager.rightDriveSpeedEntry.setDouble(rSpeed);
     }
 
-    public double TalonVelocityToFeetPerSecond(double talonVel){
-        /* 11.25 = how many encoder rotations(not ticks) per 1 wheel rotation
-         *  1024 = how many encoder ticks per one encoder rotation
-         *  10 = convert from ticks/ms to ticks per second
-         *  6 = wheel diameter, (2 * pi * radius)
-         *  12 = convert from inches/second to feet/second
-        */
-        return ((((talonVel/11.25)/1024.0)*10.0)*6.0*Math.PI)/12;
-      }
-      public double FeetPerSecondToTalonVelocity(double feetPerSec){
-        return ((feetPerSec*12)/6.0/Math.PI)*1024.0*11.25/10.0;
-      }
+    private void rumbleIfSeeTarget(){
+      
+      if (hardware.limelight.hasTarget() == true){
+        gamepad.setRumble(RumbleType.kLeftRumble, .5);
+        gamepad.setRumble(RumbleType.kRightRumble, .5);
+    }else {
+        gamepad.setRumble(RumbleType.kLeftRumble, 0);
+        gamepad.setRumble(RumbleType.kRightRumble, 0);
+    }
+    }
+
+    
 }

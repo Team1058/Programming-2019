@@ -9,6 +9,7 @@ public class Hardware {
     private static Hardware ourInstance;
 
     public AHRS navx = new AHRS(SPI.Port.kMXP);
+    public final Limelight limelight = new Limelight();
     public Drivetrain drivetrain = new Drivetrain();
     public CargoManipulator cargoManipulator = new CargoManipulator();
     public HatchManipulator hatchManipulator = new HatchManipulator();
@@ -21,6 +22,7 @@ public class Hardware {
 
     public void initializeHardware(){
         navx.reset();
+        limelight.initialize();
         drivetrain.initialize();
         cargoManipulator.initialize();
         hatchManipulator.initialize();

@@ -2,10 +2,12 @@ package org.pvcpirates.frc2019;
 
 import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.state.AutoState;
+import org.pvcpirates.frc2019.state.DisabledState;
 import org.pvcpirates.frc2019.state.TeleopState;
-import edu.wpi.first.wpilibj.IterativeRobot;
 
-public class Scheduler extends IterativeRobot {
+import edu.wpi.first.wpilibj.TimedRobot;
+
+public class Scheduler extends TimedRobot {
 
 	public static final Robot robot = Robot.getInstance();
 
@@ -17,7 +19,7 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void robotPeriodic() {
-	  robot.state.exec();
+	  
 	}
 
 	@Override
@@ -28,7 +30,8 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-	  robot.state.exec();
+		robot.state.exec();
+	  
 	}
 
 	@Override
@@ -44,10 +47,13 @@ public class Scheduler extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
+		robot.setState(new DisabledState());
+		robot.state.init();
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		robot.state.exec();
 	}
 
 }

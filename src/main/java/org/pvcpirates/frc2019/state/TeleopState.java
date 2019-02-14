@@ -22,11 +22,10 @@ public class TeleopState extends State {
 
     @Override
     public void init() {
-        Hardware.getInstance().initializeHardware();
+        hardware = Hardware.getInstance();
+        hardware.initializeHardware();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
-        hardware = Hardware.getInstance();
-        hardware.limelight.setPipeline(Pipelines.HATCH_LOW);
     }
 
     @Override
@@ -34,9 +33,6 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-        ShuffleBoardManager.visionTargetBool.setBoolean(hardware.limelight.hasTarget());
-        ShuffleBoardManager.visionDiagEntry.setNumber(hardware.limelight.getDiagonalRobotToVisTarget());
-        
     }
 
     @Override

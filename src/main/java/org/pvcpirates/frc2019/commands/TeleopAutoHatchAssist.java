@@ -5,6 +5,7 @@ import org.pvcpirates.frc2019.commands.AutoAssistHatchLow;
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 
 public class TeleopAutoHatchAssist extends TeleopCommand {
@@ -17,6 +18,8 @@ public class TeleopAutoHatchAssist extends TeleopCommand {
     boolean done = false;
     @Override
     public void exec(){
+        ShuffleBoardManager.visionTargetBool.setBoolean(hardware.limelight.hasTarget());
+        ShuffleBoardManager.visionDiagEntry.setNumber(hardware.limelight.getDiagonalRobotToVisTarget());
         if(gamepad.getButton(GamepadEnum.X_BUTTON)){
             // Run through the command
             if(assist.getStatus() == Status.INIT){

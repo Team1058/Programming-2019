@@ -26,13 +26,9 @@ public class DonutToHatchLowPlace extends Command{
             // add them to running total
             leftArea += Hardware.getInstance().limelight.getRightVisTargetArea();
             rightArea += Hardware.getInstance().limelight.getLeftVisTargetArea();
-            System.out.println("left"+leftArea);
-            System.out.println("right"+rightArea);
         }
         double truncateLeft =  ((int)(leftArea * 10000.0))/100.0;
         double truncateRight = ((int)(rightArea*10000.0))/100.0;
-        System.out.println("tleft "+truncateLeft);
-        System.out.println("tright "+truncateLeft);
         // this calculates the percent difference in area, not absolute, so we're more consistent if we don't line up exactly the given bubble radius away
         double percentDiff = (((truncateLeft/avgCnt)-(truncateRight/avgCnt))/(((truncateLeft/avgCnt)+(truncateRight/avgCnt))/2));
         // This equation converts the percent difference of the area of each vision target to an angle
@@ -44,7 +40,6 @@ public class DonutToHatchLowPlace extends Command{
 		followMP = new FollowMotionProfile(points);
         followMP.init();
         setStatus(Status.EXEC);
-        System.out.println("Donut"+angle);
     }
     
     @Override

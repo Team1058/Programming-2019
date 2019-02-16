@@ -3,9 +3,7 @@ package org.pvcpirates.frc2019.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.pvcpirates.frc2019.robot.Hardware;
-import org.pvcpirates.frc2019.util.RobotMap.Constants;
 
-//we are going to need to zero the fourbar
 public class ZeroElevator extends Command{
     Hardware hardware;
     public ZeroElevator(){

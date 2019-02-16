@@ -13,7 +13,7 @@ public class Limelight extends BaseSubsystem{
 
     // Default value in the camtran array, it takes the place of tilt, as we know that tilt is in degrees
     // and will never be greater than 360
-    public static final double DEFAULT_CAM_TRAM = 400;
+    public static final double DEFAULT_CAM_TRAN = 400;
 
     @Override
     public void initialize() {
@@ -75,9 +75,9 @@ public class Limelight extends BaseSubsystem{
         return limelight.getEntry("ty").getNumber(0).doubleValue();
     }
 
-    //This is calculated by the findpnp function in opencv on the limelight, resulting in the values seen below (in the enum)
+    // This is calculated by the findpnp function in opencv on the limelight, resulting in the values seen below (in the enum)
     public double[] get3DPosition(){
-        return limelight.getEntry("camtran").getDoubleArray(new double[]{0,0,0,DEFAULT_CAM_TRAM,0,0});
+        return limelight.getEntry("camtran").getDoubleArray(new double[]{0,0,0,DEFAULT_CAM_TRAN,0,0});
     }
 
     // gets the area of the vision target in % area of the screen
@@ -103,8 +103,8 @@ public class Limelight extends BaseSubsystem{
         }
     }
 
-    //Enums of what position in th 6 # array of camtran numbers are
-    //X and y is the relative x,y pos in inches, yaw, tilt, and roll is of the camera in degrees 
+    // Enums of what position in th 6 # array of camtran numbers are
+    // X and y is the relative x,y pos in inches, yaw, tilt, and roll is of the camera in degrees 
     public enum Camtran{
         X(0),VERT_DROP_Y(1),Y(2),YAW(3),TILT(4),ROLL(5);
         public int value;

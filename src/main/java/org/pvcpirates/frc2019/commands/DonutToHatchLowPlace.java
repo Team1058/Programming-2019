@@ -24,7 +24,7 @@ public class DonutToHatchLowPlace extends Command{
         // average the areas of the left and right vision targets
         for(int i = 0; i < avgCnt; i++){
             double angleSample = Hardware.getInstance().limelight.get3DPosition()[Camtran.YAW.value];
-            if(angleSample == Limelight.DEFAULT_CAM_TRAM){
+            if(angleSample == Limelight.DEFAULT_CAM_TRAN){
                 i--;
             }else{
                 angleTotal += angleSample;

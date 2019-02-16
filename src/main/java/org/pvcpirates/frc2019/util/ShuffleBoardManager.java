@@ -3,15 +3,9 @@ package org.pvcpirates.frc2019.util;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
-<<<<<<< HEAD
-import org.pvcpirates.frc2019.robot.subsystems.Flipper;
-
-import edu.wpi.first.networktables.NetworkTable;
-=======
 import org.pvcpirates.frc2019.robot.subsystems.Elevator;
 import org.pvcpirates.frc2019.robot.subsystems.Flipper;
 
->>>>>>> 959ee0fd19a8864bf771b51afcdd30913a78f314
 import edu.wpi.first.networktables.NetworkTableEntry;
 
 public class ShuffleBoardManager {
@@ -29,13 +23,11 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry flipperlvl1To2FrontEntry;
     public static NetworkTableEntry flipperlvl2To3BackEntry;
     public static NetworkTableEntry flipperlvl2To3FrontEntry;
-<<<<<<< HEAD
     public static NetworkTableEntry flipper_F;
     public static NetworkTableEntry flipper_P;
     public static NetworkTableEntry flipper_I;
     public static NetworkTableEntry flipper_D;
     public static SendableChooser<Double> flipperPIDChooser;
-=======
 
     public static NetworkTableEntry elevatorIntakeSetpointEntry;
     public static NetworkTableEntry elevatorDefaultSetpointEntry;
@@ -48,7 +40,6 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry fourBarHigh;
     public static NetworkTableEntry fourBarMid;
     public static NetworkTableEntry fourBarLow;
->>>>>>> 959ee0fd19a8864bf771b51afcdd30913a78f314
     // PID Tab Entries
     public static NetworkTableEntry fDriveEntry;
     public static NetworkTableEntry pDriveEntry;

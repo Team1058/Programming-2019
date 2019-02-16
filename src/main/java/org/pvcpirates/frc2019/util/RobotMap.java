@@ -46,7 +46,7 @@ public class RobotMap {
         public static final double ENC_ROTATIONS_PER_WHEEL_ROTATION = 11.25;
         public static final double ENC_TICKS_PER_ENC_ROTATION = 1024;
         // Inches! will be 43.25 
-        public static final double CAMERA_LENS_HEIGHT = 43.4;
+        public static final double CAMERA_LENS_HEIGHT = 41.5;
         
     }
     
@@ -69,7 +69,7 @@ public class RobotMap {
         // Notes: our donut of consistency for percent diff is 35" inner radius 53" outer radius
         public static final double BUBBLE_RADIUS = 45;
         // How many area data points we want to average before calculating the angle
-        public static final double AREA_AVG_CNT = 50;
+        public static final double ANGLE_AVG_CNT = 50;
     }
 
 }

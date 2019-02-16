@@ -20,10 +20,28 @@ public class Flipper extends BaseSubsystem {
     public static double lvl1to2FrontConstant = -90;
     public static double lvl1to2BackConstant = 80;
 
+    public static double FLIPPER_F = .115;
+    public static double FLIPPER_P = .15;
+    public static double FLIPPER_I = 0;
+    public static double FLIPPER_D = 0;
+
     public void initialize(){
         flipperTalonFollower.follow(flipperTalonMain);
-        flipperTalonMain.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder /* , pidIdx , timeout ms */);
-        flipperTalonFollower.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder /* , pidIdx , timeout ms */);
+        flipperTalonMain.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+        flipperTalonFollower.setInverted(false);
+        flipperTalonMain.configFeedbackNotContinuous(true, RobotMap.Constants.ROBOT_TIMEOUT);
+    }
+
+    @Override
+    public void defaultState() {
+        defaultPosition();
+    }
+
+    public void setPIDValuesFromShuffleboard(){
+        flipperTalonMain.config_kF(0, ShuffleBoardManager.fFlipperEntry.getDouble(FLIPPER_F));
+        flipperTalonMain.config_kP(0, ShuffleBoardManager.pFlipperEntry.getDouble(FLIPPER_P));
+        flipperTalonMain.config_kI(0, ShuffleBoardManager.iFlipperEntry.getDouble(FLIPPER_I));
+        flipperTalonMain.config_kD(0, ShuffleBoardManager.dFlipperEntry.getDouble(FLIPPER_D));
     }
 
     public void defaultPosition(){
@@ -50,7 +68,7 @@ public class Flipper extends BaseSubsystem {
         /* Talons need to have a control mode of position
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT*/
-        flipperTalonMain.set(ControlMode.Position, positionForFlipper);
+        flipperTalonMain.set(ControlMode.Position, positionForFlipper*RobotMap.RobotSpecs.FLIPPER_GEAR_RATIO);
     }
 
     public void miniWheelRotate(int percentOfPercentOutput){

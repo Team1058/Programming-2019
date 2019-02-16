@@ -20,6 +20,11 @@ public class Limelight extends BaseSubsystem{
         
     }
 
+    @Override
+    public void defaultState() {
+        setPipeline(Pipelines.HATCH_LOW);
+    }
+
     // Returns true if the limelight sees something
     public boolean hasTarget(){
         return limelight.getEntry("tv").getNumber(0).intValue() == 1;

@@ -31,6 +31,15 @@ public class Hardware {
        
     }
 
+    public void defaultAll(){
+        limelight.defaultState();
+        drivetrain.defaultState();
+        cargoManipulator.defaultState();
+        hatchManipulator.defaultState();
+        elevator.defaultState();
+        flipper.defaultState();
+    }
+
 	public static Hardware getInstance() {
 		if (ourInstance == null) {
 			ourInstance = new Hardware();

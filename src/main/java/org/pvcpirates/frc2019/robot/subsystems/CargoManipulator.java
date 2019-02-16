@@ -17,12 +17,26 @@ public class CargoManipulator extends BaseSubsystem {
 
     }
 
+    @Override
+    public void defaultState() {
+        cargoStop();
+    }
+
     public void cargoIn(){
         cargoVictor.set(ControlMode.PercentOutput, 1);
     }
 
     public void cargoOut(){
-        cargoVictor.set(ControlMode.PercentOutput, 1);
+        cargoVictor.set(ControlMode.PercentOutput, -1);
+    }
+
+    //cargo solenoid: 
+    public void enableSecondaryRollers(){
+        cargoSolenoid.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void disableSecondaryRollers(){
+        cargoSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
 
     public void cargoStop(){

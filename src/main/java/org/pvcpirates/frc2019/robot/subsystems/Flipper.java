@@ -32,7 +32,12 @@ public class Flipper extends BaseSubsystem {
         flipperTalonMain.configFeedbackNotContinuous(true, RobotMap.Constants.ROBOT_TIMEOUT);
     }
 
-    public void setPIDValues(){
+    @Override
+    public void defaultState() {
+        defaultPosition();
+    }
+
+    public void setPIDValuesFromShuffleboard(){
         flipperTalonMain.config_kF(0, ShuffleBoardManager.fFlipperEntry.getDouble(FLIPPER_F));
         flipperTalonMain.config_kP(0, ShuffleBoardManager.pFlipperEntry.getDouble(FLIPPER_P));
         flipperTalonMain.config_kI(0, ShuffleBoardManager.iFlipperEntry.getDouble(FLIPPER_I));

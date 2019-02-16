@@ -16,6 +16,11 @@ public class HatchManipulator extends BaseSubsystem {
         compressor.setClosedLoopControl(true);
     }
 
+    @Override
+    public void defaultState() {
+        defaultPosition();
+    }
+
     public void defaultPosition(){
         hatchClawRetract();
         hatchSliderIn();
@@ -24,6 +29,8 @@ public class HatchManipulator extends BaseSubsystem {
     public void prepGrab(){
         hatchSliderOut();
     }
+
+    //TODO this needs a state of whether when it's retracted it's holding a hatch or not
 
     public void grabHatch(){
         hatchClawExpand();

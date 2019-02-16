@@ -4,8 +4,6 @@ import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import org.pvcpirates.frc2019.robot.subsystems.*;
 import org.pvcpirates.frc2019.robot.*;
 

@@ -1,6 +1,5 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
-import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.util.RobotMap.Constants;
 import org.pvcpirates.frc2019.util.RobotMap.RobotSpecs;
 

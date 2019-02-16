@@ -33,6 +33,10 @@ public class Drivetrain extends BaseSubsystem {
         initializeDriveMotors();
         initializeSetDrivePIDValues();
     }
+    @Override
+    public void defaultState() {
+        stopAll();
+    }
 
     private void initializeDriveMotors(){
         leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, RobotMap.Constants.ROBOT_TIMEOUT);

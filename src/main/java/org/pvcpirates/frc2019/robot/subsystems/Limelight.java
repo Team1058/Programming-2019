@@ -1,6 +1,5 @@
 package org.pvcpirates.frc2019.robot.subsystems;
 
-import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.util.RobotMap.Constants;
 import org.pvcpirates.frc2019.util.RobotMap.RobotSpecs;
 
@@ -10,10 +9,20 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Limelight extends BaseSubsystem{
     public NetworkTable limelight;
     public Pipelines currPipeline;
+
+    // Default value in the camtran array, it takes the place of tilt, as we know that tilt is in degrees
+    // and will never be greater than 360
+    public static final double DEFAULT_CAM_TRAN = 400;
+
     @Override
     public void initialize() {
         limelight = NetworkTableInstance.getDefault().getTable("limelight");
         
+    }
+
+    @Override
+    public void defaultState() {
+        setPipeline(Pipelines.HATCH_LOW);
     }
 
     // Returns true if the limelight sees something
@@ -58,13 +67,21 @@ public class Limelight extends BaseSubsystem{
 
     // big note these are DEGREES FROM CENTER, NOT NORMAL COORDS
     // Camera is flipped on its side so we're really getting y here
+    // The angle offset is how much the limelight is tilted, and so we subtract that so really its like it's parallel
     public double getTargetYAngle(){
         return -limelight.getEntry("tx").getNumber(0).doubleValue();
     }
 
+  
+
     // The camera is flipped on its side so it says we're getting y but that's really X also add a negative due to the orientation
     public double getTargetXAngle(){
         return limelight.getEntry("ty").getNumber(0).doubleValue();
+    }
+
+    // This is calculated by the findpnp function in opencv on the limelight, resulting in the values seen below (in the enum)
+    public double[] get3DPosition(){
+        return limelight.getEntry("camtran").getDoubleArray(new double[]{0,0,0,DEFAULT_CAM_TRAN,0,0});
     }
 
     // gets the area of the vision target in % area of the screen
@@ -86,6 +103,16 @@ public class Limelight extends BaseSubsystem{
         CARGO(1), HATCH_LOW(0), HATCHES(3), HATCH_LOW_LEFT(2);
         public int value;
         private Pipelines(int value){
+            this.value = value;
+        }
+    }
+
+    // Enums of what position in th 6 # array of camtran numbers are
+    // X and y is the relative x,y pos in inches, yaw, tilt, and roll is of the camera in degrees 
+    public enum Camtran{
+        X(0),VERT_DROP_Y(1),Y(2),YAW(3),TILT(4),ROLL(5);
+        public int value;
+        private Camtran(int value){
             this.value = value;
         }
     }

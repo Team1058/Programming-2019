@@ -28,6 +28,7 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
+        System.out.println("Sensor: "+Hardware.getInstance().cargoManipulator.cargoPhotoSensor.get());
     }
 
     @Override

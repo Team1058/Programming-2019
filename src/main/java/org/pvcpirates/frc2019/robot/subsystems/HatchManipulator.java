@@ -30,7 +30,7 @@ public class HatchManipulator extends BaseSubsystem {
         hatchSliderOut();
     }
 
-    //TODO this needs a state of whether when it's retracted it's holding a hatch or not
+    // TODO this needs a state of whether when it's retracted it's holding a hatch or not
 
     public void grabHatch(){
         hatchClawExpand();

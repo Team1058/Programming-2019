@@ -58,12 +58,11 @@ public class Elevator extends BaseSubsystem {
     public static final boolean ENABLE_SMART_MOTION = false;    
 
     public void initialize(){
-        //16:22 gear ratio for encoder to fourbar
+        // 16:22 gear ratio for encoder to fourbar
         fourBarTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         fourBarTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed);
         fourBarTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed);
         
-
         forwardLimitSwitch.enableLimitSwitch(true);
         reverseLimitSwitch.enableLimitSwitch(true);
         setPIDFromShuffleboard();
@@ -137,7 +136,6 @@ public class Elevator extends BaseSubsystem {
     }
 
     private void getSetpoint(){
-        //elevatorEncoder.getPosition();
     }
 
     private void fourBarSetSetpoint(double setpoint){

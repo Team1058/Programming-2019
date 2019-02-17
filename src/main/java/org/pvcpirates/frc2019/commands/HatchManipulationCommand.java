@@ -14,6 +14,7 @@ import org.pvcpirates.frc2019.robot.*;
 public class HatchManipulationCommand extends TeleopCommand {
 
     boolean isGrabbing = false;
+    boolean isPlacing = false;
     private HatchManipulator hatchManipulator = Hardware.getInstance().hatchManipulator;
     public HatchManipulationCommand(BaseGamepad gp){
         super(gp);
@@ -43,14 +44,19 @@ public class HatchManipulationCommand extends TeleopCommand {
       *  then when the button is released it retracts the claw
       *  then retracts the slider back*/
       
-      if (this.gamepad.getButton(GamepadEnum.A_BUTTON) == true && isGrabbing == true){
-           hatchManipulator.placeHatch();
-           isGrabbing = false;
+      if (this.gamepad.getButton(GamepadEnum.X_BUTTON) == true && isGrabbing == true){
+        hatchManipulator.prepPlace();
+        isPlacing = true;
+        isGrabbing = false;
+      }else if(this.gamepad.getButton(GamepadEnum.X_BUTTON) == false && isPlacing == true){
+        hatchManipulator.placeHatch();
+        isPlacing = false;
       }
 
        //if it isn't grabbing it goes to 'default' position
-      if (isGrabbing == false || this.gamepad.getButton(GamepadEnum.BACK_BUTTON)){
+      if ((isGrabbing == false && isPlacing == false) || this.gamepad.getButton(GamepadEnum.BACK_BUTTON)){
         isGrabbing = false;   
+        isPlacing = false;
         hatchManipulator.defaultPosition();
       }
     } 

@@ -18,8 +18,6 @@ public class DriverGamepad extends BaseGamepad {
         this.teleopCommands.add(new TeleopDriveCommand(this));
         this.teleopCommands.add(new TeleopAutoHatchAssist(this));
 
-        //Hatch manipulator for testing
-        this.teleopCommands.add(new HatchManipulationCommand(this));
     }
 
     @Override

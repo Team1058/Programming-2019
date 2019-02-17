@@ -2,10 +2,10 @@ package org.pvcpirates.frc2019.util;
 
 public class RobotMap {
     public static final class CANTalonIds {
-        public static final int LEFT_DRIVE_1 = 3;
         public static final int RIGHT_DRIVE_1 = 1;
-        public static final int LEFT_DRIVE_2 = 4;
         public static final int RIGHT_DRIVE_2 = 2;
+        public static final int LEFT_DRIVE_1 = 3;
+        public static final int LEFT_DRIVE_2 = 4;
         public static final int PCM = 5;
         public static final int FOUR_BAR = 6;
         public static final int ELEVATOR_SPARKMAX = 7;
@@ -17,14 +17,14 @@ public class RobotMap {
 
     public static final class PCMIDS{
         
-    public static final int doubleClawSolenoidForwardPCM = 3;
-    public static final int doubleClawSolenoidReversePCM = 4;
+    public static final int doubleClawSolenoidForwardPCM = 6;
+    public static final int doubleClawSolenoidReversePCM = 5;
 
     public static final int doubleSliderSolenoidForwardPCM = 2;
-    public static final int doubleSliderSolenoidReversePCM = 5;
+    public static final int doubleSliderSolenoidReversePCM = 1;
     
-    public static final int doubleCargoSolenoidForwardPCM = 1;
-    public static final int doubleCargoSolenoidReversePCM = 6;
+    public static final int doubleCargoSolenoidForwardPCM = 3;
+    public static final int doubleCargoSolenoidReversePCM = 4;
     
     }
 
@@ -45,7 +45,7 @@ public class RobotMap {
         public static final double ENC_TICKS_PER_ENC_ROTATION = 1024;
         // Inches! will be 43.25 
         public static final double CAMERA_LENS_HEIGHT = 43.4;
-        public static final double FLIPPER_GEAR_RATIO = 0;
+        public static final double FLIPPER_GEAR_RATIO = 1;
     }
     
     public static final class MotionProfiling{

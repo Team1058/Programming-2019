@@ -16,10 +16,10 @@ public class Flipper extends BaseSubsystem {
     public final TalonSRX flipperTalonFollower = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_FOLLOWER);
     
     public static double defaultPosConstant = 570;
-    public static double lvl2to3FrontConstant = defaultPosConstant+212;
-    public static double lvl2to3BackConstant = defaultPosConstant+(-474);
+    public static double lvl2to3FrontConstant = defaultPosConstant + 212;
+    public static double lvl2to3BackConstant = defaultPosConstant - 474;
     public static double lvl0to2FrontConstant = defaultPosConstant + 183;
-    public static double lvl0to2BackConstant = defaultPosConstant + -366;
+    public static double lvl0to2BackConstant = defaultPosConstant - 366;
 
     public static double miniWheelBasePercentOutput = .25;
 
@@ -63,26 +63,22 @@ public class Flipper extends BaseSubsystem {
 
     public void lvl2to3Front(){
         flipperTalonMain.selectProfileSlot(0,0);
-        flipperRotate(ShuffleBoardManager.flipperlvl2To3FrontEntry.getDouble(lvl2to3FrontConstant));
-        
+        flipperRotate(ShuffleBoardManager.flipperlvl2To3FrontEntry.getDouble(lvl2to3FrontConstant)); 
     }
 
     public void lvl2to3Back(){
         flipperTalonMain.selectProfileSlot(0,0);
         flipperRotate(ShuffleBoardManager.flipperlvl2To3BackEntry.getDouble(lvl2to3BackConstant));
-        
     }
 
     public void lvl0to2Front(){
         flipperTalonMain.selectProfileSlot(0,0);
         flipperRotate(ShuffleBoardManager.flipperlvl0To2FrontEntry.getDouble(lvl0to2FrontConstant));
-        
     }
 
     public void lvl0to2Back(){
         flipperTalonMain.selectProfileSlot(0,0);
         flipperRotate(ShuffleBoardManager.flipperlvl0To2BackEntry.getDouble(lvl0to2BackConstant));
-        
     }
 
     public void flipperRotate(double positionForFlipper){

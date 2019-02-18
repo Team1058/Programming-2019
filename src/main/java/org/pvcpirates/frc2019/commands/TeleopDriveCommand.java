@@ -9,7 +9,6 @@ import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
 import org.pvcpirates.frc2019.Status;
-import org.pvcpirates.frc2019.commands.FlipperCommand;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -34,7 +33,6 @@ public class TeleopDriveCommand extends TeleopCommand {
 
             if (!flipperShuffleBoard.equals(ShuffleBoardManager.fpDefaultString)){
               percentOfTotalSpeed = .3;
-              
             }else if (this.gamepad.getButton(GamepadEnum.LEFT_BUMPER) == true){
               percentOfTotalSpeed = .5;
             }else if (this.gamepad.getButton(GamepadEnum.RIGHT_BUMPER) == true){

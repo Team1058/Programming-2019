@@ -61,6 +61,9 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry dFourBarEntry;
     // Comp Tab Entries
     public static NetworkTableEntry visionTargetBool;
+    public static NetworkTableEntry cargoIntakeHigh;
+    public static NetworkTableEntry cargoIntakeLow;
+    public static NetworkTableEntry cargoIntakeRev;
 
 
 
@@ -75,6 +78,9 @@ public class ShuffleBoardManager {
 
     private static void initializeCompetitionTab(){
         visionTargetBool = competitionTab.add("visionTarget",false).getEntry();
+        cargoIntakeHigh = competitionTab.add("cargoIntakeHigh",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        cargoIntakeLow = competitionTab.add("cargoIntakeLow",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        cargoIntakeRev = competitionTab.add("cargoIntakeRev",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
     }
 
     private static void initializeMaintainanceTab(){

@@ -21,18 +21,20 @@ public class TeleopState extends State {
         operatorGamepad = new OperatorGamepad(1);
         //TODO: Find a better location for this
         Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
+        hardware.elevator.elevatorSparkMax.set(0.1);
     }
 
     @Override
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
-        driverGamepad.executeCommands();
-        operatorGamepad.executeCommands();
+        //driverGamepad.executeCommands();
+        //operatorGamepad.executeCommands();
     }
 
     @Override
     public void stop() {
         // Code here will get called when teleop state is stopped
+        hardware.elevator.elevatorSparkMax.set(0.0);
     }
 
 }

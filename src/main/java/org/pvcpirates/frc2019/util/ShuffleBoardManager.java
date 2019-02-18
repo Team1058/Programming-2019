@@ -58,6 +58,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry pFlipperEntry;
     public static NetworkTableEntry iFlipperEntry;
     public static NetworkTableEntry dFlipperEntry;
+    public static NetworkTableEntry pStowedFlipperEntry;
 
     public static NetworkTableEntry fFourBarEntry;
     public static NetworkTableEntry pFourBarEntry;
@@ -141,7 +142,7 @@ public class ShuffleBoardManager {
         pFlipperEntry = pidTab.add("flipper_P",Flipper.FLIPPER_P).withWidget(BuiltInWidgets.kTextView).getEntry();
         iFlipperEntry = pidTab.add("flipper_I",Flipper.FLIPPER_I).withWidget(BuiltInWidgets.kTextView).getEntry();
         dFlipperEntry = pidTab.add("flipper_D",Flipper.FLIPPER_D).withWidget(BuiltInWidgets.kTextView).getEntry();
-
+        pStowedFlipperEntry = pidTab.add("flipper_P_stowed",Flipper.FLIPPER_P_STOWED).withWidget(BuiltInWidgets.kTextView).getEntry();
 
         fDriveEntry = pidTab.add("drive_F", Drivetrain.DRIVE_F).getEntry();
         pDriveEntry = pidTab.add("drive_P", Drivetrain.DRIVE_P).getEntry();

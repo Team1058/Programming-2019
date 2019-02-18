@@ -1,6 +1,7 @@
 package org.pvcpirates.frc2019.util;
 
 import edu.wpi.first.wpilibj.shuffleboard.*;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.robot.subsystems.Elevator;
 import org.pvcpirates.frc2019.robot.subsystems.Flipper;
@@ -17,11 +18,14 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry leftJoyYaxisEntry;
     public static NetworkTableEntry rightJoyYaxisEntry;
     public static NetworkTableEntry visionDiagEntry;
+
     public static NetworkTableEntry flipperDefaultPositionEntry;
-    public static NetworkTableEntry flipperlvl1To2BackEntry;
-    public static NetworkTableEntry flipperlvl1To2FrontEntry;
+    public static NetworkTableEntry flipperlvl0To2BackEntry;
+    public static NetworkTableEntry flipperlvl0To2FrontEntry;
     public static NetworkTableEntry flipperlvl2To3BackEntry;
     public static NetworkTableEntry flipperlvl2To3FrontEntry;
+    
+    public static NetworkTableEntry flipperMiniWheelPercentOutputEntry;
 
     public static NetworkTableEntry elevatorIntakeSetpointEntry;
     public static NetworkTableEntry elevatorDefaultSetpointEntry;
@@ -40,11 +44,6 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry iDriveEntry;
     public static NetworkTableEntry dDriveEntry;
     public static NetworkTableEntry loopDriveEntry;
-
-    public static NetworkTableEntry fFlipperEntry;
-    public static NetworkTableEntry pFlipperEntry;
-    public static NetworkTableEntry iFlipperEntry;
-    public static NetworkTableEntry dFlipperEntry;
     
     public static NetworkTableEntry fElevatorEntry;
     public static NetworkTableEntry pElevatorEntry;
@@ -55,13 +54,32 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry minVelocElevatorEntry;
     public static NetworkTableEntry maxAccelElevatorEntry;
 
+    public static NetworkTableEntry fFlipperEntry;
+    public static NetworkTableEntry pFlipperEntry;
+    public static NetworkTableEntry iFlipperEntry;
+    public static NetworkTableEntry dFlipperEntry;
+    public static NetworkTableEntry pStowedFlipperEntry;
+
     public static NetworkTableEntry fFourBarEntry;
     public static NetworkTableEntry pFourBarEntry;
     public static NetworkTableEntry iFourBarEntry;
     public static NetworkTableEntry dFourBarEntry;
     // Comp Tab Entries
     public static NetworkTableEntry visionTargetBool;
+    /*public static NetworkTableEntry flipperPosition1to2FrontBool;
+    public static NetworkTableEntry flipperPosition1to2BackBool;
+    public static NetworkTableEntry flipperPosition2to3FrontBool;
+    public static NetworkTableEntry flipperPosition2to3BackBool;
+    public static NetworkTableEntry flipperDefaultPositionBool;*/
+    public static SendableChooser<String> flipperPositionChooser;
+    public static NetworkTableEntry hatchClawPrepGEntry;
+    public static NetworkTableEntry hatchClawGrabEntry;
 
+    public static String fpLvl0to2FrontString = "Level 1 Front";
+    public static String fpLvl0to2BackString = "Level 1 Back";
+    public static String fpLvl2to3FrontString = "Level 2 Front";
+    public static String fpLvl2to3BackString  = "Level 2 Back";
+    public static String fpDefaultString  = "Stow Position";
 
 
     public ShuffleBoardManager(){
@@ -75,6 +93,20 @@ public class ShuffleBoardManager {
 
     private static void initializeCompetitionTab(){
         visionTargetBool = competitionTab.add("visionTarget",false).getEntry();
+        hatchClawGrabEntry = competitionTab.add("hatchClawGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        hatchClawPrepGEntry = competitionTab.add("hatchClawPrepGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        initializeFlipperComboBox();
+    }
+
+    private static void initializeFlipperComboBox(){
+        flipperPositionChooser = new SendableChooser<String>();
+        flipperPositionChooser.addOption(fpLvl0to2FrontString, fpLvl0to2FrontString);
+        flipperPositionChooser.addOption(fpLvl0to2BackString, fpLvl0to2BackString);
+        flipperPositionChooser.addOption(fpLvl2to3FrontString,fpLvl2to3FrontString);
+        flipperPositionChooser.addOption(fpLvl2to3BackString, fpLvl2to3BackString);
+        flipperPositionChooser.addOption(fpDefaultString,fpDefaultString);
+        flipperPositionChooser.setDefaultOption(fpDefaultString, fpDefaultString);
+        competitionTab.getLayout("Flipper", BuiltInLayouts.kGrid).add("Flipper Positions",flipperPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
     }
 
     private static void initializeMaintainanceTab(){
@@ -85,10 +117,11 @@ public class ShuffleBoardManager {
         visionDiagEntry = maintainanceTab.add("visionDiag",0).getEntry();
 
         flipperDefaultPositionEntry = maintainanceTab.add("flipperDefaultPosition", Flipper.defaultPosConstant).getEntry();
-        flipperlvl1To2BackEntry = maintainanceTab.add("flipperlvl1To2Back", Flipper.lvl1to2BackConstant).getEntry();
-        flipperlvl1To2FrontEntry = maintainanceTab.add("flipperlvl1To2Front", Flipper.lvl1to2FrontConstant).getEntry();
+        flipperlvl0To2BackEntry = maintainanceTab.add("flipperlvl0To2Back", Flipper.lvl0to2BackConstant).getEntry();
+        flipperlvl0To2FrontEntry = maintainanceTab.add("flipperlvl0To2Front", Flipper.lvl0to2FrontConstant).getEntry();
         flipperlvl2To3BackEntry = maintainanceTab.add("flipperlvl2To3Back", Flipper.lvl2to3BackConstant).getEntry();
         flipperlvl2To3FrontEntry = maintainanceTab.add("flipperlvl2To3Front", Flipper.lvl2to3FrontConstant).getEntry();
+        flipperMiniWheelPercentOutputEntry = maintainanceTab.add("flipperMiniWheelPercentOutputEntry",Flipper.miniWheelBasePercentOutput).getEntry();
 
         elevatorIntakeSetpointEntry = maintainanceTab.add("elevatorIntakeSetpoint",Elevator.intakeSetpoint).getEntry();
         elevatorDefaultSetpointEntry = maintainanceTab.add("elevatorDefaultSetpoint",Elevator.defaultSetpoint).getEntry();
@@ -104,16 +137,18 @@ public class ShuffleBoardManager {
     }
 
     private static void initializePIDTab(){
+
+        fFlipperEntry = pidTab.add("flipper_F",Flipper.FLIPPER_F).withWidget(BuiltInWidgets.kTextView).getEntry();
+        pFlipperEntry = pidTab.add("flipper_P",Flipper.FLIPPER_P).withWidget(BuiltInWidgets.kTextView).getEntry();
+        iFlipperEntry = pidTab.add("flipper_I",Flipper.FLIPPER_I).withWidget(BuiltInWidgets.kTextView).getEntry();
+        dFlipperEntry = pidTab.add("flipper_D",Flipper.FLIPPER_D).withWidget(BuiltInWidgets.kTextView).getEntry();
+        pStowedFlipperEntry = pidTab.add("flipper_P_stowed",Flipper.FLIPPER_P_STOWED).withWidget(BuiltInWidgets.kTextView).getEntry();
+
         fDriveEntry = pidTab.add("drive_F", Drivetrain.DRIVE_F).getEntry();
         pDriveEntry = pidTab.add("drive_P", Drivetrain.DRIVE_P).getEntry();
         iDriveEntry = pidTab.add("drive_I", Drivetrain.DRIVE_I).getEntry();
         dDriveEntry = pidTab.add("drive_D", Drivetrain.DRIVE_D).getEntry();
         loopDriveEntry = pidTab.add("drive_LoopOutput", Drivetrain.DRIVE_PEAK_OUTPUT).getEntry();
-
-        fFlipperEntry = pidTab.add("flipper_F", Flipper.FLIPPER_F).getEntry();
-        pFlipperEntry = pidTab.add("flipper_P", Flipper.FLIPPER_P).getEntry();
-        iFlipperEntry = pidTab.add("flipper_I", Flipper.FLIPPER_I).getEntry();
-        dFlipperEntry = pidTab.add("flipper_D", Flipper.FLIPPER_D).getEntry();
         
         fElevatorEntry = pidTab.add("elevator_F",Elevator.ELEVATOR_F).getEntry();
         pElevatorEntry = pidTab.add("elevator_P",Elevator.ELEVATOR_P).getEntry();

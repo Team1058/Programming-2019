@@ -7,7 +7,9 @@ import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
+import org.pvcpirates.frc2019.Status;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class TeleopDriveCommand extends TeleopCommand {
@@ -57,7 +59,7 @@ public class TeleopDriveCommand extends TeleopCommand {
     }
 
     private void rumbleIfSeeTarget(){
-      
+
       if (hardware.limelight.hasTarget() == true){
         gamepad.setRumble(RumbleType.kLeftRumble, .5);
         gamepad.setRumble(RumbleType.kRightRumble, .5);

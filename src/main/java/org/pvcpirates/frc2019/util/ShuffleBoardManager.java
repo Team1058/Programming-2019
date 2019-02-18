@@ -38,6 +38,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry fourBarHigh;
     public static NetworkTableEntry fourBarMid;
     public static NetworkTableEntry fourBarLow;
+    public static NetworkTableEntry miniWheelControl;
     // PID Tab Entries
     public static NetworkTableEntry fDriveEntry;
     public static NetworkTableEntry pDriveEntry;
@@ -134,6 +135,7 @@ public class ShuffleBoardManager {
         fourBarLow = maintainanceTab.add("fourBarLow",Elevator.fourBarLowSetpoint).getEntry();
         fourBarMid = maintainanceTab.add("fourBarMid",Elevator.fourBarMidSetpoint).getEntry();
         fourBarHigh = maintainanceTab.add("fourBarHigh",Elevator.fourBarHighSetpoint).getEntry();
+        miniWheelControl = maintainanceTab.add("miniWheelPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
     }
 
     private static void initializePIDTab(){

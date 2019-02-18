@@ -56,6 +56,7 @@ public class Flipper extends BaseSubsystem {
     public void defaultPosition(){
         flipperRotate(ShuffleBoardManager.flipperDefaultPositionEntry.getDouble(defaultPosConstant));
         flipperTalonMain.selectProfileSlot(1,0);
+        
     }
 
     public void lvl2to3Front(){
@@ -83,7 +84,6 @@ public class Flipper extends BaseSubsystem {
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT*/
         flipperTalonMain.set(ControlMode.Position, positionForFlipper);
-        System.out.println("Enc pos:" +positionForFlipper);
     }
 
     public void miniWheelRotate(double percentOfPercentOutput){

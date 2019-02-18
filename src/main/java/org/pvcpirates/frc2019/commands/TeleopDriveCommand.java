@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
+import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
 import org.pvcpirates.frc2019.Status;
@@ -27,8 +28,12 @@ public class TeleopDriveCommand extends TeleopCommand {
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
                 
             double percentOfTotalSpeed = 1;
-                    
-            if (this.gamepad.getButton(GamepadEnum.LEFT_BUMPER) == true){
+
+            String flipperShuffleBoard = ShuffleBoardManager.flipperPositionChooser.getSelected();
+
+            if (!flipperShuffleBoard.equals(ShuffleBoardManager.fpDefaultString)){
+              percentOfTotalSpeed = .3;
+            }else if (this.gamepad.getButton(GamepadEnum.LEFT_BUMPER) == true){
               percentOfTotalSpeed = .5;
             }else if (this.gamepad.getButton(GamepadEnum.RIGHT_BUMPER) == true){
               percentOfTotalSpeed = .25;
@@ -43,6 +48,12 @@ public class TeleopDriveCommand extends TeleopCommand {
             double leftDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
             double rightDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
+            if(!flipperShuffleBoard.equals(ShuffleBoardManager.fpDefaultString)){
+              hardware.flipper.miniWheelRotate(leftJoyYAxis);
+            }else{
+              hardware.flipper.miniWheelRotate(0);
+            }
+            
              // Update shuffleboard to reflect real time input values
             updateDriveBaseShufleBoardEntries(leftJoyYAxis,rightJoyXAxis,leftDriveSpeed,rightDriveSpeed);
         }else if(!gamepad.getButton(GamepadEnum.X_BUTTON)){

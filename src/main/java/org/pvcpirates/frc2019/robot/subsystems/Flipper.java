@@ -11,20 +11,20 @@ import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 public class Flipper extends BaseSubsystem {
 
-    //public final VictorSPX flipperMiniWheelVictor = new VictorSPX(RobotMap.CANTalonIds.FLIPPER_MINI_WHEEL);
+    public final VictorSPX flipperMiniWheelVictor = new VictorSPX(RobotMap.CANTalonIds.FLIPPER_MINI_WHEEL);
     public final TalonSRX flipperTalonMain = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_MAIN);
     public final TalonSRX flipperTalonFollower = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_FOLLOWER);
     
-    public static double defaultPosConstant = 600;
-    public static double lvl2to3FrontConstant = 812;
-    public static double lvl2to3BackConstant = 126;
-    public static double lvl0to2FrontConstant = 783;
-    public static double lvl0to2BackConstant = 234;
+    public static double defaultPosConstant = 570;
+    public static double lvl2to3FrontConstant = defaultPosConstant + 212;
+    public static double lvl2to3BackConstant = defaultPosConstant - 474;
+    public static double lvl0to2FrontConstant = defaultPosConstant + 183;
+    public static double lvl0to2BackConstant = defaultPosConstant - 366;
 
     public static double miniWheelBasePercentOutput = .25;
 
     public static double FLIPPER_F = 0;
-    public static double FLIPPER_P = 40;
+    public static double FLIPPER_P = 30;
     public static double FLIPPER_I = 0;
     public static double FLIPPER_D = 0;
 
@@ -38,6 +38,7 @@ public class Flipper extends BaseSubsystem {
         flipperTalonFollower.setInverted(false);
         flipperTalonMain.configFeedbackNotContinuous(true, RobotMap.Constants.ROBOT_TIMEOUT);
         flipperTalonMain.configAllowableClosedloopError(0, 5, 10);
+        flipperMiniWheelVictor.setInverted(true);
     }
 
     @Override
@@ -54,28 +55,30 @@ public class Flipper extends BaseSubsystem {
     }
 
     public void defaultPosition(){
-        flipperRotate(ShuffleBoardManager.flipperDefaultPositionEntry.getDouble(defaultPosConstant));
         flipperTalonMain.selectProfileSlot(1,0);
+        flipperRotate(ShuffleBoardManager.flipperDefaultPositionEntry.getDouble(defaultPosConstant));
+        
+        
     }
 
     public void lvl2to3Front(){
-        flipperRotate(ShuffleBoardManager.flipperlvl2To3FrontEntry.getDouble(lvl2to3FrontConstant));
         flipperTalonMain.selectProfileSlot(0,0);
+        flipperRotate(ShuffleBoardManager.flipperlvl2To3FrontEntry.getDouble(lvl2to3FrontConstant)); 
     }
 
     public void lvl2to3Back(){
-        flipperRotate(ShuffleBoardManager.flipperlvl2To3BackEntry.getDouble(lvl2to3BackConstant));
         flipperTalonMain.selectProfileSlot(0,0);
+        flipperRotate(ShuffleBoardManager.flipperlvl2To3BackEntry.getDouble(lvl2to3BackConstant));
     }
 
     public void lvl0to2Front(){
-        flipperRotate(ShuffleBoardManager.flipperlvl0To2FrontEntry.getDouble(lvl0to2FrontConstant));
         flipperTalonMain.selectProfileSlot(0,0);
+        flipperRotate(ShuffleBoardManager.flipperlvl0To2FrontEntry.getDouble(lvl0to2FrontConstant));
     }
 
     public void lvl0to2Back(){
-        flipperRotate(ShuffleBoardManager.flipperlvl0To2BackEntry.getDouble(lvl0to2BackConstant));
         flipperTalonMain.selectProfileSlot(0,0);
+        flipperRotate(ShuffleBoardManager.flipperlvl0To2BackEntry.getDouble(lvl0to2BackConstant));
     }
 
     public void flipperRotate(double positionForFlipper){
@@ -83,10 +86,9 @@ public class Flipper extends BaseSubsystem {
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT*/
         flipperTalonMain.set(ControlMode.Position, positionForFlipper);
-        System.out.println("Enc pos:" +positionForFlipper);
     }
 
     public void miniWheelRotate(double percentOfPercentOutput){
-        //flipperMiniWheelVictor.set(ControlMode.PercentOutput, percentOfPercentOutput);
+        flipperMiniWheelVictor.set(ControlMode.PercentOutput, percentOfPercentOutput);
     }
 }

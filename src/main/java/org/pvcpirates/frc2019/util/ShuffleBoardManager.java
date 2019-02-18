@@ -24,8 +24,8 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry flipperlvl0To2FrontEntry;
     public static NetworkTableEntry flipperlvl2To3BackEntry;
     public static NetworkTableEntry flipperlvl2To3FrontEntry;
-    
-    public static NetworkTableEntry flipperMiniWheelPercentOutputEntry;
+
+    public static NetworkTableEntry flipperPercentOutputEntry;
 
     public static NetworkTableEntry elevatorIntakeSetpointEntry;
     public static NetworkTableEntry elevatorDefaultSetpointEntry;
@@ -34,10 +34,12 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry elevatorHatchHighSetpointEntry;
     public static NetworkTableEntry elevatorCargoLowSetpointEntry;
     public static NetworkTableEntry elevatorCargoMidSetpointEntry;
-
+    public static NetworkTableEntry elevatorPercentOutputEntry;
+    
     public static NetworkTableEntry fourBarHigh;
     public static NetworkTableEntry fourBarMid;
     public static NetworkTableEntry fourBarLow;
+    public static NetworkTableEntry miniWheelControl;
     // PID Tab Entries
     public static NetworkTableEntry fDriveEntry;
     public static NetworkTableEntry pDriveEntry;
@@ -66,11 +68,6 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry dFourBarEntry;
     // Comp Tab Entries
     public static NetworkTableEntry visionTargetBool;
-    /*public static NetworkTableEntry flipperPosition1to2FrontBool;
-    public static NetworkTableEntry flipperPosition1to2BackBool;
-    public static NetworkTableEntry flipperPosition2to3FrontBool;
-    public static NetworkTableEntry flipperPosition2to3BackBool;
-    public static NetworkTableEntry flipperDefaultPositionBool;*/
     public static SendableChooser<String> flipperPositionChooser;
     public static NetworkTableEntry hatchClawPrepGEntry;
     public static NetworkTableEntry hatchClawGrabEntry;
@@ -121,8 +118,6 @@ public class ShuffleBoardManager {
         flipperlvl0To2FrontEntry = maintainanceTab.add("flipperlvl0To2Front", Flipper.lvl0to2FrontConstant).getEntry();
         flipperlvl2To3BackEntry = maintainanceTab.add("flipperlvl2To3Back", Flipper.lvl2to3BackConstant).getEntry();
         flipperlvl2To3FrontEntry = maintainanceTab.add("flipperlvl2To3Front", Flipper.lvl2to3FrontConstant).getEntry();
-        flipperMiniWheelPercentOutputEntry = maintainanceTab.add("flipperMiniWheelPercentOutputEntry",Flipper.miniWheelBasePercentOutput).getEntry();
-
         elevatorIntakeSetpointEntry = maintainanceTab.add("elevatorIntakeSetpoint",Elevator.intakeSetpoint).getEntry();
         elevatorDefaultSetpointEntry = maintainanceTab.add("elevatorDefaultSetpoint",Elevator.defaultSetpoint).getEntry();
         elevatorHatchLowSetpointEntry = maintainanceTab.add("elevatorHatchLowSetpoint",Elevator.hatchLowSetpoint).getEntry();
@@ -134,6 +129,9 @@ public class ShuffleBoardManager {
         fourBarLow = maintainanceTab.add("fourBarLow",Elevator.fourBarLowSetpoint).getEntry();
         fourBarMid = maintainanceTab.add("fourBarMid",Elevator.fourBarMidSetpoint).getEntry();
         fourBarHigh = maintainanceTab.add("fourBarHigh",Elevator.fourBarHighSetpoint).getEntry();
+        miniWheelControl = maintainanceTab.add("miniWheelPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
+        flipperPercentOutputEntry = maintainanceTab.addPersistent("flipperPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
+        elevatorPercentOutputEntry = maintainanceTab.addPersistent("elevatorPercentOutput", 0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
     }
 
     private static void initializePIDTab(){

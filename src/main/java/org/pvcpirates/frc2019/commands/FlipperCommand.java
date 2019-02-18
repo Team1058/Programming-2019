@@ -27,37 +27,26 @@ public class FlipperCommand extends TeleopCommand {
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
 
         System.out.println(flipper.flipperTalonMain.getSensorCollection().getAnalogInRaw());
-        System.out.println("position: "+shuffleBoardSelection);
 
-        if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
+        if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
+            flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
+        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();
-        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
             flipper.lvl0to2Back();
-        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
             flipper.lvl2to3Front();
-        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
             flipper.lvl2to3Back();
-        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
             flipper.defaultPosition();
         }else{   
             flipper.defaultPosition();
         }
 
-        /*
-    System.out.println(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y));
-    if(Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > OperatorGamepad.driverStickDeadband){
-        flipper.flipperTalonMain.set(ControlMode.PercentOutput,.5 * this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y));
-    }
-        if(this.gamepad.getButton(GamepadEnum.DPAD_DOWN)){
-            flipper.miniWheelRotate(tempPercentOutput);
-        }else {
-            flipper.miniWheelRotate(tempPercentOutput);
+        if(ShuffleBoardManager.miniWheelControl.getDouble(0)!= 0){
+            flipper.miniWheelRotate(ShuffleBoardManager.miniWheelControl.getDouble(0));
         }
-    */
     }
 
     @Override

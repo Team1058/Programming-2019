@@ -1,5 +1,7 @@
 package org.pvcpirates.frc2019.state;
 
+import org.pvcpirates.frc2019.robot.Hardware;
+
 public class DisabledState extends State {
     
     
@@ -9,6 +11,7 @@ public class DisabledState extends State {
 
     @Override
     public void exec() {
+        //System.out.println(Hardware.getInstance().flipper.flipperTalonMain.getSensorCollection().getAnalogInRaw());
     }
 
     @Override

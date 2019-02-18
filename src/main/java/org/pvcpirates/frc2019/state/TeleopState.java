@@ -4,6 +4,7 @@ import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 
 
@@ -16,12 +17,10 @@ public class TeleopState extends State {
     @Override
     public void init() {
         hardware = Hardware.getInstance();
-        hardware.initializeHardware();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
         //TODO: Find a better location for this
         Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
-        hardware.elevator.elevatorSparkMax.set(0.1);
     }
 
     @Override

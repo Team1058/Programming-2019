@@ -20,7 +20,7 @@ public class Hardware {
         initializeHardware();
     }
 
-    public void initializeHardware(){
+    private void initializeHardware(){
         navx.reset();
         limelight.initialize();
         drivetrain.initialize();

@@ -28,7 +28,6 @@ public class Flipper extends BaseSubsystem {
     public static double FLIPPER_I = 0;
     public static double FLIPPER_D = 0;
 
-    public static double FLIPPER_P_STOWED = 6;
     public void initialize(){
         flipperTalonFollower.follow(flipperTalonMain);
         setPIDValuesFromShuffleboard();
@@ -46,36 +45,30 @@ public class Flipper extends BaseSubsystem {
     }
 
     public void setPIDValuesFromShuffleboard(){
-        flipperTalonMain.config_kF(0, ShuffleBoardManager.fFlipperEntry.getDouble(FLIPPER_F));
-        flipperTalonMain.config_kP(0, ShuffleBoardManager.pFlipperEntry.getDouble(FLIPPER_P));
-        flipperTalonMain.config_kI(0, ShuffleBoardManager.iFlipperEntry.getDouble(FLIPPER_I));
-        flipperTalonMain.config_kD(0, ShuffleBoardManager.dFlipperEntry.getDouble(FLIPPER_D));
-        flipperTalonMain.config_kP(1, ShuffleBoardManager.pStowedFlipperEntry.getDouble(FLIPPER_P_STOWED));
+        flipperTalonMain.config_kF(0, ShuffleBoardManager.flipper_FEntry.getDouble(FLIPPER_F));
+        flipperTalonMain.config_kP(0, ShuffleBoardManager.flipper_PEntry.getDouble(FLIPPER_P));
+        flipperTalonMain.config_kI(0, ShuffleBoardManager.flipper_IEntry.getDouble(FLIPPER_I));
+        flipperTalonMain.config_kD(0, ShuffleBoardManager.flipper_DEntry.getDouble(FLIPPER_D));
     }
 
     public void defaultPosition(){
         flipperRotate(ShuffleBoardManager.flipperDefaultPositionEntry.getDouble(defaultPosConstant));
-        flipperTalonMain.selectProfileSlot(1,0);
     }
 
     public void lvl2to3Front(){
         flipperRotate(ShuffleBoardManager.flipperlvl2To3FrontEntry.getDouble(lvl2to3FrontConstant));
-        flipperTalonMain.selectProfileSlot(0,0);
     }
 
     public void lvl2to3Back(){
         flipperRotate(ShuffleBoardManager.flipperlvl2To3BackEntry.getDouble(lvl2to3BackConstant));
-        flipperTalonMain.selectProfileSlot(0,0);
     }
 
     public void lvl0to2Front(){
         flipperRotate(ShuffleBoardManager.flipperlvl0To2FrontEntry.getDouble(lvl0to2FrontConstant));
-        flipperTalonMain.selectProfileSlot(0,0);
     }
 
     public void lvl0to2Back(){
         flipperRotate(ShuffleBoardManager.flipperlvl0To2BackEntry.getDouble(lvl0to2BackConstant));
-        flipperTalonMain.selectProfileSlot(0,0);
     }
 
     public void flipperRotate(double positionForFlipper){

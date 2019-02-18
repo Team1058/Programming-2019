@@ -31,23 +31,20 @@ public class FlipperCommand extends TeleopCommand {
 
         if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();
-            flipper.miniWheelRotate(1);
         
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
             flipper.lvl0to2Back();
-            flipper.miniWheelRotate(1);
+        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
             flipper.lvl2to3Front();
-            flipper.miniWheelRotate(1);
+        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
             flipper.lvl2to3Back();
-            flipper.miniWheelRotate(1);
+        
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
             flipper.defaultPosition();
-            flipper.miniWheelRotate(0);
         }else{   
             flipper.defaultPosition();
-            flipper.miniWheelRotate(0);
         }
 
         /*

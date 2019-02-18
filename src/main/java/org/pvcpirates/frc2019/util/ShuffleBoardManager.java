@@ -24,15 +24,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry flipperlvl0To2FrontEntry;
     public static NetworkTableEntry flipperlvl2To3BackEntry;
     public static NetworkTableEntry flipperlvl2To3FrontEntry;
-    public static NetworkTableEntry flipper_FEntry;
-    public static NetworkTableEntry flipper_PEntry;
-    public static NetworkTableEntry flipper_IEntry;
-    public static NetworkTableEntry flipper_DEntry;
-    public static Double Flipper_F_Double = .5;
-    public static Double Flipper_P_Double = .15;
-    public static Double Flipper_I_Double = 0.0;
-    public static Double Flipper_D_Double = 0.0;
-    public static SendableChooser<Double> flipperPIDChooser;
+    
     public static NetworkTableEntry flipperMiniWheelPercentOutputEntry;
 
     public static NetworkTableEntry elevatorIntakeSetpointEntry;
@@ -61,6 +53,11 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry maxVelocElevatorEntry;
     public static NetworkTableEntry minVelocElevatorEntry;
     public static NetworkTableEntry maxAccelElevatorEntry;
+
+    public static NetworkTableEntry fFlipperEntry;
+    public static NetworkTableEntry pFlipperEntry;
+    public static NetworkTableEntry iFlipperEntry;
+    public static NetworkTableEntry dFlipperEntry;
 
     public static NetworkTableEntry fFourBarEntry;
     public static NetworkTableEntry pFourBarEntry;
@@ -140,10 +137,11 @@ public class ShuffleBoardManager {
 
     private static void initializePIDTab(){
 
-        flipper_FEntry = pidTab.add("flipper_F",Flipper_F_Double).withWidget(BuiltInWidgets.kTextView).getEntry();
-        flipper_PEntry = pidTab.add("flipper_P",Flipper_P_Double).withWidget(BuiltInWidgets.kTextView).getEntry();
-        flipper_IEntry = pidTab.add("flipper_I",Flipper_I_Double).withWidget(BuiltInWidgets.kTextView).getEntry();
-        flipper_DEntry = pidTab.add("flipper_D",Flipper_D_Double).withWidget(BuiltInWidgets.kTextView).getEntry();
+        fFlipperEntry = pidTab.add("flipper_F",Flipper.FLIPPER_F).withWidget(BuiltInWidgets.kTextView).getEntry();
+        pFlipperEntry = pidTab.add("flipper_P",Flipper.FLIPPER_P).withWidget(BuiltInWidgets.kTextView).getEntry();
+        iFlipperEntry = pidTab.add("flipper_I",Flipper.FLIPPER_I).withWidget(BuiltInWidgets.kTextView).getEntry();
+        dFlipperEntry = pidTab.add("flipper_D",Flipper.FLIPPER_D).withWidget(BuiltInWidgets.kTextView).getEntry();
+
 
         fDriveEntry = pidTab.add("drive_F", Drivetrain.DRIVE_F).getEntry();
         pDriveEntry = pidTab.add("drive_P", Drivetrain.DRIVE_P).getEntry();

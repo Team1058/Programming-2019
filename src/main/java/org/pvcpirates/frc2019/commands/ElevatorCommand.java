@@ -4,6 +4,7 @@ import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.subsystems.Elevator;
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 public class ElevatorCommand extends TeleopCommand {
 
@@ -18,6 +19,9 @@ public class ElevatorCommand extends TeleopCommand {
 
     @Override
     public void exec(){
+        if(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0)!=0){
+            elevator.elevatorSparkMax.set(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0));
+        }
     }
 
     @Override

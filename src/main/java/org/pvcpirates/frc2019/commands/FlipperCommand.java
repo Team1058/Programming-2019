@@ -28,8 +28,9 @@ public class FlipperCommand extends TeleopCommand {
 
         System.out.println(flipper.flipperTalonMain.getSensorCollection().getAnalogInRaw());
 
-        
-        if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
+        if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
+            flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
+        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
             flipper.lvl0to2Back();

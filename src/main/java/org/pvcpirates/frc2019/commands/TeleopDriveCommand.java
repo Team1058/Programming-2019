@@ -8,7 +8,6 @@ import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
 import org.pvcpirates.frc2019.util.*;
 import org.pvcpirates.frc2019.Status;
-import org.pvcpirates.frc2019.commands.FlipperCommand;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -28,12 +27,6 @@ public class TeleopDriveCommand extends TeleopCommand {
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
                 
             double percentOfTotalSpeed = 1;
-
-            String flipperShuffleBoard = ShuffleBoardManager.flipperPositionChooser.getSelected();
-
-            if (flipperShuffleBoard != ShuffleBoardManager.fpDefaultString){
-              percentOfTotalSpeed = .3;
-            }
                     
             if (this.gamepad.getButton(GamepadEnum.LEFT_BUMPER) == true){
               percentOfTotalSpeed = .5;

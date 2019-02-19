@@ -26,14 +26,13 @@ public class TeleopState extends State {
     @Override
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
-        //driverGamepad.executeCommands();
-        //operatorGamepad.executeCommands();
+        driverGamepad.executeCommands();
+        operatorGamepad.executeCommands();
     }
 
     @Override
     public void stop() {
         // Code here will get called when teleop state is stopped
-        hardware.elevator.elevatorSparkMax.set(0.0);
     }
 
 }

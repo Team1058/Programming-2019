@@ -22,13 +22,14 @@ public class CargoManipulationCommand extends TeleopCommand {
 
       /* While the Y button is held it take in cargo unless
       *  A is pushed then it will spit it out
-      *  if nothing is pressed the motors will do nothing */
+      *  if nothing is pressed the motors will do nothing 
+      */
+      hold = !cargoManipulator.cargoPhotoSensor.get();
+      System.out.println("HOLD: "+hold);
       if (this.gamepad.getButton(GamepadEnum.Y_BUTTON) && !hold){
         cargoManipulator.cargoIn();
-        hold = cargoManipulator.cargoPhotoSensor.get();
       }else if (this.gamepad.getButton(GamepadEnum.A_BUTTON)){
         cargoManipulator.cargoOut();
-        hold = false;
       }else if(hold){
         cargoManipulator.cargoHold();
       }else{

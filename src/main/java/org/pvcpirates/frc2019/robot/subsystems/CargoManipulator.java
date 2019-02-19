@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import org.pvcpirates.frc2019.util.RobotMap;
 import org.pvcpirates.frc2019.util.RobotMap.Constants;
+import org.pvcpirates.frc2019.util.RobotMap.DIO;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -14,7 +15,7 @@ public class CargoManipulator extends BaseSubsystem {
 
     //public final VictorSPX cargoVictor = new VictorSPX(RobotMap.CANTalonIds.CARGO_VICTOR);
     public final DoubleSolenoid cargoSolenoid = new DoubleSolenoid(RobotMap.CANTalonIds.PCM, RobotMap.PCMIDS.doubleCargoSolenoidForwardPCM, RobotMap.PCMIDS.doubleCargoSolenoidReversePCM);
-    public final DigitalInput cargoPhotoSensor = new DigitalInput(Constants.CARGO_PHOTO_SENSOR);
+    public final DigitalInput cargoPhotoSensor = new DigitalInput(DIO.CARGO_PHOTO_SENSOR);
 
     public void initialize(){
 

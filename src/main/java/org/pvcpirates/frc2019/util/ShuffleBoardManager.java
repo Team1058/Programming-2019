@@ -144,13 +144,13 @@ public class ShuffleBoardManager {
         flipperlvl0To2FrontEntry = maintainanceTab.add("flipperlvl0To2Front", Flipper.lvl0to2FrontConstant).getEntry();
         flipperlvl2To3BackEntry = maintainanceTab.add("flipperlvl2To3Back", Flipper.lvl2to3BackConstant).getEntry();
         flipperlvl2To3FrontEntry = maintainanceTab.add("flipperlvl2To3Front", Flipper.lvl2to3FrontConstant).getEntry();
-        elevatorIntakeSetpointEntry = maintainanceTab.add("elevatorIntakeSetpoint",Elevator.intakeSetpoint).getEntry();
-        elevatorDefaultSetpointEntry = maintainanceTab.add("elevatorDefaultSetpoint",Elevator.defaultSetpoint).getEntry();
-        elevatorHatchLowSetpointEntry = maintainanceTab.add("elevatorHatchLowSetpoint",Elevator.hatchLowSetpoint).getEntry();
-        elevatorHatchMidSetpointEntry = maintainanceTab.add("elevatorHatchMidSetpoint",Elevator.hatchMidSetpoint).getEntry();
-        elevatorHatchHighSetpointEntry = maintainanceTab.add("elevatorHatchHighSetpoint",Elevator.hatchHighSetpoint).getEntry();
-        elevatorCargoLowSetpointEntry = maintainanceTab.add("elevatorCargoLow",Elevator.cargoLowSetpoint).getEntry();
-        elevatorCargoMidSetpointEntry = maintainanceTab.add("elevatorCargoMid",Elevator.cargoMidSetpoint).getEntry();
+        elevatorIntakeSetpointEntry = maintainanceTab.addPersistent("elevatorIntakeSetpoint",Elevator.intakeSetpoint).getEntry();
+        elevatorDefaultSetpointEntry = maintainanceTab.addPersistent("elevatorDefaultSetpoint",Elevator.defaultSetpoint).getEntry();
+        elevatorHatchLowSetpointEntry = maintainanceTab.addPersistent("elevatorHatchLowSetpoint",Elevator.hatchLowSetpoint).getEntry();
+        elevatorHatchMidSetpointEntry = maintainanceTab.addPersistent("elevatorHatchMidSetpoint",Elevator.hatchMidSetpoint).getEntry();
+        elevatorHatchHighSetpointEntry = maintainanceTab.addPersistent("elevatorHatchHighSetpoint",Elevator.hatchHighSetpoint).getEntry();
+        elevatorCargoLowSetpointEntry = maintainanceTab.addPersistent("elevatorCargoLow",Elevator.cargoLowSetpoint).getEntry();
+        elevatorCargoMidSetpointEntry = maintainanceTab.addPersistent("elevatorCargoMid",Elevator.cargoMidSetpoint).getEntry();
 
         fourBarLow = maintainanceTab.add("fourBarLow",Elevator.fourBarLowSetpoint).getEntry();
         fourBarMid = maintainanceTab.add("fourBarMid",Elevator.fourBarMidSetpoint).getEntry();

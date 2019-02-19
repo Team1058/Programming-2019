@@ -35,7 +35,7 @@ public class CargoManipulator extends BaseSubsystem {
     }
 
     public void cargoHold(){
-        cargoVictor.set(ControlMode.PercentOutput, -.5);
+        cargoVictor.set(ControlMode.PercentOutput, -.2);
     }
 
     public void enableSecondaryRollers(){

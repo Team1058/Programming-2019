@@ -21,13 +21,16 @@ public class TeleopState extends State {
         operatorGamepad = new OperatorGamepad(1);
         //TODO: Find a better location for this
         Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
+        hardware.elevator.elevatorEncoder.setPosition(0);
+        hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
     }
 
     @Override
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
-        driverGamepad.executeCommands();
-        operatorGamepad.executeCommands();
+        //driverGamepad.executeCommands();
+        //operatorGamepad.executeCommands();
+        System.out.println("Curr elevator pos:"+hardware.elevator.elevatorEncoder.getPosition());
     }
 
     @Override

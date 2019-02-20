@@ -23,6 +23,7 @@ public class ElevatorCommand extends TeleopCommand {
             elevator.elevatorSparkMax.set(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0));
         }
         String shuffleBoardSelection = ShuffleBoardManager.elevatorPositionChooser.getSelected();
+        /*
         if(shuffleBoardSelection.equals(ShuffleBoardManager.elevatorCargoLowString)){
             elevator.moveToCargoLow();
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.elevatorCargoMidString)){
@@ -40,7 +41,7 @@ public class ElevatorCommand extends TeleopCommand {
         }else{
             elevator.moveToDefault();
         }
-
+        */
     }
 
     @Override

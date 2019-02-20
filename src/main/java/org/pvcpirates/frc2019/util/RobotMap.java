@@ -8,7 +8,7 @@ public class RobotMap {
         public static final int LEFT_DRIVE_2 = 4;
         public static final int PCM = 5;
         public static final int FOUR_BAR = 6;
-        public static final int ELEVATOR_SPARKMAX = 7;
+        public static final int ELEVATOR_SPARKMAX = 14;
         public static final int FLIPPER_MAIN = 8;
         public static final int FLIPPER_FOLLOWER = 9;
         public static final int FLIPPER_MINI_WHEEL = 10;

@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import org.pvcpirates.frc2019.commands.ElevatorCommand;
+import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.util.RobotMap;
 import org.pvcpirates.frc2019.util.ShuffleBoardManager;
@@ -83,6 +85,8 @@ public class Flipper extends BaseSubsystem {
     }
 
     public void flipperRotate(double positionForFlipper){
+       // if the elevator isn't in the ideal position for climbing (default) then it sets the position to a ideal position
+       Hardware.getInstance().elevator.moveToDefault();
         /* Talons need to have a control mode of position
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT*/

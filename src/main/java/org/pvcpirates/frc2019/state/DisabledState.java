@@ -12,6 +12,7 @@ public class DisabledState extends State {
     @Override
     public void exec() {
         //System.out.println(Hardware.getInstance().flipper.flipperTalonMain.getSensorCollection().getAnalogInRaw());
+        System.out.println("Curr elevator pos:"+Hardware.getInstance().elevator.elevatorEncoder.getPosition());
     }
 
     @Override

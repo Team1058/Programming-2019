@@ -33,6 +33,7 @@ public class HatchManipulationCommand extends TeleopCommand {
       *  then retracts the slider back */
       
       if (this.gamepad.getButton(GamepadEnum.B_BUTTON) == true || ShuffleBoardManager.hatchClawPrepGEntry.getBoolean(false) == true){  
+          isGrabbing = false; 
           hatchManipulator.prepGrab();
           isGrabbing = true;
       }else if(isGrabbing == true && (this.gamepad.getButton(GamepadEnum.B_BUTTON) == false || ShuffleBoardManager.hatchClawGrabEntry.getBoolean(false) == true)){
@@ -54,7 +55,7 @@ public class HatchManipulationCommand extends TeleopCommand {
       }
 
        //if it isn't grabbing it goes to 'default' position
-      if ((isGrabbing == false && isPlacing == false) || this.gamepad.getButton(GamepadEnum.BACK_BUTTON)){
+      if ((isGrabbing == false && isPlacing == false)){
         isGrabbing = false;   
         isPlacing = false;
         hatchManipulator.defaultPosition();

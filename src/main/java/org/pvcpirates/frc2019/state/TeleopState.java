@@ -1,6 +1,7 @@
 package org.pvcpirates.frc2019.state;
 
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
+import org.pvcpirates.frc2019.gamepads.OperatorButtonPad;
 import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
@@ -12,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 public class TeleopState extends State {
     private DriverGamepad driverGamepad;
     private OperatorGamepad operatorGamepad;
+    private OperatorButtonPad operatorButtonPad;
     private Hardware hardware;
 
     @Override
@@ -19,7 +21,6 @@ public class TeleopState extends State {
         hardware = Hardware.getInstance();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
-
     }
 
     @Override

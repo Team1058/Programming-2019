@@ -42,6 +42,17 @@ public class ElevatorCommand extends TeleopCommand {
             elevator.moveToDefault();
         }
         */
+        String shuffleBoardFourBarSelection = ShuffleBoardManager.fourBarPositionChooser.getSelected();
+
+        if (shuffleBoardFourBarSelection.equals(ShuffleBoardManager.fourBarHighString)){
+            elevator.moveFourBarToHigh();
+        }else if (shuffleBoardFourBarSelection.equals(ShuffleBoardManager.fourBarMidString)){
+            elevator.moveFourBarToMid();
+        }else if (shuffleBoardFourBarSelection.equals(ShuffleBoardManager.fourBarLowString)){
+            elevator.moveFourBarToLow();
+        }else {
+            elevator.moveFourBarToLow();
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ public class ShuffleBoardManager {
     public static ShuffleboardTab pidTab = Shuffleboard.getTab("PID Manager");
     public static ShuffleboardTab competitionTab = Shuffleboard.getTab("Competition");
     public static ShuffleboardTab maintainanceTab = Shuffleboard.getTab("Maintainance");
+    public static ShuffleboardTab fourBarTab = Shuffleboard.getTab("Four Bar");
     // Maintainance Tab Entries
     public static NetworkTableEntry leftDriveSpeedEntry;
     public static NetworkTableEntry rightDriveSpeedEntry;
@@ -39,6 +40,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry fourBarHigh;
     public static NetworkTableEntry fourBarMid;
     public static NetworkTableEntry fourBarLow;
+
     public static NetworkTableEntry miniWheelControl;
     // PID Tab Entries
     public static NetworkTableEntry fDriveEntry;
@@ -90,6 +92,11 @@ public class ShuffleBoardManager {
     public static String elevatorCargoMidString = "Elevator Cargo Mid";
     public static String elevatorIntakeString = "Elevator Intake";
 
+    public static SendableChooser<String> fourBarPositionChooser;
+    public static String fourBarHighString = "Four Bar High";
+    public static String fourBarMidString = "Four Bar Mid";
+    public static String fourBarLowString = "Four Bar Low";
+
     public ShuffleBoardManager(){
     }
 
@@ -129,7 +136,17 @@ public class ShuffleBoardManager {
          elevatorPositionChooser.addOption(elevatorHatchHighString,elevatorHatchHighString);
          elevatorPositionChooser.addOption(elevatorDefaultString,elevatorDefaultString);
          elevatorPositionChooser.addOption(elevatorIntakeString,elevatorIntakeString);
-         competitionTab.getLayout("Elevator",BuiltInLayouts.kGrid).addPersistent("Elevator Positions", elevatorPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
+         elevatorPositionChooser.setDefaultOption(elevatorDefaultString,elevatorDefaultString);
+         competitionTab.getLayout("Elevator",BuiltInLayouts.kGrid).add("Elevator Positions", elevatorPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
+    }
+
+    private static void initFourBarComboBox(){
+        fourBarPositionChooser = new SendableChooser<String>();
+        fourBarPositionChooser.addObject(fourBarHighString, fourBarHighString);
+        fourBarPositionChooser.addObject(fourBarMidString, fourBarMidString);
+        fourBarPositionChooser.addObject(fourBarLowString, fourBarLowString);
+        fourBarPositionChooser.setDefaultOption(fourBarLowString, fourBarLowString);
+        fourBarTab.getLayout("Four Bar",BuiltInLayouts.kGrid).add("Four Bar Positions", fourBarPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
     }
 
     private static void initializeMaintainanceTab(){

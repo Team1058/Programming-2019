@@ -22,7 +22,7 @@ public class ElevatorCommand extends TeleopCommand {
         if(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0)!=0){
             elevator.elevatorSparkMax.set(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0));
         }
-        String shuffleBoardSelection = ShuffleBoardManager.elevatorPositionChooser.getSelected();
+        //String shuffleBoardSelection = ShuffleBoardManager.elevatorPositionChooser.getSelected();
         /*
         if(shuffleBoardSelection.equals(ShuffleBoardManager.elevatorCargoLowString)){
             elevator.moveToCargoLow();
@@ -42,6 +42,8 @@ public class ElevatorCommand extends TeleopCommand {
             elevator.moveToDefault();
         }
         */
+        //Four bar is being pushed to the side until week 5 possibly....
+        /*
         String shuffleBoardFourBarSelection = ShuffleBoardManager.fourBarPositionChooser.getSelected();
 
         if (shuffleBoardFourBarSelection.equals(ShuffleBoardManager.fourBarHighString)){
@@ -53,6 +55,7 @@ public class ElevatorCommand extends TeleopCommand {
         }else {
             elevator.moveFourBarToLow();
         }
+        */
     }
 
     @Override

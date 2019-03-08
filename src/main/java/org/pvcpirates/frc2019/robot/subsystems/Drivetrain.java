@@ -6,8 +6,17 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.pvcpirates.frc2019.util.ShuffleBoardManager;
+import org.pvcpirates.frc2019.util.RobotMap.CANTalonIds;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 public class Drivetrain extends BaseSubsystem {
+
+    
+    public static ShuffleBoardManager sbm = new ShuffleBoardManager();
+    ShuffleboardTab tab = Shuffleboard.getTab("TalonPIDValues");
 
     // DRIVETRAIN PIDs;
     public static double DRIVE_PEAK_OUTPUT = .95;
@@ -50,7 +59,7 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive2.follow(leftDrive1);
         rightDrive2.follow(rightDrive1);
     }
-
+    
     public void initializeSetDrivePIDValues(){
         leftDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
         rightDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
@@ -76,6 +85,15 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive1.set(controlMode, left);
         rightDrive1.set(controlMode, right);
     }
-    
-
+    public void talonchecker(){
+           double leftDrive1Volts = leftDrive1.getBusVoltage();
+           double leftDrive2Volts = leftDrive2.getBusVoltage();
+           double rightDrive1Volts = rightDrive1.getBusVoltage();
+           double rightDrive2Volts = rightDrive2.getBusVoltage();
+           ShuffleBoardManager.Test.add("Left Drive Talon1 Voltage", leftDrive1Volts);
+           ShuffleBoardManager.Test.add("Left Drive Talon2 Voltage", leftDrive2Volts);
+           ShuffleBoardManager.Test.add("Right Drive1 Voltage ", rightDrive1Volts);
+           ShuffleBoardManager.Test.add("Right Drive2 Voltage",rightDrive2Volts);
+           
+    }
 }

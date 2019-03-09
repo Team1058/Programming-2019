@@ -86,7 +86,9 @@ public class Flipper extends BaseSubsystem {
 
     public void flipperRotate(double positionForFlipper){
        // if the elevator isn't in the ideal position for climbing (default) then it sets the position to a ideal position
-       Hardware.getInstance().elevator.moveToDefault();
+       if (positionForFlipper != defaultPosConstant){
+           Hardware.getInstance().elevator.moveToDefault();
+       }
         /* Talons need to have a control mode of position
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT*/

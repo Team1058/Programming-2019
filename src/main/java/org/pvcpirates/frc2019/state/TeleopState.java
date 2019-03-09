@@ -5,6 +5,7 @@ import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.ControlType;
 
 
 
@@ -21,16 +22,18 @@ public class TeleopState extends State {
         operatorGamepad = new OperatorGamepad(1);
         //TODO: Find a better location for this
         Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
-        hardware.elevator.elevatorEncoder.setPosition(0);
-        hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
+        //hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
+        Hardware.getInstance().elevator.elevatorEncoder.setPosition(0);
+        Hardware.getInstance().elevator.setPIDFromShuffleboard();
     }
 
     @Override
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
-        //driverGamepad.executeCommands();
-        //operatorGamepad.executeCommands();
-        System.out.println("Curr elevator pos:"+hardware.elevator.elevatorEncoder.getPosition());
+        driverGamepad.executeCommands();
+        operatorGamepad.executeCommands();
+        System.out.println("Curr elevator pos:"+Hardware.getInstance().elevator.elevatorEncoder.getPosition());
+        
     }
 
     @Override

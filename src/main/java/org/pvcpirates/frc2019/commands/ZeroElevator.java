@@ -15,14 +15,16 @@ public class ZeroElevator extends Command{
     }
     @Override
     public void exec() {
-        if (hardware.elevator.forwardLimitSwitch.get()){
+        
+        if (hardware.elevator.reverseLimitSwitch.get()){
             hardware.elevator.elevatorSparkMax.set(0);
+            
             hardware.elevator.elevatorEncoder.setPosition(0);
         }
 
     }
     @Override
     public void finished() {
-        hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
+        //hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
     }
 }

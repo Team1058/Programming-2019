@@ -9,6 +9,7 @@ import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 public class ElevatorCommand extends TeleopCommand {
 
     private Elevator elevator = Hardware.getInstance().elevator;
+    
     public ElevatorCommand(BaseGamepad gp){
         super(gp);
     }
@@ -19,11 +20,16 @@ public class ElevatorCommand extends TeleopCommand {
 
     @Override
     public void exec(){
+        
         if(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0)!=0){
             elevator.elevatorSparkMax.set(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0));
         }
-        //String shuffleBoardSelection = ShuffleBoardManager.elevatorPositionChooser.getSelected();
-        /*
+        
+        
+        
+        /*String shuffleBoardSelection = ShuffleBoardManager.elevatorPositionChooser.getSelected();
+        System.out.println(shuffleBoardSelection);
+        
         if(shuffleBoardSelection.equals(ShuffleBoardManager.elevatorCargoLowString)){
             elevator.moveToCargoLow();
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.elevatorCargoMidString)){
@@ -39,9 +45,10 @@ public class ElevatorCommand extends TeleopCommand {
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.elevatorIntakeString)){
             elevator.moveToIntake();
         }else{
+            System.out.println("Go to default");
             elevator.moveToDefault();
         }
-        */
+        
         //Four bar is being pushed to the side until week 5 possibly....
         /*
         String shuffleBoardFourBarSelection = ShuffleBoardManager.fourBarPositionChooser.getSelected();

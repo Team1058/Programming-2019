@@ -21,10 +21,13 @@ public class TeleopState extends State {
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
         //TODO: Find a better location for this
+        //Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
         Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
         //hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
         Hardware.getInstance().elevator.elevatorEncoder.setPosition(0);
         Hardware.getInstance().elevator.setPIDFromShuffleboard();
+        
+        //Hardware.getInstance().elevator.fourBarTalon.set(ControlMode.PercentOutput, .3);
     }
 
     @Override
@@ -32,7 +35,8 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-        System.out.println("Curr elevator pos:"+Hardware.getInstance().elevator.elevatorEncoder.getPosition());
+        //System.out.println("Curr fourbar pos"+Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().getQuadraturePosition());
+        //System.out.println("Curr elevator pos:"+Hardware.getInstance().elevator.elevatorEncoder.getPosition());
         
     }
 

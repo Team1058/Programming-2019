@@ -97,6 +97,7 @@ public class ShuffleBoardManager {
     public static String fourBarMidString = "Four Bar Mid";
     public static String fourBarLowString = "Four Bar Low";
 
+    public static NetworkTableEntry fourBarZero;
     public ShuffleBoardManager(){
     }
 
@@ -113,8 +114,10 @@ public class ShuffleBoardManager {
         cargoIntakeRev = competitionTab.add("cargoIntakeRev",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         hatchClawGrabEntry = competitionTab.add("hatchClawGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         hatchClawPrepGEntry = competitionTab.add("hatchClawPrepGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        fourBarZero = competitionTab.add("Four bar zero",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         initializeFlipperComboBox();
         initElevatorComboBox();
+        initFourBarComboBox();
     }
 
     private static void initializeFlipperComboBox(){
@@ -147,7 +150,7 @@ public class ShuffleBoardManager {
         fourBarPositionChooser.addObject(fourBarMidString, fourBarMidString);
         fourBarPositionChooser.addObject(fourBarLowString, fourBarLowString);
         fourBarPositionChooser.setDefaultOption(fourBarLowString, fourBarLowString);
-        fourBarTab.getLayout("Four Bar",BuiltInLayouts.kGrid).add("Four Bar Positions", fourBarPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
+        maintainanceTab.getLayout("Four Bar",BuiltInLayouts.kGrid).add("Four Bar Positions", fourBarPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
     }
 
     private static void initializeMaintainanceTab(){

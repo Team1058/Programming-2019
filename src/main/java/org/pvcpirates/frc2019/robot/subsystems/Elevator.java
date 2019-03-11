@@ -17,6 +17,7 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANDigitalInput;
 import com.revrobotics.CANEncoder;
 
+import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.util.RobotMap;
 import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
@@ -66,10 +67,18 @@ public class Elevator extends BaseSubsystem {
         forwardLimitSwitch.enableLimitSwitch(true);
         reverseLimitSwitch.enableLimitSwitch(true);
         setPIDFromShuffleboard();
+        if(Robot.DEBUG){
+            setConstantsFromShuffleBoard();
+        }
     }
+
     @Override
     public void defaultState() {
         moveToDefault();
+    }
+
+    private void setConstantsFromShuffleBoard(){
+        intakeSetpoint = ShuffleBoardManager.elevatorIntakeSetpointEntry.getDouble(intakeSetpoint);
     }
 
     public void setPIDFromShuffleboard(){
@@ -92,7 +101,7 @@ public class Elevator extends BaseSubsystem {
     // please do fourbar stuff for all of these
 
     public void moveToIntake(){
-        setSetpoint(ShuffleBoardManager.elevatorIntakeSetpointEntry.getDouble(intakeSetpoint), ENABLE_SMART_MOTION);
+        setSetpoint(intakeSetpoint, ENABLE_SMART_MOTION);
         fourBarSetSetpoint(ShuffleBoardManager.fourBarLow.getDouble(fourBarLowSetpoint));
     }
 

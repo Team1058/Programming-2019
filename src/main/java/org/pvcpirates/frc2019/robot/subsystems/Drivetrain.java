@@ -5,6 +5,7 @@ import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import org.pvcpirates.frc2019.robot.Robot;
 import org.pvcpirates.frc2019.util.RobotMap;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,12 +31,23 @@ public class Drivetrain extends BaseSubsystem {
     public final TalonSRX rightDrive2 = new TalonSRX(RobotMap.CANTalonIds.RIGHT_DRIVE_2);
 
     public void initialize() {
+        if(Robot.DEBUG){
+            setConstantsFromShuffleboard();
+        }
         initializeDriveMotors();
         initializeSetDrivePIDValues();
     }
     @Override
     public void defaultState() {
         stopAll();
+    }
+
+    @Override
+    void setConstantsFromShuffleboard() {
+        DRIVE_F = ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F);
+        DRIVE_P = ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P);
+        DRIVE_I = ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I);
+        DRIVE_D = ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D);
     }
 
     private void initializeDriveMotors(){
@@ -75,15 +87,15 @@ public class Drivetrain extends BaseSubsystem {
         leftDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
         rightDrive1.configClosedLoopPeakOutput(0, DRIVE_PEAK_OUTPUT);
 
-        leftDrive1.config_kF(0, ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F));
-        leftDrive1.config_kP(0, ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P));
-        leftDrive1.config_kI(0, ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I));
-        leftDrive1.config_kD(0, ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D));
+        leftDrive1.config_kF(0, DRIVE_F);
+        leftDrive1.config_kP(0, DRIVE_P);
+        leftDrive1.config_kI(0, DRIVE_I);
+        leftDrive1.config_kD(0, DRIVE_D);
 
-        rightDrive1.config_kF(0, ShuffleBoardManager.fDriveEntry.getDouble(DRIVE_F));
-        rightDrive1.config_kP(0, ShuffleBoardManager.pDriveEntry.getDouble(DRIVE_P));
-        rightDrive1.config_kI(0, ShuffleBoardManager.iDriveEntry.getDouble(DRIVE_I));
-        rightDrive1.config_kD(0, ShuffleBoardManager.dDriveEntry.getDouble(DRIVE_D));
+        rightDrive1.config_kF(0, DRIVE_F);
+        rightDrive1.config_kP(0, DRIVE_P);
+        rightDrive1.config_kI(0, DRIVE_I);
+        rightDrive1.config_kD(0, DRIVE_D);
     }
 
     public void stopAll() {

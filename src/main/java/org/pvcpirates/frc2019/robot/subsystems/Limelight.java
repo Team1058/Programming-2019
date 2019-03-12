@@ -21,6 +21,11 @@ public class Limelight extends BaseSubsystem{
     }
 
     @Override
+    void setConstantsFromShuffleboard() {
+        
+    }
+
+    @Override
     public void defaultState() {
         setPipeline(Pipelines.HATCH_LOW);
     }

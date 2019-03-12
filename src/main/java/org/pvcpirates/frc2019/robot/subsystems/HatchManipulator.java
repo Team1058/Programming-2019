@@ -21,6 +21,10 @@ public class HatchManipulator extends BaseSubsystem {
         defaultPosition();
     }
 
+    @Override
+    void setConstantsFromShuffleboard() {
+        
+    }
     public void defaultPosition(){
         hatchClawRetract();
         hatchSliderIn();

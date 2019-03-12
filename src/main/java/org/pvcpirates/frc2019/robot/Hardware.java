@@ -20,7 +20,7 @@ public class Hardware {
         initializeHardware();
     }
 
-    private void initializeHardware(){
+    public void initializeHardware(){
         navx.reset();
         limelight.initialize();
         drivetrain.initialize();
@@ -40,7 +40,7 @@ public class Hardware {
         flipper.defaultState();
     }
 
-    public void sensorPrintout(){
+    public void printAllHardwareSensorValues(){
         System.out.println("Drivetrain R:"+drivetrain.rightDrive1.getSensorCollection().getQuadraturePosition()+" L:"+drivetrain.rightDrive1.getSensorCollection().getQuadraturePosition());
         System.out.println("Cargo Manipulator photosensor: "+cargoManipulator.cargoPhotoSensor.get());
         System.out.println("Elevator encoder: "+elevator.elevatorEncoder.getPosition());

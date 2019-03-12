@@ -19,7 +19,9 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void robotPeriodic() {
-	  robot.hardware.sensorPrintout();
+		if(Robot.DEBUG){
+			robot.hardware.printAllHardwareSensorValues();
+		}
 	}
 
 	@Override

@@ -98,6 +98,8 @@ public class ShuffleBoardManager {
     public static String fourBarLowString = "Four Bar Low";
 
     public static NetworkTableEntry fourBarZero;
+    public static NetworkTableEntry elevatorZero;
+
     public ShuffleBoardManager(){
     }
 

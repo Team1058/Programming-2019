@@ -171,7 +171,6 @@ public class Elevator extends BaseSubsystem {
 
     private void fourBarSetSetpoint(double setpoint){
         // Pivot will be 0 to 180
-        System.out.println("Target encoder pos"+setpoint);
         fourBarTalon.set(ControlMode.Position, setpoint);
     }
 }

@@ -20,14 +20,6 @@ public class TeleopState extends State {
         hardware = Hardware.getInstance();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
-        //TODO: Find a better location for this
-        //Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
-        Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
-        //hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
-        Hardware.getInstance().elevator.elevatorEncoder.setPosition(0);
-        Hardware.getInstance().elevator.setPIDFromShuffleboard();
-        
-        //Hardware.getInstance().elevator.fourBarTalon.set(ControlMode.PercentOutput, .3);
     }
 
     @Override

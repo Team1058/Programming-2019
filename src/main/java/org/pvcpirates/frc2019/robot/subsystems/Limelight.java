@@ -17,7 +17,7 @@ public class Limelight extends BaseSubsystem{
     @Override
     public void initialize() {
         limelight = NetworkTableInstance.getDefault().getTable("limelight");
-        
+        setPipeline(Pipelines.HATCH_LOW);
     }
 
     @Override

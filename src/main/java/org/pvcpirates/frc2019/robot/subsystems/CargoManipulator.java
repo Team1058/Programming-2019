@@ -25,6 +25,11 @@ public class CargoManipulator extends BaseSubsystem {
     public void defaultState() {
         cargoStop();
     }
+    
+    @Override
+    void setConstantsFromShuffleboard() {
+        
+    }
 
     public void cargoIn(){
         cargoVictor.set(ControlMode.PercentOutput, -1);

@@ -27,8 +27,6 @@ public class TeleopState extends State {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();
-        //System.out.println("Curr fourbar pos"+Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().getQuadraturePosition());
-        //System.out.println("Curr elevator pos:"+Hardware.getInstance().elevator.elevatorEncoder.getPosition());
         
     }
 

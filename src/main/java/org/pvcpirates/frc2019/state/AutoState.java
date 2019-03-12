@@ -17,7 +17,7 @@ public class AutoState extends State {
 	public void exec() {
 		cmd.exec();
 		// Code here will all get called periodically (every ms) in Auto
-		System.out.println("Elevator Pos: "+Hardware.getInstance().elevator.getSetpoint());
+		
 	}
 
 

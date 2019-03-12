@@ -117,6 +117,7 @@ public class ShuffleBoardManager {
         hatchClawGrabEntry = competitionTab.add("hatchClawGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         hatchClawPrepGEntry = competitionTab.add("hatchClawPrepGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         fourBarZero = competitionTab.add("Four bar zero",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        elevatorZero = competitionTab.add("Elevator Zero",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         initializeFlipperComboBox();
         initElevatorComboBox();
         initFourBarComboBox();

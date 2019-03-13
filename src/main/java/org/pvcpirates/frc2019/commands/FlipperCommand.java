@@ -26,8 +26,6 @@ public class FlipperCommand extends TeleopCommand {
         flipper.setPIDValues();
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
 
-        //System.out.println(flipper.flipperTalonMain.getSensorCollection().getAnalogInRaw());
-
         if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){

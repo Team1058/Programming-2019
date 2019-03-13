@@ -182,6 +182,7 @@ public class ShuffleBoardManager {
         miniWheelControl = maintainanceTab.add("miniWheelPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
         flipperPercentOutputEntry = maintainanceTab.addPersistent("flipperPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
         elevatorPercentOutputEntry = maintainanceTab.addPersistent("elevatorPercentOutput", 0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
+        
     }
 
     private static void initializePIDTab(){

@@ -1,5 +1,7 @@
 package org.pvcpirates.frc2019.commands;
 
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
+
 public class AutoAssistHatchLow extends Command{
     public AutoAssistHatchLow(){
         commands.add(new VisionMPDriveToDonut());
@@ -9,6 +11,7 @@ public class AutoAssistHatchLow extends Command{
     @Override
     public void init() {
         super.init();
+        
     }
 
     @Override
@@ -19,6 +22,7 @@ public class AutoAssistHatchLow extends Command{
     @Override
     public void finished() {
         super.finished();
+        
     }
 
 

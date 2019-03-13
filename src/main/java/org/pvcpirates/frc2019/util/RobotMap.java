@@ -13,6 +13,7 @@ public class RobotMap {
         public static final int FLIPPER_FOLLOWER = 9;
         public static final int FLIPPER_MINI_WHEEL = 10;
         public static final int CARGO_VICTOR = 11;
+        
     }
 
     public static final class PCMIDS{
@@ -28,11 +29,13 @@ public class RobotMap {
     
     }
 
+
     public static final class Constants {
         public static final int ROBOT_TIMEOUT = 10;
         public static final double INCHES_IN_METERS = 39.3701;
         // This is in inches, found in game manual, this will NEVER change (ever)
         public static final double TOP_OF_ROCKET_HATCH_VIS_TARGET_HEIGHT = 31.5;
+        
     }
     public static final class RobotSpecs{
         // Distance from wheel to wheel
@@ -46,6 +49,10 @@ public class RobotMap {
         // Inches! will be 43.25 
         public static final double CAMERA_LENS_HEIGHT = 43.4;
         public static final double FLIPPER_GEAR_RATIO = 1;
+    }
+
+    public static final class DIO{
+        public static final int CARGO_PHOTO_SENSOR = 2;
     }
     
     public static final class MotionProfiling{

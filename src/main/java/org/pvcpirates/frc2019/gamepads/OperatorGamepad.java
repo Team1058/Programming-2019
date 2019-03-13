@@ -19,7 +19,7 @@ public class OperatorGamepad extends BaseGamepad {
     @Override
     void mapCommandsToController() {
         this.teleopCommands.add(new HatchManipulationCommand(this));
-        //this.teleopCommands.add(new CargoManipulationCommand(this));
+        this.teleopCommands.add(new CargoManipulationCommand(this));
         this.teleopCommands.add(new FlipperCommand(this));
         //this.teleopCommands.add(new ElevatorCommand(this));
     }

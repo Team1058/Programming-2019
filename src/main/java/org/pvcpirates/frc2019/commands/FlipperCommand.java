@@ -23,7 +23,7 @@ public class FlipperCommand extends TeleopCommand {
     public void init(){
     } 
     public void exec(){
-        flipper.setPIDValuesFromShuffleboard();
+        flipper.setPIDValues();
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
 
         //System.out.println(flipper.flipperTalonMain.getSensorCollection().getAnalogInRaw());

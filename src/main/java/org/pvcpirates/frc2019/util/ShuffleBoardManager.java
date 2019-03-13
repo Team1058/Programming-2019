@@ -12,6 +12,7 @@ public class ShuffleBoardManager {
     public static ShuffleboardTab pidTab = Shuffleboard.getTab("PID Manager");
     public static ShuffleboardTab competitionTab = Shuffleboard.getTab("Competition");
     public static ShuffleboardTab maintainanceTab = Shuffleboard.getTab("Maintainance");
+    public static ShuffleboardTab fourBarTab = Shuffleboard.getTab("Four Bar");
     // Maintainance Tab Entries
     public static NetworkTableEntry leftDriveSpeedEntry;
     public static NetworkTableEntry rightDriveSpeedEntry;
@@ -39,6 +40,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry fourBarHigh;
     public static NetworkTableEntry fourBarMid;
     public static NetworkTableEntry fourBarLow;
+
     public static NetworkTableEntry miniWheelControl;
     // PID Tab Entries
     public static NetworkTableEntry fDriveEntry;
@@ -68,6 +70,9 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry dFourBarEntry;
     // Comp Tab Entries
     public static NetworkTableEntry visionTargetBool;
+    public static NetworkTableEntry cargoIntakeHigh;
+    public static NetworkTableEntry cargoIntakeLow;
+    public static NetworkTableEntry cargoIntakeRev;
     public static SendableChooser<String> flipperPositionChooser;
     public static NetworkTableEntry hatchClawPrepGEntry;
     public static NetworkTableEntry hatchClawGrabEntry;
@@ -78,6 +83,22 @@ public class ShuffleBoardManager {
     public static String fpLvl2to3BackString  = "Level 2 Back";
     public static String fpDefaultString  = "Stow Position";
 
+    public static SendableChooser<String> elevatorPositionChooser;
+    public static String elevatorDefaultString = "Elevator Default";
+    public static String elevatorHatchLowString = "Elevator Hatch Low ";
+    public static String elevatorHatchMidString = "Elevator Hatch Mid";
+    public static String elevatorHatchHighString = "Elevator Hatch High";
+    public static String elevatorCargoLowString = "Elevator Cargo Low";
+    public static String elevatorCargoMidString = "Elevator Cargo Mid";
+    public static String elevatorIntakeString = "Elevator Intake";
+
+    public static SendableChooser<String> fourBarPositionChooser;
+    public static String fourBarHighString = "Four Bar High";
+    public static String fourBarMidString = "Four Bar Mid";
+    public static String fourBarLowString = "Four Bar Low";
+
+    public static NetworkTableEntry fourBarZero;
+    public static NetworkTableEntry elevatorZero;
 
     public ShuffleBoardManager(){
     }
@@ -90,9 +111,16 @@ public class ShuffleBoardManager {
 
     private static void initializeCompetitionTab(){
         visionTargetBool = competitionTab.add("visionTarget",false).getEntry();
+        cargoIntakeHigh = competitionTab.add("cargoIntakeHigh",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        cargoIntakeLow = competitionTab.add("cargoIntakeLow",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        cargoIntakeRev = competitionTab.add("cargoIntakeRev",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         hatchClawGrabEntry = competitionTab.add("hatchClawGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         hatchClawPrepGEntry = competitionTab.add("hatchClawPrepGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        fourBarZero = competitionTab.add("Four bar zero",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
+        elevatorZero = competitionTab.add("Elevator Zero",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         initializeFlipperComboBox();
+        initElevatorComboBox();
+        initFourBarComboBox();
     }
 
     private static void initializeFlipperComboBox(){
@@ -104,6 +132,28 @@ public class ShuffleBoardManager {
         flipperPositionChooser.addOption(fpDefaultString,fpDefaultString);
         flipperPositionChooser.setDefaultOption(fpDefaultString, fpDefaultString);
         competitionTab.getLayout("Flipper", BuiltInLayouts.kGrid).add("Flipper Positions",flipperPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
+    }
+
+    private static void initElevatorComboBox(){
+         elevatorPositionChooser = new SendableChooser<String>();
+         elevatorPositionChooser.addOption(elevatorCargoLowString,elevatorCargoLowString);
+         elevatorPositionChooser.addOption(elevatorCargoMidString,elevatorCargoMidString);
+         elevatorPositionChooser.addOption(elevatorHatchLowString,elevatorHatchLowString);
+         elevatorPositionChooser.addOption(elevatorHatchMidString,elevatorHatchMidString);
+         elevatorPositionChooser.addOption(elevatorHatchHighString,elevatorHatchHighString);
+         elevatorPositionChooser.addOption(elevatorDefaultString,elevatorDefaultString);
+         elevatorPositionChooser.addOption(elevatorIntakeString,elevatorIntakeString);
+         elevatorPositionChooser.setDefaultOption(elevatorDefaultString,elevatorDefaultString);
+         competitionTab.getLayout("Elevator",BuiltInLayouts.kGrid).add("Elevator Positions", elevatorPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
+    }
+
+    private static void initFourBarComboBox(){
+        fourBarPositionChooser = new SendableChooser<String>();
+        fourBarPositionChooser.addObject(fourBarHighString, fourBarHighString);
+        fourBarPositionChooser.addObject(fourBarMidString, fourBarMidString);
+        fourBarPositionChooser.addObject(fourBarLowString, fourBarLowString);
+        fourBarPositionChooser.setDefaultOption(fourBarLowString, fourBarLowString);
+        maintainanceTab.getLayout("Four Bar",BuiltInLayouts.kGrid).add("Four Bar Positions", fourBarPositionChooser).withWidget(BuiltInWidgets.kSplitButtonChooser);
     }
 
     private static void initializeMaintainanceTab(){
@@ -118,13 +168,13 @@ public class ShuffleBoardManager {
         flipperlvl0To2FrontEntry = maintainanceTab.add("flipperlvl0To2Front", Flipper.lvl0to2FrontConstant).getEntry();
         flipperlvl2To3BackEntry = maintainanceTab.add("flipperlvl2To3Back", Flipper.lvl2to3BackConstant).getEntry();
         flipperlvl2To3FrontEntry = maintainanceTab.add("flipperlvl2To3Front", Flipper.lvl2to3FrontConstant).getEntry();
-        elevatorIntakeSetpointEntry = maintainanceTab.add("elevatorIntakeSetpoint",Elevator.intakeSetpoint).getEntry();
-        elevatorDefaultSetpointEntry = maintainanceTab.add("elevatorDefaultSetpoint",Elevator.defaultSetpoint).getEntry();
-        elevatorHatchLowSetpointEntry = maintainanceTab.add("elevatorHatchLowSetpoint",Elevator.hatchLowSetpoint).getEntry();
-        elevatorHatchMidSetpointEntry = maintainanceTab.add("elevatorHatchMidSetpoint",Elevator.hatchMidSetpoint).getEntry();
-        elevatorHatchHighSetpointEntry = maintainanceTab.add("elevatorHatchHighSetpoint",Elevator.hatchHighSetpoint).getEntry();
-        elevatorCargoLowSetpointEntry = maintainanceTab.add("elevatorCargoLow",Elevator.cargoLowSetpoint).getEntry();
-        elevatorCargoMidSetpointEntry = maintainanceTab.add("elevatorCargoMid",Elevator.cargoMidSetpoint).getEntry();
+        elevatorIntakeSetpointEntry = maintainanceTab.addPersistent("elevatorIntakeSetpoint",Elevator.intakeSetpoint).getEntry();
+        elevatorDefaultSetpointEntry = maintainanceTab.addPersistent("elevatorDefaultSetpoint",Elevator.defaultSetpoint).getEntry();
+        elevatorHatchLowSetpointEntry = maintainanceTab.addPersistent("elevatorHatchLowSetpoint",Elevator.hatchLowSetpoint).getEntry();
+        elevatorHatchMidSetpointEntry = maintainanceTab.addPersistent("elevatorHatchMidSetpoint",Elevator.hatchMidSetpoint).getEntry();
+        elevatorHatchHighSetpointEntry = maintainanceTab.addPersistent("elevatorHatchHighSetpoint",Elevator.hatchHighSetpoint).getEntry();
+        elevatorCargoLowSetpointEntry = maintainanceTab.addPersistent("elevatorCargoLow",Elevator.cargoLowSetpoint).getEntry();
+        elevatorCargoMidSetpointEntry = maintainanceTab.addPersistent("elevatorCargoMid",Elevator.cargoMidSetpoint).getEntry();
 
         fourBarLow = maintainanceTab.add("fourBarLow",Elevator.fourBarLowSetpoint).getEntry();
         fourBarMid = maintainanceTab.add("fourBarMid",Elevator.fourBarMidSetpoint).getEntry();

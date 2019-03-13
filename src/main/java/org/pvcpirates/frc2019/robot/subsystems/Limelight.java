@@ -32,10 +32,6 @@ public class Limelight extends BaseSubsystem{
         setPipeline(Pipelines.HATCH_LOW);
     }
 
-    public void driverCam(boolean driverCam){
-        limelight.getEntry("camMode").setNumber(driverCam? 1:0);
-    }
-
     // Returns true if the limelight sees something
     public boolean hasTarget(){
         return limelight.getEntry("tv").getNumber(0).intValue() == 1;

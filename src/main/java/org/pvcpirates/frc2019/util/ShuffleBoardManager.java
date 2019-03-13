@@ -71,7 +71,6 @@ public class ShuffleBoardManager {
     public static SendableChooser<String> flipperPositionChooser;
     public static NetworkTableEntry hatchClawPrepGEntry;
     public static NetworkTableEntry hatchClawGrabEntry;
-    public static NetworkTableEntry limelightToggleButton;
 
     public static String fpLvl0to2FrontString = "Level 1 Front";
     public static String fpLvl0to2BackString = "Level 1 Back";
@@ -93,7 +92,6 @@ public class ShuffleBoardManager {
         visionTargetBool = competitionTab.add("visionTarget",false).getEntry();
         hatchClawGrabEntry = competitionTab.add("hatchClawGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         hatchClawPrepGEntry = competitionTab.add("hatchClawPrepGrab",false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
-        limelightToggleButton = competitionTab.addPersistent("Limelight Driver View", false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
         initializeFlipperComboBox();
     }
 

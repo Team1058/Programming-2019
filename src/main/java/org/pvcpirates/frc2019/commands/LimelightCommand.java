@@ -21,8 +21,6 @@ public class LimelightCommand extends TeleopCommand{
 
     @Override
     public void exec() {        
-        System.out.println("Limelight = "+ShuffleBoardManager.limelightToggleButton.getBoolean(false));
-        limelight.driverCam(ShuffleBoardManager.limelightToggleButton.getBoolean(false));
         
     }
 

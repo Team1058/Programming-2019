@@ -11,7 +11,7 @@ public class AutoAssistHatchLow extends Command{
     @Override
     public void init() {
         super.init();
-        ShuffleBoardManager.limelightToggleButton.setBoolean(true);
+        
     }
 
     @Override
@@ -22,7 +22,7 @@ public class AutoAssistHatchLow extends Command{
     @Override
     public void finished() {
         super.finished();
-        ShuffleBoardManager.limelightToggleButton.setBoolean(false);
+        
     }
 
 

@@ -18,7 +18,8 @@ public class Hardware {
     public HatchManipulator hatchManipulator = new HatchManipulator();
     public Elevator elevator = new Elevator();
     public Flipper flipper = new Flipper();
-    
+
+
     private Hardware() {
         initializeHardware();
     }
@@ -33,8 +34,7 @@ public class Hardware {
         cargoManipulator.initialize();
         hatchManipulator.initialize();
         elevator.initialize();
-        flipper.initialize();
-       
+        flipper.initialize();       
     }
 
     public void defaultAll(){

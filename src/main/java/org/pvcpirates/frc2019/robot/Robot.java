@@ -4,7 +4,7 @@ import org.pvcpirates.frc2019.state.State;
 
 public class Robot {
 
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG= false;
     private static Robot ourInstance;
     public final Hardware hardware = Hardware.getInstance();
     public State state;

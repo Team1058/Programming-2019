@@ -76,7 +76,8 @@ public class Limelight extends BaseSubsystem{
     // Camera is flipped on its side so we're really getting y here
     // The angle offset is how much the limelight is tilted, and so we subtract that so really its like it's parallel
     public double getTargetYAngle(){
-        return -limelight.getEntry("tx").getNumber(0).doubleValue();
+        double angleOffset = 0;
+        return -(limelight.getEntry("tx").getNumber(0).doubleValue()-angleOffset);
     }
 
   
@@ -117,7 +118,7 @@ public class Limelight extends BaseSubsystem{
     // Enums of what position in th 6 # array of camtran numbers are
     // X and y is the relative x,y pos in inches, yaw, tilt, and roll is of the camera in degrees 
     public enum Camtran{
-        X(0),VERT_DROP_Y(1),Y(2),YAW(3),TILT(4),ROLL(5);
+        X(1),VERT_DROP_Y(0),Y(2),YAW(3),TILT(4),ROLL(5);
         public int value;
         private Camtran(int value){
             this.value = value;

@@ -1,6 +1,9 @@
 package org.pvcpirates.frc2019.robot;
 
 import org.pvcpirates.frc2019.robot.subsystems.*;
+
+import java.util.Arrays;
+
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -46,6 +49,8 @@ public class Hardware {
         System.out.println("Elevator encoder: "+elevator.elevatorEncoder.getPosition());
         System.out.println("Four Bar encoder: "+elevator.fourBarTalon.getSensorCollection().getQuadraturePosition());
         System.out.println("Flipper: "+flipper.flipperTalonMain.getSensorCollection().getAnalogIn());
+        //System.out.println("Camera " + Arrays.toString(limelight.get3DPosition()));
+        //System.out.println("XY "+Arrays.toString(limelight.getXYPos()));
     }
 
 	public static Hardware getInstance() {

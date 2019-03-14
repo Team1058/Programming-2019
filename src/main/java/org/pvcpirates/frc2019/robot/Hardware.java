@@ -15,7 +15,8 @@ public class Hardware {
     public HatchManipulator hatchManipulator = new HatchManipulator();
     public Elevator elevator = new Elevator();
     public Flipper flipper = new Flipper();
-    
+    public BuddyClimb buddyClimb = new BuddyClimb();
+
     private Hardware() {
         initializeHardware();
     }

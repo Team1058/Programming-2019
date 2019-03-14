@@ -19,8 +19,7 @@ public class TeleopState extends State {
         hardware = Hardware.getInstance();
         driverGamepad = new DriverGamepad(0);
         operatorGamepad = new OperatorGamepad(1);
-        //TODO: Find a better location for this
-        //Hardware.getInstance().limelight.setPipeline(Pipelines.HATCH_LOW);
+
     }
 
     @Override

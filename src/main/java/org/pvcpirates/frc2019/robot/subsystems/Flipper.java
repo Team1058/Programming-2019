@@ -96,7 +96,6 @@ public class Flipper extends BaseSubsystem {
         *  PID needs to be done including gear ratios
         *  DO NOT DO PERCENT OUTPUT
         */
-        System.out.println("Target: "+positionForFlipper);
         flipperTalonMain.set(ControlMode.Position, positionForFlipper);
     }
 

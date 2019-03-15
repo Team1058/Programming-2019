@@ -49,6 +49,10 @@ public abstract class BaseGamepad extends Joystick {
         return getRawAxis(axisEnum.val);
     }
 
+    public double getAxis(ButtonPadEnum axisEnum){
+        return getRawAxis(axisEnum.val);
+    }
+
     public boolean getTrigger(GamepadEnum triggerEnum) {
         return (getRawAxis(triggerEnum.val) > .8);
     }

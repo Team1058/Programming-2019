@@ -36,14 +36,19 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
     @Override
     public void exec(){
         if (this.gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)){
-            if(gamepad.getButton(ButtonPadEnum.PICKUP)){
+            if(gamepad.getButton(ButtonPadEnum.PICKUP) && !this.gamepad.getButton(ButtonPadEnum.SUPER_CARGO)){
                 elevator.moveToIntake();
                 cargoManipulator.cargoIn();
+                cargoManipulator.disableSecondaryRollers();
+                isGrabbingCargo = true;
+            }else if (this.gamepad.getButton(ButtonPadEnum.PICKUP) && this.gamepad.getButton(ButtonPadEnum.SUPER_CARGO)){
+                elevator.moveToIntake();
+                cargoManipulator.cargoIn();
+                cargoManipulator.enableSecondaryRollers();
                 isGrabbingCargo = true;
             }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingCargo){
                 elevator.defaultState(); 
                 isGrabbingCargo = false;
-           
             }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
                 //elevator.moveToCargoHigh();
                 //cargoManipulator.cargoOut();
@@ -71,6 +76,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 elevator.defaultState();
                 isPlacingCargoLow = false;
             }else {
+                cargoManipulator.disableSecondaryRollers();
                 isPlacingCargoHigh = false;
                 isPlacingCargoMid = false;
                 isPlacingCargoLow = false;
@@ -116,6 +122,8 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 elevator.defaultState();
                 isPlacingHatchLow = false;
             }else {
+                //retracts rollers incase of switch mid SUPER
+                cargoManipulator.disableSecondaryRollers();
                 isPlacingHatchHigh = false;
                 isPlacingHatchMid = false;
                 isPlacingHatchLow = false;

@@ -1,7 +1,6 @@
 package org.pvcpirates.frc2019.gamepads;
 
 import org.pvcpirates.frc2019.commands.HatchManipulationCommand;
-import org.pvcpirates.frc2019.commands.LimelightCommand;
 import org.pvcpirates.frc2019.commands.TeleopAutoHatchAssist;
 import org.pvcpirates.frc2019.commands.TeleopDriveCommand;
 
@@ -18,7 +17,6 @@ public class DriverGamepad extends BaseGamepad {
     void mapCommandsToController() {
         this.teleopCommands.add(new TeleopDriveCommand(this));
         this.teleopCommands.add(new TeleopAutoHatchAssist(this));
-        this.teleopCommands.add(new LimelightCommand(this));
 
     }
 

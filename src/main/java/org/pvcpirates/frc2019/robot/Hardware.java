@@ -2,6 +2,9 @@ package org.pvcpirates.frc2019.robot;
 
 import org.pvcpirates.frc2019.robot.subsystems.*;
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SPI;
 
 public class Hardware {
@@ -21,6 +24,9 @@ public class Hardware {
     }
 
     public void initializeHardware(){
+        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    	camera.setFPS(20);
+    	camera.setResolution(128, 96);
         navx.reset();
         limelight.initialize();
         drivetrain.initialize();

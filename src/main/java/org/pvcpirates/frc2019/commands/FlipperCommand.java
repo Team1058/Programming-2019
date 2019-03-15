@@ -3,6 +3,7 @@ package org.pvcpirates.frc2019.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
@@ -23,10 +24,11 @@ public class FlipperCommand extends TeleopCommand {
     public void init(){
     } 
     public void exec(){
-        flipper.setPIDValues();
+        
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
-
-        if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
+        if (gamepad.getButton(GamepadEnum.RIGHT_BUMPER) && (Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
+            flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_Y));
+        }else if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();

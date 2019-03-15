@@ -26,7 +26,7 @@ public class CargoManipulationCommand extends TeleopCommand {
       if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.ROLLERS_IN) && !hold){
         cargoManipulator.cargoIn();
       }else if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.ROLLERS_OUT)){
-        System.out.println("Rollers Out");
+        cargoManipulator.cargoOut();
       }else if(hold){
         cargoManipulator.cargoHold();
       }else{

@@ -35,8 +35,50 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
 
     @Override
     public void exec(){
-        if (gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH)){
+        if (this.gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)){
+            if(gamepad.getButton(ButtonPadEnum.PICKUP)){
+                elevator.moveToIntake();
+                cargoManipulator.cargoIn();
+                isGrabbingCargo = true;
+            }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingCargo){
+                elevator.defaultState(); 
+                isGrabbingCargo = false;
+           
+            }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
+                //elevator.moveToCargoHigh();
+                //cargoManipulator.cargoOut();
+                isPlacingCargoHigh = true;
+            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingCargoHigh){
+                //cargoManipulator.cargoStop();
+                //elevator.defaultState();
+                isPlacingCargoHigh = false;
+
+            }else if(gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE)){
+                elevator.moveToCargoMid();
+                cargoManipulator.cargoOut();
+                isPlacingCargoMid = true;
+            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE) && isPlacingCargoMid){
+                cargoManipulator.cargoStop();
+                elevator.defaultState();
+                isPlacingCargoMid = false;
+
+            }else if(gamepad.getButton(ButtonPadEnum.SCORE_LOW)){
+                elevator.moveToCargoLow();
+                cargoManipulator.cargoOut();
+                isPlacingCargoLow = true;
+            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_LOW) && isPlacingCargoLow){
+                cargoManipulator.cargoStop();
+                elevator.defaultState();
+                isPlacingCargoLow = false;
+            }else {
+                isPlacingCargoHigh = false;
+                isPlacingCargoMid = false;
+                isPlacingCargoLow = false;
+                isGrabbingCargo = false;
+            }
+
             
+        } else if (!gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)) {
             if(gamepad.getButton(ButtonPadEnum.PICKUP)){
                 elevator.moveToIntake();
                 hatchManipulator.prepGrab();
@@ -44,8 +86,9 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
             }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingHatch){
                 hatchManipulator.grabHatch();
                 elevator.defaultState();
-                isGrabbingHatch = false;
                 
+                isGrabbingHatch = false;
+
             }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
                 elevator.moveToHatchHigh();
                 hatchManipulator.prepPlace();
@@ -78,7 +121,6 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 isPlacingHatchLow = false;
                 isGrabbingHatch = false;
             }
-        } else {
 
 
         }

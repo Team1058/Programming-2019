@@ -1,6 +1,7 @@
 package org.pvcpirates.frc2019.commands;
 
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.ButtonPadEnum;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.CargoManipulator;
@@ -20,16 +21,12 @@ public class CargoManipulationCommand extends TeleopCommand {
     @Override
     public void exec(){
 
-      /* While the Y button is held it take in cargo unless
-      *  A is pushed then it will spit it out
-      *  if nothing is pressed the motors will do nothing 
-      */
       hold = !cargoManipulator.cargoPhotoSensor.get();
       
-      if (this.gamepad.getButton(GamepadEnum.Y_BUTTON) && !hold){
+      if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.ROLLERS_IN) && !hold){
         cargoManipulator.cargoIn();
-      }else if (this.gamepad.getButton(GamepadEnum.A_BUTTON)){
-        cargoManipulator.cargoOut();
+      }else if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.ROLLERS_OUT)){
+        System.out.println("Rollers Out");
       }else if(hold){
         cargoManipulator.cargoHold();
       }else{

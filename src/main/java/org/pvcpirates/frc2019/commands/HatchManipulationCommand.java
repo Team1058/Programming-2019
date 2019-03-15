@@ -1,6 +1,7 @@
 package org.pvcpirates.frc2019.commands;
 
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.ButtonPadEnum;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 
@@ -32,34 +33,41 @@ public class HatchManipulationCommand extends TeleopCommand {
       *  then when the button is released it extends the claws
       *  then retracts the slider back */
       
-      if (this.gamepad.getButton(GamepadEnum.B_BUTTON) == true || ShuffleBoardManager.hatchClawPrepGEntry.getBoolean(false) == true){  
-          isGrabbing = false; 
-          hatchManipulator.prepGrab();
-          isGrabbing = true;
-      }else if(isGrabbing == true && (this.gamepad.getButton(GamepadEnum.B_BUTTON) == false || ShuffleBoardManager.hatchClawGrabEntry.getBoolean(false) == true)){
-        ShuffleBoardManager.hatchClawPrepGEntry.setBoolean(false);  
-        hatchManipulator.grabHatch();
-      }
+      // if (this.gamepad.getButton(GamepadEnum.B_BUTTON) == true || ShuffleBoardManager.hatchClawPrepGEntry.getBoolean(false) == true){  
+      //     isGrabbing = false; 
+      //     hatchManipulator.prepGrab();
+      //     isGrabbing = true;
+      // }else if(isGrabbing == true && (this.gamepad.getButton(GamepadEnum.B_BUTTON) == false || ShuffleBoardManager.hatchClawGrabEntry.getBoolean(false) == true)){
+      //   ShuffleBoardManager.hatchClawPrepGEntry.setBoolean(false);  
+      //   hatchManipulator.grabHatch();
+      // }
       
       /* while the X button is held the hatch slider is extended
       *  then when the button is released it retracts the claw
       *  then retracts the slider back*/
       
-      if (this.gamepad.getButton(GamepadEnum.X_BUTTON) == true && isGrabbing == true){
-        hatchManipulator.prepPlace();
-        isPlacing = true;
-        isGrabbing = false;
-      }else if(this.gamepad.getButton(GamepadEnum.X_BUTTON) == false && isPlacing == true){
-        hatchManipulator.placeHatch();
-        isPlacing = false;
-      }
+      // if (this.gamepad.getButton(GamepadEnum.X_BUTTON) == true && isGrabbing == true){
+      //   hatchManipulator.prepPlace();
+      //   isPlacing = true;
+      //   isGrabbing = false;
+      // }else if(this.gamepad.getButton(GamepadEnum.X_BUTTON) == false && isPlacing == true){
+      //   hatchManipulator.placeHatch();
+      //   isPlacing = false;
+      // }
 
        //if it isn't grabbing it goes to 'default' position
-      if ((isGrabbing == false && isPlacing == false)){
-        isGrabbing = false;   
-        isPlacing = false;
+      // if ((isGrabbing == false && isPlacing == false)){
+      //   isGrabbing = false;   
+      //   isPlacing = false;
+      //   hatchManipulator.defaultPosition();
+      // }
+
+      if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.CLOSE_GRABBER)){
+        hatchManipulator.hatchClawRetract();
+      }else if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.RETRACT_ALL)){
         hatchManipulator.defaultPosition();
       }
+
     } 
 
     @Override

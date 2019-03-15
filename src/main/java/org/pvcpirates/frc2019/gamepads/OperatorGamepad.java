@@ -23,7 +23,7 @@ public class OperatorGamepad extends BaseGamepad {
         this.teleopCommands.add(new CargoManipulationCommand(this));
         this.teleopCommands.add(new FlipperCommand(this));
         this.teleopCommands.add(new ElevatorCommand(this));
-        this.teleopCommands.add(new ZeroAll());
+        //this.teleopCommands.add(new ZeroAll());
     }
 
     

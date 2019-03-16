@@ -18,6 +18,7 @@ public class Flipper extends BaseSubsystem {
     public final TalonSRX flipperTalonFollower = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_FOLLOWER);
     
     public static double defaultPosConstant = 568;
+
     public static double lvl2to3FrontConstant = defaultPosConstant + 212;
     public static double lvl2to3BackConstant = defaultPosConstant - 474;
     public static double lvl0to2FrontConstant = defaultPosConstant + 183;
@@ -43,7 +44,7 @@ public class Flipper extends BaseSubsystem {
         flipperTalonFollower.setInverted(false);
         flipperTalonMain.configFeedbackNotContinuous(true, RobotMap.Constants.ROBOT_TIMEOUT);
         flipperTalonMain.configAllowableClosedloopError(0, 5, 10);
-        flipperMiniWheelVictor.setInverted(true);
+        flipperMiniWheelVictor.setInverted(false);
     }
 
     @Override
@@ -58,11 +59,7 @@ public class Flipper extends BaseSubsystem {
         FLIPPER_I = ShuffleBoardManager.iFlipperEntry.getDouble(FLIPPER_I);
         FLIPPER_D = ShuffleBoardManager.dFlipperEntry.getDouble(FLIPPER_D);
         FLIPPER_P_STOWED = ShuffleBoardManager.pStowedFlipperEntry.getDouble(FLIPPER_P_STOWED);
-        defaultPosConstant = ShuffleBoardManager.flipperDefaultPositionEntry.getDouble(defaultPosConstant);
-        lvl2to3FrontConstant = ShuffleBoardManager.flipperlvl2To3FrontEntry.getDouble(lvl2to3FrontConstant);
-        lvl2to3BackConstant = ShuffleBoardManager.flipperlvl2To3BackEntry.getDouble(lvl2to3BackConstant);
-        lvl0to2FrontConstant = ShuffleBoardManager.flipperlvl0To2FrontEntry.getDouble(lvl0to2FrontConstant);
-        lvl0to2BackConstant = ShuffleBoardManager.flipperlvl0To2BackEntry.getDouble(lvl0to2BackConstant);
+
     }
     public void setPIDValues(){
         flipperTalonMain.config_kF(0, FLIPPER_F);

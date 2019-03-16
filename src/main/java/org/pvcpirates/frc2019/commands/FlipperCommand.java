@@ -3,7 +3,10 @@ package org.pvcpirates.frc2019.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.DriverGamepad;
+import org.pvcpirates.frc2019.gamepads.ButtonPadEnum;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
+import org.pvcpirates.frc2019.gamepads.OperatorButtonPad;
 import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Flipper;
@@ -23,19 +26,19 @@ public class FlipperCommand extends TeleopCommand {
     public void init(){
     } 
     public void exec(){
-        flipper.setPIDValues();
+        
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
-
-
-        if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
+        if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && (Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
+            flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y));
+        }else if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
-        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
+        }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();
-        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
+        }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
             flipper.lvl0to2Back();
-        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
+        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
             flipper.lvl2to3Front();
-        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
+        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
             flipper.lvl2to3Back();
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
             flipper.defaultPosition();
@@ -46,6 +49,7 @@ public class FlipperCommand extends TeleopCommand {
         if(ShuffleBoardManager.miniWheelControl.getDouble(0)!= 0){
             flipper.miniWheelRotate(ShuffleBoardManager.miniWheelControl.getDouble(0));
         }
+
     }
 
     @Override

@@ -13,6 +13,7 @@ public class RobotMap {
         public static final int FLIPPER_FOLLOWER = 9;
         public static final int FLIPPER_MINI_WHEEL = 10;
         public static final int CARGO_VICTOR = 11;
+        public static final int BUDDY_CLIMB_SPARKMAX = 12;
         
     }
 

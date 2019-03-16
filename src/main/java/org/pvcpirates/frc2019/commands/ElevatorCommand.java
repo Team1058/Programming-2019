@@ -26,7 +26,7 @@ public class ElevatorCommand extends TeleopCommand {
         
         
         String shuffleBoardSelection = ShuffleBoardManager.elevatorPositionChooser.getSelected();
-        System.out.println(shuffleBoardSelection);
+        
         
         if(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0)!=0){
             elevator.elevatorSparkMax.set(ShuffleBoardManager.elevatorPercentOutputEntry.getDouble(0));

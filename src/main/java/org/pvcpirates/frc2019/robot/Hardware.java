@@ -25,9 +25,9 @@ public class Hardware {
     }
 
     public void initializeHardware(){
-        UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    	camera.setFPS(20);
-    	camera.setResolution(128, 96);
+        //UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    	//camera.setFPS(20);
+    	//camera.setResolution(128, 96);
         navx.reset();
         limelight.initialize();
         drivetrain.initialize();

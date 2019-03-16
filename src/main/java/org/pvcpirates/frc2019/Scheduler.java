@@ -13,6 +13,7 @@ public class Scheduler extends TimedRobot {
 	long start = 0;
 	boolean fourBarOut = false;
 	@Override
+	
 	public void robotInit() {
 	  robot.setState(new TeleopState());
 	  robot.state.init();

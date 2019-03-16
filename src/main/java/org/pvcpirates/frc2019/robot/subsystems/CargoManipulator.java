@@ -18,7 +18,7 @@ public class CargoManipulator extends BaseSubsystem {
     public final DigitalInput cargoPhotoSensor = new DigitalInput(DIO.CARGO_PHOTO_SENSOR);
 
     public void initialize(){
-
+        cargoVictor.setInverted(true);
     }
 
     @Override

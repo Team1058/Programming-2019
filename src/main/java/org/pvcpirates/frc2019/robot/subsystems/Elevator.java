@@ -146,7 +146,6 @@ public class Elevator extends BaseSubsystem {
 
     public void moveToCargoLow(){
         setSetpoint(cargoLowSetpoint);
-        //TODO CHANGE TO MID WHEN ELEVATOR WORKSSSSS
         fourBarSetSetpoint(fourBarMidSetpoint);
     }
 
@@ -159,7 +158,6 @@ public class Elevator extends BaseSubsystem {
         fourBarSetSetpoint(fourBarHighSetpoint);
     }
     public void moveFourBarToHigh(){
-        
         fourBarSetSetpoint(fourBarHighSetpoint);
     }
 

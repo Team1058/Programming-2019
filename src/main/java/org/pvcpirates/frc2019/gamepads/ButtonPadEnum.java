@@ -9,7 +9,7 @@ public enum ButtonPadEnum {
     SCORE_MIDDLE(7),
     SCORE_LOW(8),
     PICKUP(9),
-    SUPER_CARGO(10),
+    CARGO_HP_INTAKE(10),
     CLIMB_FRONT(11),
     CLIMB_REAR(12),
     CLIMB_SWITCH(13), //Off when level 2    On when Level 3

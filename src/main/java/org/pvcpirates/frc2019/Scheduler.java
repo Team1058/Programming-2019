@@ -61,7 +61,8 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-	  robot.state.exec();
+		robot.state.exec();
+		
 	}
 
 	@Override

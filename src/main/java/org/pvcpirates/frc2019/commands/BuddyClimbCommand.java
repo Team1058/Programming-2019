@@ -1,6 +1,7 @@
 package org.pvcpirates.frc2019.commands;
 
 import org.pvcpirates.frc2019.gamepads.BaseGamepad;
+import org.pvcpirates.frc2019.gamepads.ButtonPadEnum;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
@@ -9,7 +10,7 @@ import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 public class BuddyClimbCommand extends TeleopCommand {
     BuddyClimb buddyClimb = Hardware.getInstance().buddyClimb;
-    BuddyClimbCommand(BaseGamepad gp){
+    public BuddyClimbCommand(BaseGamepad gp){
         super(gp);
     }
     @Override
@@ -19,8 +20,10 @@ public class BuddyClimbCommand extends TeleopCommand {
 
     @Override
     public void exec() {
-        if (gamepad.getButton(GamepadEnum.LEFT_BUMPER) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
-            buddyClimb.buddyClimbSparkMax.set(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y));
+        if (!this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && (Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
+            buddyClimb.moveProngs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X));
+        }else {
+            buddyClimb.defaultState();
         }
     }
 

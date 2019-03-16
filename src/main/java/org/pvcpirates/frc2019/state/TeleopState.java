@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class TeleopState extends State {
     private DriverGamepad driverGamepad;
-    //private OperatorGamepad operatorGamepad;
+    private OperatorGamepad operatorGamepad;
     private OperatorButtonPad operatorButtonPad;
     private Hardware hardware;
 
@@ -20,7 +20,7 @@ public class TeleopState extends State {
     public void init() {
         hardware = Hardware.getInstance();
         driverGamepad = new DriverGamepad(0);
-        //operatorGamepad = new OperatorGamepad(1);
+        operatorGamepad = new OperatorGamepad(2);
         operatorButtonPad = new OperatorButtonPad(1);
     }
 
@@ -28,7 +28,7 @@ public class TeleopState extends State {
     public void exec() {
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
-       // operatorGamepad.executeCommands();
+        operatorGamepad.executeCommands();
         operatorButtonPad.executeCommands();
     }
 

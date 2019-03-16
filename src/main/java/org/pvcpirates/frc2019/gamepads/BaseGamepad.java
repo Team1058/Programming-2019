@@ -1,17 +1,19 @@
 package org.pvcpirates.frc2019.gamepads;
 
 import edu.wpi.first.wpilibj.Joystick;
+
+import org.pvcpirates.frc2019.commands.Command;
 import org.pvcpirates.frc2019.commands.TeleopCommand;
 
 import java.util.Vector;
 
 public abstract class BaseGamepad extends Joystick {
 
-    public Vector<TeleopCommand> teleopCommands;
+    public Vector<Command> teleopCommands;
 
     public BaseGamepad(int port) {
         super(port);
-        this.teleopCommands = new Vector<TeleopCommand>();
+        this.teleopCommands = new Vector<Command>();
         mapCommandsToController();
     }
 
@@ -19,7 +21,7 @@ public abstract class BaseGamepad extends Joystick {
 
 
     public void executeCommands() {
-        for (TeleopCommand command : teleopCommands) {
+        for (Command command : teleopCommands) {
             command.exec();
         }
     }

@@ -6,6 +6,7 @@ import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.ControlType;
 
 
 

@@ -57,6 +57,10 @@ public class FlipperCommand extends TeleopCommand {
             System.out.println("default position");
         }
 
+        if(ShuffleBoardManager.miniWheelControl.getDouble(0)!= 0){
+            flipper.miniWheelRotate(ShuffleBoardManager.miniWheelControl.getDouble(0));
+        }
+
     }
 
     @Override

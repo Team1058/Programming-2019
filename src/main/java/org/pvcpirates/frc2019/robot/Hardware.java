@@ -52,6 +52,7 @@ public class Hardware {
         System.out.println("Elevator encoder: "+elevator.elevatorEncoder.getPosition());
         System.out.println("Four Bar encoder: "+elevator.fourBarTalon.getSensorCollection().getQuadraturePosition());
         System.out.println("Flipper: "+flipper.flipperTalonMain.getSensorCollection().getAnalogIn());
+        System.out.println("Elevator Pos: "+Hardware.getInstance().elevator.elevatorEncoder.getPosition());
     }
 
 	public static Hardware getInstance() {

@@ -5,6 +5,7 @@ import org.pvcpirates.frc2019.gamepads.ButtonPadEnum;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.CargoManipulator;
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 public class CargoManipulationCommand extends TeleopCommand {
 

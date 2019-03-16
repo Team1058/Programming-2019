@@ -3,6 +3,7 @@ package org.pvcpirates.frc2019.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 
 public class ZeroElevator extends Command{
     Hardware hardware;
@@ -15,14 +16,22 @@ public class ZeroElevator extends Command{
     }
     @Override
     public void exec() {
-        if (hardware.elevator.forwardLimitSwitch.get()){
+        if (ShuffleBoardManager.fourBarZero.getBoolean(false)){
+            Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
+        }
+        if (ShuffleBoardManager.elevatorZero.getBoolean(false)){
+            Hardware.getInstance().elevator.elevatorEncoder.setPosition(0);
+        }
+        
+        if (hardware.elevator.reverseLimitSwitch.get()){
             hardware.elevator.elevatorSparkMax.set(0);
+            
             hardware.elevator.elevatorEncoder.setPosition(0);
         }
 
     }
     @Override
     public void finished() {
-        hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
+        //hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
     }
 }

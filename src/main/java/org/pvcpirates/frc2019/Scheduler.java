@@ -30,6 +30,8 @@ public class Scheduler extends TimedRobot {
 	public void autonomousInit() {
 	  robot.setState(new AutoState());
 		robot.state.init();
+		robot.hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
+		robot.hardware.elevator.elevatorEncoder.setPosition(0);
 		
 	}
 

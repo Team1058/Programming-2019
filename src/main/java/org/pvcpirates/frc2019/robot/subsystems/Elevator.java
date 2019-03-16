@@ -33,7 +33,7 @@ public class Elevator extends BaseSubsystem {
 
     public static double intakeSetpoint = 0;
     public static double defaultSetpoint = .76;
-    public static double hatchLowSetpoint = defaultSetpoint;
+    public static double hatchLowSetpoint = .76;
     public static double hatchMidSetpoint = 72;
     public static double hatchHighSetpoint = 81;
     public static double cargoLowSetpoint = 52.66;
@@ -70,8 +70,8 @@ public class Elevator extends BaseSubsystem {
         fourBarTalon.configPeakOutputForward(.25);
         fourBarTalon.configPeakOutputReverse(-.7);
         elevatorSparkMax.setInverted(false);
-        forwardLimitSwitch.enableLimitSwitch(true);
-        reverseLimitSwitch.enableLimitSwitch(true);
+        forwardLimitSwitch.enableLimitSwitch(false);
+        reverseLimitSwitch.enableLimitSwitch(false);
         if(Robot.DEBUG){
             setConstantsFromShuffleboard();
         }
@@ -97,14 +97,6 @@ public class Elevator extends BaseSubsystem {
         FOUR_BAR_I = ShuffleBoardManager.iFourBarEntry.getDouble(FOUR_BAR_I);
         FOUR_BAR_D= ShuffleBoardManager.dFourBarEntry.getDouble(FOUR_BAR_D);
         FOUR_BAR_F = ShuffleBoardManager.fFourBarEntry.getDouble(FOUR_BAR_F);
-        defaultSetpoint = ShuffleBoardManager.elevatorDefaultSetpointEntry.getDouble(defaultSetpoint);
-        hatchLowSetpoint = ShuffleBoardManager.elevatorHatchLowSetpointEntry.getDouble(hatchLowSetpoint);
-        hatchMidSetpoint = ShuffleBoardManager.elevatorHatchMidSetpointEntry.getDouble(hatchMidSetpoint);
-        hatchHighSetpoint = ShuffleBoardManager.elevatorHatchHighSetpointEntry.getDouble(hatchHighSetpoint);
-        cargoLowSetpoint = ShuffleBoardManager.elevatorCargoLowSetpointEntry.getDouble(cargoLowSetpoint);
-        cargoMidSetpoint = ShuffleBoardManager.elevatorCargoMidSetpointEntry.getDouble(cargoMidSetpoint);
-        fourBarLowSetpoint = ShuffleBoardManager.fourBarLow.getDouble(fourBarLowSetpoint);
-        fourBarMidSetpoint = ShuffleBoardManager.fourBarMid.getDouble(fourBarMidSetpoint);
         
     }
 
@@ -149,7 +141,7 @@ public class Elevator extends BaseSubsystem {
 
     public void moveToHatchHigh(){
         setSetpoint(hatchHighSetpoint);
-        fourBarSetSetpoint(fourBarMidSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
     }
 
     public void moveToCargoLow(){
@@ -181,12 +173,12 @@ public class Elevator extends BaseSubsystem {
         System.out.println("Target setpoint:"+setpoint);
         System.out.println("Actual setpoint:"+elevatorEncoder.getPosition());
         if (activeSetpoint != setpoint){
+            activeSetpoint = setpoint;
             if (!ENABLE_SMART_MOTION){
                 elevatorPIDController.setReference(setpoint, ControlType.kPosition);
             }else{
                 elevatorPIDController.setReference(setpoint, ControlType.kSmartMotion);
             }
-            activeSetpoint = setpoint;
         }
     }
 

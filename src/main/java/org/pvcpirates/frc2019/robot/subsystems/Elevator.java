@@ -32,12 +32,13 @@ public class Elevator extends BaseSubsystem {
     public final CANDigitalInput reverseLimitSwitch = elevatorSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
 
     public static double intakeSetpoint = 0;
-    public static double defaultSetpoint = .76;
-    public static double hatchLowSetpoint = .76;
-    public static double hatchMidSetpoint = 72;
-    public static double hatchHighSetpoint = 81;
-    public static double cargoLowSetpoint = 52.66;
-    public static double cargoMidSetpoint = 71.8;
+    public static double defaultSetpoint =intakeSetpoint + .76;
+    public static double hatchLowSetpoint =intakeSetpoint + .76;
+    public static double hatchMidSetpoint =intakeSetpoint + 72;
+    public static double hatchHighSetpoint =intakeSetpoint + 81;
+    public static double cargoLowSetpoint =intakeSetpoint + 52.66;
+    public static double cargoMidSetpoint =intakeSetpoint + 71.8;
+    public static double cargoHPSetpoint =intakeSetpoint+ 48;
 
     private static double activeSetpoint = 0;
     public static double fourBarHighSetpoint = -1815;
@@ -69,7 +70,8 @@ public class Elevator extends BaseSubsystem {
         fourBarTalon.setInverted(true);
         fourBarTalon.configPeakOutputForward(.25);
         fourBarTalon.configPeakOutputReverse(-.7);
-        elevatorSparkMax.setInverted(false);
+        elevatorSparkMax.setInverted(true);
+        elevatorPIDController.setOutputRange(-.5, 1);
         forwardLimitSwitch.enableLimitSwitch(false);
         reverseLimitSwitch.enableLimitSwitch(false);
         if(Robot.DEBUG){
@@ -151,8 +153,11 @@ public class Elevator extends BaseSubsystem {
         setSetpoint(cargoMidSetpoint);
         fourBarSetSetpoint(fourBarHighSetpoint);
     }
+    public void moveToCargoHP(){
+        setSetpoint(cargoHPSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
+    }
     public void moveFourBarToHigh(){
-        
         fourBarSetSetpoint(fourBarHighSetpoint);
     }
 

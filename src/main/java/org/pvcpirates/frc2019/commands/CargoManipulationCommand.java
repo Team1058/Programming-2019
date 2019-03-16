@@ -10,7 +10,6 @@ import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 public class CargoManipulationCommand extends TeleopCommand {
 
     private CargoManipulator cargoManipulator = Hardware.getInstance().cargoManipulator;
-    private boolean hold = false;
     public CargoManipulationCommand(BaseGamepad gp){
         super(gp);
     }
@@ -21,15 +20,11 @@ public class CargoManipulationCommand extends TeleopCommand {
 
     @Override
     public void exec(){
-
-      hold = !cargoManipulator.cargoPhotoSensor.get();
-      
+     
       if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.ROLLERS_IN)){
         cargoManipulator.cargoIn();
       }else if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.ROLLERS_OUT)){
         cargoManipulator.cargoOut();
-      }else if(!this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && hold){
-        cargoManipulator.cargoHold();
       }else if(!this.gamepad.getButton(ButtonPadEnum.PICKUP)){
         cargoManipulator.cargoStop();
       }

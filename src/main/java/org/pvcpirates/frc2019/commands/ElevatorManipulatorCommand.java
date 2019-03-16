@@ -18,10 +18,11 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
     boolean isGrabbingHatch = false;
 
     boolean isPlacingCargoHigh = false;
+    boolean isPlacingCargoHP = false;
     boolean isPlacingCargoMid = false;
     boolean isPlacingCargoLow = false;
     boolean isGrabbingCargo = false;
-
+    long start = 0;
     private Elevator elevator = Hardware.getInstance().elevator;
     private HatchManipulator hatchManipulator = Hardware.getInstance().hatchManipulator;
     private CargoManipulator cargoManipulator = Hardware.getInstance().cargoManipulator;
@@ -35,102 +36,118 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
 
     @Override
     public void exec(){
+        long timeDiff = System.currentTimeMillis()-start;
         if (this.gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)){
-            if(gamepad.getButton(ButtonPadEnum.PICKUP) && !this.gamepad.getButton(ButtonPadEnum.SUPER_CARGO)){
+            if(gamepad.getButton(ButtonPadEnum.PICKUP)){
                 elevator.moveToIntake();
                 cargoManipulator.cargoIn();
-                cargoManipulator.disableSecondaryRollers();
-                isGrabbingCargo = true;
-            }else if (this.gamepad.getButton(ButtonPadEnum.PICKUP) && this.gamepad.getButton(ButtonPadEnum.SUPER_CARGO)){
-                elevator.moveToIntake();
-                cargoManipulator.cargoIn();
-                cargoManipulator.enableSecondaryRollers();
                 isGrabbingCargo = true;
             }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingCargo){
                 elevator.defaultState(); 
                 isGrabbingCargo = false;
-            }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
-                //elevator.moveToCargoHigh();
-                //cargoManipulator.cargoOut();
-                isPlacingCargoHigh = true;
-            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingCargoHigh){
-                //cargoManipulator.cargoStop();
-                //elevator.defaultState();
-                isPlacingCargoHigh = false;
-
-            }else if(gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE)){
-                elevator.moveToCargoMid();
-                cargoManipulator.cargoOut();
+            }else if (gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE)){
+                //THIS IS actually cargo ship place
+                elevator.moveToCargoHP();
                 isPlacingCargoMid = true;
+                start = System.currentTimeMillis();
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE) && isPlacingCargoMid){
-                cargoManipulator.cargoStop();
-                elevator.defaultState();
-                isPlacingCargoMid = false;
-
+                cargoManipulator.cargoOut();
+                // TODO make me a constant
+                if(timeDiff > 750){
+                    cargoManipulator.cargoStop();
+                    elevator.defaultState();
+                    isPlacingCargoMid = false;
+                    start = 0;
+                }
+            }else if(gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
+                //THIS is actually mid rocket
+                elevator.moveToCargoMid();
+                isPlacingCargoHigh = true;
+                start =System.currentTimeMillis();
+            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingCargoHigh){
+                cargoManipulator.cargoOut();
+                if(timeDiff > 750){
+                    cargoManipulator.cargoStop();
+                    elevator.defaultState();
+                    isPlacingCargoHigh = false;
+                    start = 0;
+                }
+            }else if(gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE)){
+                //this is intake from human player station intake
+                elevator.moveToCargoHP();
+                cargoManipulator.cargoIn();
+                isPlacingCargoHP = true;
+                start = System.currentTimeMillis();
+            }else if(!gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE) && isPlacingCargoHP){
+                if(timeDiff > 750){
+                    cargoManipulator.cargoStop();
+                    elevator.defaultState();
+                    isPlacingCargoHP = false;
+                    start = 0;
+                }
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_LOW)){
                 elevator.moveToCargoLow();
-                cargoManipulator.cargoOut();
                 isPlacingCargoLow = true;
+                start = System.currentTimeMillis();
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_LOW) && isPlacingCargoLow){
-                cargoManipulator.cargoStop();
-                elevator.defaultState();
-                isPlacingCargoLow = false;
+                cargoManipulator.cargoOut();
+                if(timeDiff > 750){
+                    elevator.defaultState();
+                    cargoManipulator.cargoStop();
+                    isPlacingCargoLow = false;
+                    start = 0;
+                }
             }else {
-                cargoManipulator.disableSecondaryRollers();
+                cargoManipulator.cargoHold();
                 isPlacingCargoHigh = false;
                 isPlacingCargoMid = false;
                 isPlacingCargoLow = false;
+                isPlacingCargoHP = false;
                 isGrabbingCargo = false;
             }
-
-            
         } else if (!gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)) {
             if(gamepad.getButton(ButtonPadEnum.PICKUP)){
-                elevator.moveToIntake();
+                elevator.moveToHatchLow();
                 hatchManipulator.prepGrab();
                 isGrabbingHatch = true;
             }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingHatch){
                 hatchManipulator.grabHatch();
-                elevator.defaultState();
-                
+                elevator.moveToHatchLow();                
                 isGrabbingHatch = false;
-
             }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
                 elevator.moveToHatchHigh();
                 hatchManipulator.prepPlace();
+                start = System.currentTimeMillis();
                 isPlacingHatchHigh = true;
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingHatchHigh){
                 hatchManipulator.placeHatch();
-                elevator.defaultState();
-                isPlacingHatchHigh = false;
-
+                if (timeDiff > 750){
+                    elevator.moveToHatchLow();
+                    isPlacingHatchHigh = false;
+                    start = 0;
+                }
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE)){
                 elevator.moveToHatchMid();
                 hatchManipulator.prepPlace();
                 isPlacingHatchMid = true;
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE) && isPlacingHatchMid){
                 hatchManipulator.placeHatch();
-                elevator.defaultState();
+                elevator.moveToHatchLow();
                 isPlacingHatchMid = false;
-
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_LOW)){
                 elevator.moveToHatchLow();
                 hatchManipulator.prepPlace();
                 isPlacingHatchLow = true;
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_LOW) && isPlacingHatchLow){
                 hatchManipulator.placeHatch();
-                elevator.defaultState();
+                elevator.moveToHatchLow();
                 isPlacingHatchLow = false;
             }else {
-                //retracts rollers incase of switch mid SUPER
-                cargoManipulator.disableSecondaryRollers();
                 isPlacingHatchHigh = false;
                 isPlacingHatchMid = false;
                 isPlacingHatchLow = false;
                 isGrabbingHatch = false;
             }
-
-
         }
 
     }

@@ -25,8 +25,6 @@ public class RobotMap {
     public static final int doubleSliderSolenoidForwardPCM = 2;
     public static final int doubleSliderSolenoidReversePCM = 1;
     
-    public static final int doubleCargoSolenoidForwardPCM = 3;
-    public static final int doubleCargoSolenoidReversePCM = 4;
     
     }
 

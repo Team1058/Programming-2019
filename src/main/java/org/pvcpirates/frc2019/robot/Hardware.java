@@ -34,7 +34,8 @@ public class Hardware {
         cargoManipulator.initialize();
         hatchManipulator.initialize();
         elevator.initialize();
-        flipper.initialize();       
+        flipper.initialize();    
+        buddyClimb.initialize();   
     }
 
     public void defaultAll(){
@@ -44,6 +45,7 @@ public class Hardware {
         hatchManipulator.defaultState();
         elevator.defaultState();
         flipper.defaultState();
+        buddyClimb.defaultState();
     }
 
     public void printAllHardwareSensorValues(){

@@ -2,27 +2,35 @@ package org.pvcpirates.frc2019.robot.subsystems;
 
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.pvcpirates.frc2019.util.RobotMap;
 
 public class BuddyClimb extends BaseSubsystem{
-    public final CANSparkMax buddyClimbSparkMax = new CANSparkMax(RobotMap.CANTalonIds.BUDDY_CLIMB_SPARKMAX,MotorType.kBrushless);
-    //public final CANPIDController buddyClimbController = buddyClimbSparkMax.getPIDController();
-    //public final CANEncoder buddyClimbEncoder = buddyClimbSparkMax.getEncoder();
+    public final TalonSRX buddyClimbSRX = new TalonSRX(RobotMap.CANTalonIds.BUDDY_CLIMB_SPARKMAX);
     
     @Override
-    void initialize() {
+    public void initialize() {
         
     }
     @Override
     void setConstantsFromShuffleboard() {
         
     }
+    public void moveProngs(double percentOutput){
+        if(percentOutput > 0){
+            buddyClimbSRX.set(ControlMode.PercentOutput,percentOutput);
+        } else if(percentOutput < 0){
+            buddyClimbSRX.set(ControlMode.PercentOutput,percentOutput * .5);
+        } else {
+            buddyClimbSRX.set(ControlMode.PercentOutput, 0);
+        }
+    }
+
     @Override
-    void defaultState() {
-        
+    public void defaultState() {
+        buddyClimbSRX.set(ControlMode.PercentOutput, 0);
     }
 
 

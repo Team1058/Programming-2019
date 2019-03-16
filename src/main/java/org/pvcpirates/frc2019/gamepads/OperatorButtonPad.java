@@ -5,6 +5,7 @@ import org.pvcpirates.frc2019.commands.ElevatorCommand;
 import org.pvcpirates.frc2019.commands.ElevatorManipulatorCommand;
 import org.pvcpirates.frc2019.commands.HatchManipulationCommand;
 import org.pvcpirates.frc2019.commands.CargoManipulationCommand;
+import org.pvcpirates.frc2019.commands.BuddyClimbCommand;
 
 public class OperatorButtonPad extends BaseGamepad {
 
@@ -20,6 +21,7 @@ public class OperatorButtonPad extends BaseGamepad {
         this.teleopCommands.add(new CargoManipulationCommand(this));
         //this.teleopCommands.add(new ElevatorCommand(this));
         this.teleopCommands.add(new ElevatorManipulatorCommand(this));
+        this.teleopCommands.add(new BuddyClimbCommand(this));
     }
 
     @Override

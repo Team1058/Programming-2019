@@ -51,7 +51,6 @@ public class TeleopDriveCommand extends TeleopCommand {
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
             if(hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() < Flipper.defaultPosConstant-100 || hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() > Flipper.defaultPosConstant+100){
               hardware.flipper.miniWheelRotate(leftJoyYAxis);
-              System.out.println("Left joy axis"+leftJoyYAxis);
             }else{
               hardware.flipper.miniWheelRotate(0);
             }

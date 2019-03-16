@@ -41,7 +41,6 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
             if(gamepad.getButton(ButtonPadEnum.PICKUP)){
                 elevator.moveToIntake();
                 cargoManipulator.cargoIn();
-                cargoManipulator.disableSecondaryRollers();
                 isGrabbingCargo = true;
             }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingCargo){
                 elevator.defaultState(); 
@@ -100,7 +99,6 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 }
             }else {
                 cargoManipulator.cargoHold();
-                cargoManipulator.disableSecondaryRollers();
                 isPlacingCargoHigh = false;
                 isPlacingCargoMid = false;
                 isPlacingCargoLow = false;
@@ -145,8 +143,6 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 elevator.moveToHatchLow();
                 isPlacingHatchLow = false;
             }else {
-                //retracts rollers incase of switch mid SUPER
-                cargoManipulator.disableSecondaryRollers();
                 isPlacingHatchHigh = false;
                 isPlacingHatchMid = false;
                 isPlacingHatchLow = false;

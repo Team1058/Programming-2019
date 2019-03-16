@@ -31,6 +31,7 @@ public class HatchManipulator extends BaseSubsystem {
     }
 
     public void prepGrab(){
+        hatchClawRetract();
         hatchSliderOut();
     }
 

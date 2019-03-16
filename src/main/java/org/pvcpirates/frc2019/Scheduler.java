@@ -1,7 +1,6 @@
 package org.pvcpirates.frc2019;
 
 import org.pvcpirates.frc2019.robot.Robot;
-import org.pvcpirates.frc2019.state.AutoState;
 import org.pvcpirates.frc2019.state.DisabledState;
 import org.pvcpirates.frc2019.state.TeleopState;
 
@@ -26,8 +25,9 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-	  robot.setState(new AutoState());
-	  robot.state.init();
+	  robot.setState(new TeleopState());
+		robot.state.init();
+		
 	}
 
 	@Override

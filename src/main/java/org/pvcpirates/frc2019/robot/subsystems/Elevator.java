@@ -32,17 +32,17 @@ public class Elevator extends BaseSubsystem {
     public final CANDigitalInput reverseLimitSwitch = elevatorSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
 
     public static double intakeSetpoint = 0;
-    public static double defaultSetpoint = -10;
-    public static double hatchLowSetpoint = -20;
-    public static double hatchMidSetpoint = -30;
-    public static double hatchHighSetpoint = -40;
-    public static double cargoLowSetpoint = -50;
-    public static double cargoMidSetpoint = -60;
+    public static double defaultSetpoint = .76;
+    public static double hatchLowSetpoint = .76;
+    public static double hatchMidSetpoint = 72;
+    public static double hatchHighSetpoint = 81;
+    public static double cargoLowSetpoint = 52.66;
+    public static double cargoMidSetpoint = 71.8;
 
     private static double activeSetpoint = 0;
-    public static double fourBarHighSetpoint = -1651;
-    public static double fourBarMidSetpoint = -300;
-    public static double fourBarLowSetpoint = 0;
+    public static double fourBarHighSetpoint = -1815;
+    public static double fourBarMidSetpoint = -290;
+    public static double fourBarLowSetpoint = 250;
 
     public static double ELEVATOR_F = 0;
     public static double ELEVATOR_P = 0.5;
@@ -67,9 +67,11 @@ public class Elevator extends BaseSubsystem {
         fourBarTalon.setNeutralMode(NeutralMode.Brake);
         fourBarTalon.setSensorPhase(true);
         fourBarTalon.setInverted(true);
-
-        forwardLimitSwitch.enableLimitSwitch(true);
-        reverseLimitSwitch.enableLimitSwitch(true);
+        fourBarTalon.configPeakOutputForward(.25);
+        fourBarTalon.configPeakOutputReverse(-.7);
+        elevatorSparkMax.setInverted(false);
+        forwardLimitSwitch.enableLimitSwitch(false);
+        reverseLimitSwitch.enableLimitSwitch(false);
         if(Robot.DEBUG){
             setConstantsFromShuffleboard();
         }
@@ -95,14 +97,6 @@ public class Elevator extends BaseSubsystem {
         FOUR_BAR_I = ShuffleBoardManager.iFourBarEntry.getDouble(FOUR_BAR_I);
         FOUR_BAR_D= ShuffleBoardManager.dFourBarEntry.getDouble(FOUR_BAR_D);
         FOUR_BAR_F = ShuffleBoardManager.fFourBarEntry.getDouble(FOUR_BAR_F);
-        defaultSetpoint = ShuffleBoardManager.elevatorDefaultSetpointEntry.getDouble(defaultSetpoint);
-        hatchLowSetpoint = ShuffleBoardManager.elevatorHatchLowSetpointEntry.getDouble(hatchLowSetpoint);
-        hatchMidSetpoint = ShuffleBoardManager.elevatorHatchMidSetpointEntry.getDouble(hatchMidSetpoint);
-        hatchHighSetpoint = ShuffleBoardManager.elevatorHatchHighSetpointEntry.getDouble(hatchHighSetpoint);
-        cargoLowSetpoint = ShuffleBoardManager.elevatorCargoLowSetpointEntry.getDouble(cargoLowSetpoint);
-        cargoMidSetpoint = ShuffleBoardManager.elevatorCargoMidSetpointEntry.getDouble(cargoMidSetpoint);
-        fourBarLowSetpoint = ShuffleBoardManager.fourBarLow.getDouble(fourBarLowSetpoint);
-        fourBarMidSetpoint = ShuffleBoardManager.fourBarMid.getDouble(fourBarMidSetpoint);
         
     }
 
@@ -145,7 +139,7 @@ public class Elevator extends BaseSubsystem {
 
     public void moveToHatchHigh(){
         setSetpoint(hatchHighSetpoint);
-        fourBarSetSetpoint(fourBarMidSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
     }
 
     public void moveToCargoLow(){
@@ -155,21 +149,21 @@ public class Elevator extends BaseSubsystem {
 
     public void moveToCargoMid(){
         setSetpoint(cargoMidSetpoint);
-        fourBarSetSetpoint(fourBarMidSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
     }
     public void moveFourBarToHigh(){
-        System.out.println("High is being called");
-        //fourBarSetSetpoint(fourBarHighSetpoint);
+        
+        fourBarSetSetpoint(fourBarHighSetpoint);
     }
 
     public void moveFourBarToMid(){
-        System.out.println("Mid is being called");
-        //fourBarSetSetpoint(fourBarMidSetpoint);
+        
+        fourBarSetSetpoint(fourBarMidSetpoint);
     }
 
     public void moveFourBarToLow(){
-        System.out.println("Low is being called");
-        //fourBarSetSetpoint(fourBarLowSetpoint);
+        
+        fourBarSetSetpoint(fourBarLowSetpoint);
     }
 
     public void moveFourBarToLow(){
@@ -181,12 +175,12 @@ public class Elevator extends BaseSubsystem {
         System.out.println("Target setpoint:"+setpoint);
         System.out.println("Actual setpoint:"+elevatorEncoder.getPosition());
         if (activeSetpoint != setpoint){
+            activeSetpoint = setpoint;
             if (!ENABLE_SMART_MOTION){
                 elevatorPIDController.setReference(setpoint, ControlType.kPosition);
             }else{
                 elevatorPIDController.setReference(setpoint, ControlType.kSmartMotion);
             }
-            activeSetpoint = setpoint;
         }
     }
 

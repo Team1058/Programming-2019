@@ -29,6 +29,8 @@ public class Scheduler extends TimedRobot {
 	public void autonomousInit() {
 	  robot.setState(new TeleopState());
 		robot.state.init();
+		robot.hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
+		robot.hardware.elevator.elevatorEncoder.setPosition(0);
 		
 	}
 
@@ -60,7 +62,8 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
-	  robot.state.exec();
+		robot.state.exec();
+		
 	}
 
 	@Override

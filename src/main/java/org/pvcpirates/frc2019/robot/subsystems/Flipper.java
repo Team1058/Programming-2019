@@ -12,10 +12,11 @@ import org.pvcpirates.frc2019.util.ShuffleBoardManager;
 public class Flipper extends BaseSubsystem {
 
     public final VictorSPX flipperMiniWheelVictor = new VictorSPX(RobotMap.CANTalonIds.FLIPPER_MINI_WHEEL);
-    public final TalonSRX flipperTalonMain = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_MAIN);
+    public
+     final TalonSRX flipperTalonMain = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_MAIN);
     public final TalonSRX flipperTalonFollower = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_FOLLOWER);
     
-    public static double defaultPosConstant = 496;
+    public static double defaultPosConstant = 598;
     public static double lvl2to3FrontConstant = defaultPosConstant + 212;
     public static double lvl2to3BackConstant = defaultPosConstant - 474;
     public static double lvl0to2FrontConstant = defaultPosConstant + 183;

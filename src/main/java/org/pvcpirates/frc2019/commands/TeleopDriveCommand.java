@@ -7,6 +7,7 @@ import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Drivetrain;
+import org.pvcpirates.frc2019.robot.subsystems.Flipper;
 import org.pvcpirates.frc2019.util.*;
 import org.pvcpirates.frc2019.Status;
 
@@ -48,8 +49,9 @@ public class TeleopDriveCommand extends TeleopCommand {
             double leftDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
             double rightDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
-            if(!flipperShuffleBoard.equals(ShuffleBoardManager.fpDefaultString)){
+            if(hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() < Flipper.defaultPosConstant-100 || hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() > Flipper.defaultPosConstant+100){
               hardware.flipper.miniWheelRotate(leftJoyYAxis);
+              System.out.println("Left joy axis"+leftJoyYAxis);
             }else{
               hardware.flipper.miniWheelRotate(0);
             }
@@ -59,6 +61,7 @@ public class TeleopDriveCommand extends TeleopCommand {
         }else if(!gamepad.getButton(GamepadEnum.X_BUTTON)){
             // 0,0 because if nothing is pressed nothing should be moving
             hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
+            hardware.flipper.miniWheelRotate(0);
         }
     }
 

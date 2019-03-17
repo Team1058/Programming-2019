@@ -20,7 +20,7 @@ public class BuddyClimbCommand extends TeleopCommand {
 
     @Override
     public void exec() {
-        if (!this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && (Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
+        if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && (Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
             buddyClimb.moveProngs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X));
         }else {
             buddyClimb.defaultState();

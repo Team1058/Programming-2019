@@ -3,6 +3,7 @@ package org.pvcpirates.frc2019.robot.subsystems;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.pvcpirates.frc2019.util.RobotMap;
@@ -12,7 +13,7 @@ public class BuddyClimb extends BaseSubsystem{
     
     @Override
     public void initialize() {
-        
+        buddyClimbSRX.setNeutralMode(NeutralMode.Brake);
     }
     @Override
     void setConstantsFromShuffleboard() {

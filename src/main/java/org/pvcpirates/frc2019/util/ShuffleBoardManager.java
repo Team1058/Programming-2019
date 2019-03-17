@@ -9,6 +9,7 @@ import org.pvcpirates.frc2019.robot.subsystems.Flipper;
 import edu.wpi.first.networktables.NetworkTableEntry;
 
 public class ShuffleBoardManager {
+    public static double shuffleBoardDeadband = .01;
     public static ShuffleboardTab pidTab = Shuffleboard.getTab("PID Manager");
     public static ShuffleboardTab competitionTab = Shuffleboard.getTab("Competition");
     public static ShuffleboardTab maintainanceTab = Shuffleboard.getTab("Maintainance");
@@ -27,6 +28,7 @@ public class ShuffleBoardManager {
     public static NetworkTableEntry flipperlvl2To3FrontEntry;
 
     public static NetworkTableEntry flipperPercentOutputEntry;
+    public static NetworkTableEntry buddyClimbPercentOutputEntry;
 
     public static NetworkTableEntry elevatorIntakeSetpointEntry;
     public static NetworkTableEntry elevatorDefaultSetpointEntry;
@@ -182,7 +184,7 @@ public class ShuffleBoardManager {
         miniWheelControl = maintainanceTab.add("miniWheelPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
         flipperPercentOutputEntry = maintainanceTab.addPersistent("flipperPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
         elevatorPercentOutputEntry = maintainanceTab.addPersistent("elevatorPercentOutput", 0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
-        
+        buddyClimbPercentOutputEntry = maintainanceTab.addPersistent("buddyClimbPercentOutput",0).withWidget(BuiltInWidgets.kNumberSlider).getEntry();
     }
 
     private static void initializePIDTab(){

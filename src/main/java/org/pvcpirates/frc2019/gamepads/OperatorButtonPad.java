@@ -9,7 +9,7 @@ import org.pvcpirates.frc2019.commands.BuddyClimbCommand;
 
 public class OperatorButtonPad extends BaseGamepad {
 
-    double buttonPadStickDeadband;
+    public static double buttonPadStickDeadband = .065;
 
     public OperatorButtonPad(int port){
         super(port);
@@ -21,7 +21,7 @@ public class OperatorButtonPad extends BaseGamepad {
         this.teleopCommands.add(new CargoManipulationCommand(this));
         //this.teleopCommands.add(new ElevatorCommand(this));
         this.teleopCommands.add(new ElevatorManipulatorCommand(this));
-        this.teleopCommands.add(new BuddyClimbCommand(this));
+        //this.teleopCommands.add(new BuddyClimbCommand(this));
     }
 
     @Override

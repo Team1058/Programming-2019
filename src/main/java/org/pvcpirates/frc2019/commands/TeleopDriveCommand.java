@@ -49,11 +49,11 @@ public class TeleopDriveCommand extends TeleopCommand {
             double leftDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis - rightJoyXAxis) * percentOfTotalSpeed);
             double rightDriveSpeed = Drivetrain.FeetPerSecondToTalonVelocity(10 * (leftJoyYAxis + rightJoyXAxis) * percentOfTotalSpeed);
             hardware.drivetrain.setDrive(ControlMode.Velocity, leftDriveSpeed, rightDriveSpeed);
-            if(hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() < Flipper.defaultPosConstant-100 || hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() > Flipper.defaultPosConstant+100){
+            //if((hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() < Flipper.defaultPosConstant-100 || hardware.flipper.flipperTalonMain.getSensorCollection().getAnalogIn() > Flipper.defaultPosConstant+100)){
               hardware.flipper.miniWheelRotate(leftJoyYAxis);
-            }else{
-              hardware.flipper.miniWheelRotate(0);
-            }
+            //}else{
+              //hardware.flipper.miniWheelRotate(0);
+            //}
             
              // Update shuffleboard to reflect real time input values
             updateDriveBaseShufleBoardEntries(leftJoyYAxis,rightJoyXAxis,leftDriveSpeed,rightDriveSpeed);

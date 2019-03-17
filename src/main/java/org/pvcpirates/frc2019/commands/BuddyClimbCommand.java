@@ -22,7 +22,10 @@ public class BuddyClimbCommand extends TeleopCommand {
     public void exec() {
         if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && (Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
             buddyClimb.moveProngs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X));
-        }else {
+        }else if (Math.abs(ShuffleBoardManager.buddyClimbPercentOutputEntry.getDouble(0)) > ShuffleBoardManager.shuffleBoardDeadband){
+            buddyClimb.moveProngs(ShuffleBoardManager.buddyClimbPercentOutputEntry.getDouble(0));
+        }
+        else {
             buddyClimb.defaultState();
         }
     }

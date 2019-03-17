@@ -32,7 +32,7 @@ public class Elevator extends BaseSubsystem {
     public final CANDigitalInput reverseLimitSwitch = elevatorSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
 
     public static double intakeSetpoint = 0;
-    public static double defaultSetpoint =intakeSetpoint + .76;
+    public static double defaultSetpoint =intakeSetpoint + 1;
     public static double hatchLowSetpoint =intakeSetpoint + .76;
     public static double hatchMidSetpoint =intakeSetpoint + 72;
     public static double hatchHighSetpoint =intakeSetpoint + 81;
@@ -42,8 +42,8 @@ public class Elevator extends BaseSubsystem {
 
     private static double activeSetpoint = 0;
     public static double fourBarHighSetpoint = -1815;
-    public static double fourBarMidSetpoint = -290;
-    public static double fourBarLowSetpoint = 250;
+    public static double fourBarMidSetpoint = -390;
+    public static double fourBarLowSetpoint = 350;
 
     public static double ELEVATOR_F = 0;
     public static double ELEVATOR_P = 0.5;

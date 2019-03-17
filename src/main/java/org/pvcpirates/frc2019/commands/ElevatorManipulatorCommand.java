@@ -80,7 +80,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 start = System.currentTimeMillis();
             }else if(!gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE) && isPlacingCargoHP){
                 if(timeDiff > 750){
-                    cargoManipulator.cargoStop();
+                    cargoManipulator.cargoHold();
                     elevator.defaultState();
                     isPlacingCargoHP = false;
                     start = 0;
@@ -112,7 +112,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 isGrabbingHatch = true;
             }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingHatch){
                 hatchManipulator.grabHatch();
-                elevator.moveToHatchLow();                
+                elevator.defaultState();              
                 isGrabbingHatch = false;
             }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
                 elevator.moveToHatchHigh();
@@ -122,7 +122,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingHatchHigh){
                 hatchManipulator.placeHatch();
                 if (timeDiff > 750){
-                    elevator.moveToHatchLow();
+                    elevator.defaultState();
                     isPlacingHatchHigh = false;
                     start = 0;
                 }
@@ -132,7 +132,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 isPlacingHatchMid = true;
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE) && isPlacingHatchMid){
                 hatchManipulator.placeHatch();
-                elevator.moveToHatchLow();
+                elevator.defaultState();
                 isPlacingHatchMid = false;
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_LOW)){
                 elevator.moveToHatchLow();
@@ -140,7 +140,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 isPlacingHatchLow = true;
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_LOW) && isPlacingHatchLow){
                 hatchManipulator.placeHatch();
-                elevator.moveToHatchLow();
+                elevator.defaultState();
                 isPlacingHatchLow = false;
             }else {
                 isPlacingHatchHigh = false;

@@ -28,14 +28,10 @@ public class FlipperCommand extends TeleopCommand {
     public void exec(){
         
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
-        System.out.println("ShuffleBoard selection: " + shuffleBoardSelection);
-        /* if(this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
-            flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y))
-        }
-        if (this.gamepad.getButton(GamepadEnum.RIGHT_BUMPER) && (Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
-            flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_Y));
-            System.out.println("gp manual")
-        }else*/ if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
+        
+        if(this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X)) > Math.abs(DriverGamepad.driverStickDeadband)){
+            flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(ButtonPadEnum.FLIPPER_X));
+        }else if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
         }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();

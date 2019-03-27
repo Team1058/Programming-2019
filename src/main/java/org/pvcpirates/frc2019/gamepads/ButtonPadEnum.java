@@ -13,7 +13,7 @@ public enum ButtonPadEnum {
     CLIMB_FRONT(11),
     CLIMB_REAR(12),
     CLIMB_SWITCH(13), //Off when level 2    On when Level 3
-    
+    OUTTAKE(14), //Please make sure this is real
     ENABLE_MANUAL(16),
     ROLLERS_OUT(5),
     ROLLERS_IN(7),

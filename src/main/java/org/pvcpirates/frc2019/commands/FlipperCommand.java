@@ -28,7 +28,6 @@ public class FlipperCommand extends TeleopCommand {
     public void exec(){
         
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
-        System.out.println("ShuffleBoard selection: " + shuffleBoardSelection);
         /* if(this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y))
         }
@@ -39,22 +38,16 @@ public class FlipperCommand extends TeleopCommand {
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
         }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();
-            System.out.println("0-2 front");
         }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
             flipper.lvl0to2Back();
-            System.out.println("0-2 back");
         }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
             flipper.lvl2to3Front();
-            System.out.println("2-3 front");
         }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
             flipper.lvl2to3Back();
-            System.out.println("2-3 back");
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
             flipper.defaultPosition();
-            System.out.println("default position");
         }else{   
             flipper.defaultPosition();
-            System.out.println("default position");
         }
 
         if(ShuffleBoardManager.miniWheelControl.getDouble(0)!= 0){

@@ -21,6 +21,7 @@ public class Hardware {
 
 
     private Hardware() {
+        
         initializeHardware();
     }
 

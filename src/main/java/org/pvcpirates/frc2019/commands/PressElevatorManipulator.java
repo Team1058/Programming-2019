@@ -10,24 +10,22 @@ import org.pvcpirates.frc2019.robot.subsystems.HatchManipulator;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class ElevatorManipulatorCommand extends TeleopCommand {
+public class PressElevatorManipulator extends TeleopCommand {
    
     boolean isPlacingHatchHigh = false;
     boolean isPlacingHatchMid = false;
     boolean isPlacingHatchLow = false;
     boolean isGrabbingHatch = false;
 
-    boolean isPlacingCargoHigh = false;
-    boolean isPlacingCargoHP = false;
-    boolean isPlacingCargoMid = false;
-    boolean isPlacingCargoLow = false;
+    
+    boolean isIntakingCargoHP = false;
+    boolean spittingCargo = false;
     boolean isGrabbingCargo = false;
-    boolean isPrepped = false;
     long start = 0;
     private Elevator elevator = Hardware.getInstance().elevator;
     private HatchManipulator hatchManipulator = Hardware.getInstance().hatchManipulator;
     private CargoManipulator cargoManipulator = Hardware.getInstance().cargoManipulator;
-    public ElevatorManipulatorCommand(BaseGamepad gp){
+    public PressElevatorManipulator(BaseGamepad gp){
         super(gp);
     }
 
@@ -49,62 +47,37 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
             }else if (gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE)){
                 //THIS IS actually cargo ship place
                 elevator.moveToCargoHP();
-                isPlacingCargoMid = true;
-                start = System.currentTimeMillis();
-            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE) && isPlacingCargoMid){
-                cargoManipulator.cargoOut();
-                // TODO make me a constant
-                if(timeDiff > 750){
-                    cargoManipulator.cargoStop();
-                    elevator.defaultState();
-                    isPlacingCargoMid = false;
-                    start = 0;
-                }
+                
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
                 //THIS is actually mid rocket
                 elevator.moveToCargoMid();
-                isPlacingCargoHigh = true;
-                start =System.currentTimeMillis();
-            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingCargoHigh){
-                cargoManipulator.cargoOut();
-                if(timeDiff > 750){
-                    cargoManipulator.cargoStop();
-                    elevator.defaultState();
-                    isPlacingCargoHigh = false;
-                    start = 0;
-                }
+                
             }else if(gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE)){
                 //this is intake from human player station intake
                 elevator.moveToCargoHP();
                 cargoManipulator.cargoIn();
-                isPlacingCargoHP = true;
+                isIntakingCargoHP = true;
                 start = System.currentTimeMillis();
-            }else if(!gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE) && isPlacingCargoHP){
+            }else if(!gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE) && isIntakingCargoHP){
                 if(timeDiff > 750){
                     cargoManipulator.cargoHold();
                     elevator.defaultState();
-                    isPlacingCargoHP = false;
+                    isIntakingCargoHP = false;
                     start = 0;
                 }
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_LOW)){
                 elevator.moveToCargoLow();
-                isPlacingCargoLow = true;
-                start = System.currentTimeMillis();
-            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_LOW) && isPlacingCargoLow){
+            }else if(gamepad.getButton(ButtonPadEnum.OUTTAKE) && !spittingCargo){
                 cargoManipulator.cargoOut();
-                if(timeDiff > 750){
-                    elevator.defaultState();
-                    cargoManipulator.cargoStop();
-                    isPlacingCargoLow = false;
-                    start = 0;
-                }
-            }else {
+                spittingCargo = true;
+            }else if(!gamepad.getButton(ButtonPadEnum.OUTTAKE) && spittingCargo){
+                elevator.defaultState();
+                spittingCargo = false;
+            }else{
                 cargoManipulator.cargoHold();
-                isPlacingCargoHigh = false;
-                isPlacingCargoMid = false;
-                isPlacingCargoLow = false;
-                isPlacingCargoHP = false;
+                isIntakingCargoHP = false;
                 isGrabbingCargo = false;
+                spittingCargo = false;
             }
         } else if (!gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)) {
             if(gamepad.getButton(ButtonPadEnum.PICKUP)){
@@ -118,46 +91,14 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
             }else if (gamepad.getButton(ButtonPadEnum.SCORE_HIGH)){
                 elevator.moveToHatchHigh();
                 
-                start = System.currentTimeMillis();
-                isPlacingHatchHigh = true;
-            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_HIGH) && isPlacingHatchHigh){
-                if(!isPrepped){
-                    hatchManipulator.prepPlace();
-                    isPrepped = true;
-                }
-                
-                hatchManipulator.placeHatch();
-                
-                if (timeDiff > 750){
-                    elevator.defaultState();
-                    isPlacingHatchHigh = false;
-                    isPrepped = false;
-                    start = 0;
-                }
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE)){
                 elevator.moveToHatchMid();
                 
-                isPlacingHatchMid = true;
-                start = System.currentTimeMillis();
-            }else if(!gamepad.getButton(ButtonPadEnum.SCORE_MIDDLE) && isPlacingHatchMid){
-                if(!isPrepped){
-                    hatchManipulator.prepPlace();
-                    isPrepped = true;
-                }
-                hatchManipulator.placeHatch();
-                if (timeDiff > 750){
-                    elevator.defaultState();
-                    isPlacingHatchMid = false;
-                    isPrepped = false;
-                    start = 0;
-                }
-                
             }else if(gamepad.getButton(ButtonPadEnum.SCORE_LOW)){
                 elevator.moveToHatchLow();
-                
+                hatchManipulator.prepPlace();
                 isPlacingHatchLow = true;
             }else if(!gamepad.getButton(ButtonPadEnum.SCORE_LOW) && isPlacingHatchLow){
-                hatchManipulator.prepPlace();
                 hatchManipulator.placeHatch();
                 elevator.defaultState();
                 isPlacingHatchLow = false;
@@ -166,7 +107,6 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 isPlacingHatchMid = false;
                 isPlacingHatchLow = false;
                 isGrabbingHatch = false;
-                isPrepped = false;
             }
         }
 

@@ -15,13 +15,15 @@ public class VisionMPDriveToDonut extends Command{
     }
 
     FollowMotionProfile followMP;
+    double x;
+    double y;
     @Override
     public void init() {
         // how far to stop before the vision target in inches
 		
 		// get x and convert to meters
-		double x = Hardware.getInstance().limelight.getXYPosModified(MotionProfiling.BUBBLE_RADIUS)[0]/Constants.INCHES_IN_METERS;
-		double y = Hardware.getInstance().limelight.getXYPosModified(MotionProfiling.BUBBLE_RADIUS)[1]/Constants.INCHES_IN_METERS;
+		x = Hardware.getInstance().limelight.getXYPosModified(MotionProfiling.BUBBLE_RADIUS+MotionProfiling.BUMPER_TO_CAMERA_DISTANCE)[0]/Constants.INCHES_IN_METERS;
+		y = Hardware.getInstance().limelight.getXYPosModified(MotionProfiling.BUBBLE_RADIUS+MotionProfiling.BUMPER_TO_CAMERA_DISTANCE)[1]/Constants.INCHES_IN_METERS;
         // This is the angle we want to turn so the vistarget is centered on the line perpendicular to the robot's face
         System.out.println("to donut: "+x+", "+y);
 		double turnAngle = Hardware.getInstance().limelight.getTargetXAngle();        
@@ -38,6 +40,7 @@ public class VisionMPDriveToDonut extends Command{
     @Override
     public void exec() {
         followMP.exec();
+        System.out.println("to donut: "+x+", "+y);
         if(followMP.status == Status.STOP){
             setStatus(Status.STOP);
         }

@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -31,19 +32,21 @@ public class Elevator extends BaseSubsystem {
     public final CANDigitalInput reverseLimitSwitch = elevatorSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
 
     public static double intakeSetpoint = 0;
-    public static double defaultSetpoint = 0;
-    public static double hatchLowSetpoint = 0;
-    public static double hatchMidSetpoint = 0;
-    public static double hatchHighSetpoint = 0;
-    public static double cargoLowSetpoint = 0;
-    public static double cargoMidSetpoint = 0;
+    public static double defaultSetpoint =intakeSetpoint + 1;
+    public static double hatchLowSetpoint =intakeSetpoint + .76;
+    public static double hatchMidSetpoint =intakeSetpoint + 72;
+    public static double hatchHighSetpoint =intakeSetpoint + 81;
+    public static double cargoLowSetpoint =intakeSetpoint + 52.66;
+    public static double cargoMidSetpoint =intakeSetpoint + 71.8;
+    public static double cargoHPSetpoint =intakeSetpoint+ 48;
 
-    public static double fourBarHighSetpoint = 0;
-    public static double fourBarMidSetpoint = 0;
-    public static double fourBarLowSetpoint = 0;
+    private static double activeSetpoint = 0;
+    public static double fourBarHighSetpoint = -1815;
+    public static double fourBarMidSetpoint = -390;
+    public static double fourBarLowSetpoint = 350;
 
     public static double ELEVATOR_F = 0;
-    public static double ELEVATOR_P = 0;
+    public static double ELEVATOR_P = 0.5;
     public static double ELEVATOR_I = 0;
     public static double ELEVATOR_D = 0;
     public static double ELEVATOR_LOOP_RAMP_RATE = 0;
@@ -51,7 +54,7 @@ public class Elevator extends BaseSubsystem {
     public static double ELEVATOR_MAX_VELOC = 0;
     public static double ELEVATOR_MIN_VELOC = 0;
 
-    public static double FOUR_BAR_P = 0;
+    public static double FOUR_BAR_P = 4;
     public static double FOUR_BAR_I = 0;
     public static double FOUR_BAR_D = 0;
     public static double FOUR_BAR_F = 0;
@@ -59,13 +62,18 @@ public class Elevator extends BaseSubsystem {
     public static final boolean ENABLE_SMART_MOTION = false;    
 
     public void initialize(){
-        // 16:22 gear ratio for encoder to fourbar
         fourBarTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-        fourBarTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed);
-        fourBarTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed);
-        
-        forwardLimitSwitch.enableLimitSwitch(true);
-        reverseLimitSwitch.enableLimitSwitch(true);
+        //fourBarTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+        //fourBarTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+        fourBarTalon.setNeutralMode(NeutralMode.Brake);
+        fourBarTalon.setSensorPhase(true);
+        fourBarTalon.setInverted(true);
+        fourBarTalon.configPeakOutputForward(.25);
+        fourBarTalon.configPeakOutputReverse(-.7);
+        elevatorSparkMax.setInverted(true);
+        elevatorPIDController.setOutputRange(-.5, 1);
+        forwardLimitSwitch.enableLimitSwitch(false);
+        reverseLimitSwitch.enableLimitSwitch(false);
         if(Robot.DEBUG){
             setConstantsFromShuffleboard();
         }
@@ -91,14 +99,6 @@ public class Elevator extends BaseSubsystem {
         FOUR_BAR_I = ShuffleBoardManager.iFourBarEntry.getDouble(FOUR_BAR_I);
         FOUR_BAR_D= ShuffleBoardManager.dFourBarEntry.getDouble(FOUR_BAR_D);
         FOUR_BAR_F = ShuffleBoardManager.fFourBarEntry.getDouble(FOUR_BAR_F);
-        defaultSetpoint = ShuffleBoardManager.elevatorDefaultSetpointEntry.getDouble(defaultSetpoint);
-        hatchLowSetpoint = ShuffleBoardManager.elevatorHatchLowSetpointEntry.getDouble(hatchLowSetpoint);
-        hatchMidSetpoint = ShuffleBoardManager.elevatorHatchMidSetpointEntry.getDouble(hatchMidSetpoint);
-        hatchHighSetpoint = ShuffleBoardManager.elevatorHatchHighSetpointEntry.getDouble(hatchHighSetpoint);
-        cargoLowSetpoint = ShuffleBoardManager.elevatorCargoLowSetpointEntry.getDouble(cargoLowSetpoint);
-        cargoMidSetpoint = ShuffleBoardManager.elevatorCargoMidSetpointEntry.getDouble(cargoMidSetpoint);
-        fourBarLowSetpoint = ShuffleBoardManager.fourBarLow.getDouble(fourBarLowSetpoint);
-        fourBarMidSetpoint = ShuffleBoardManager.fourBarMid.getDouble(fourBarMidSetpoint);
         
     }
 
@@ -141,7 +141,7 @@ public class Elevator extends BaseSubsystem {
 
     public void moveToHatchHigh(){
         setSetpoint(hatchHighSetpoint);
-        fourBarSetSetpoint(fourBarMidSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
     }
 
     public void moveToCargoLow(){
@@ -151,24 +151,41 @@ public class Elevator extends BaseSubsystem {
 
     public void moveToCargoMid(){
         setSetpoint(cargoMidSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
+    }
+    public void moveToCargoHP(){
+        setSetpoint(cargoHPSetpoint);
+        fourBarSetSetpoint(fourBarHighSetpoint);
+    }
+    public void moveFourBarToHigh(){
+        fourBarSetSetpoint(fourBarHighSetpoint);
+    }
+
+    public void moveFourBarToMid(){
+        
         fourBarSetSetpoint(fourBarMidSetpoint);
     }
 
     public void moveFourBarToLow(){
-        fourBarSetSetpoint(ShuffleBoardManager.fourBarLow.getDouble(fourBarLowSetpoint));
+        
+        fourBarSetSetpoint(fourBarLowSetpoint);
     }
-
+    
     // SmartMotion is motion profiling generated by the spark, requires additional tuning
     private void setSetpoint(double setpoint){
-        if (!ENABLE_SMART_MOTION){
-            elevatorPIDController.setReference(setpoint, ControlType.kPosition);
-        }else{
-            elevatorPIDController.setReference(setpoint, ControlType.kSmartMotion);
+        System.out.println("Target setpoint:"+setpoint);
+        System.out.println("Actual setpoint:"+elevatorEncoder.getPosition());
+        if (activeSetpoint != setpoint){
+            activeSetpoint = setpoint;
+            if (!ENABLE_SMART_MOTION){
+                elevatorPIDController.setReference(setpoint, ControlType.kPosition);
+            }else{
+                elevatorPIDController.setReference(setpoint, ControlType.kSmartMotion);
+            }
         }
     }
 
-    private void getSetpoint(){
-    }
+
 
     private void fourBarSetSetpoint(double setpoint){
         // Pivot will be 0 to 180

@@ -21,7 +21,7 @@ public class Drivetrain extends BaseSubsystem {
     // DRIVETRAIN PIDs;
     public static double DRIVE_PEAK_OUTPUT = .95;
     public static double DRIVE_F = .115;
-    public static double DRIVE_P = .15;
+    public static double DRIVE_P = .35;
     public static double DRIVE_I = 0;
     public static double DRIVE_D = 0;
 

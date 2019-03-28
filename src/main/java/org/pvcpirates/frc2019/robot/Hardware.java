@@ -5,6 +5,9 @@ import org.pvcpirates.frc2019.robot.subsystems.*;
 import java.util.Arrays;
 
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SPI;
 
 public class Hardware {
@@ -18,20 +21,23 @@ public class Hardware {
     public HatchManipulator hatchManipulator = new HatchManipulator();
     public Elevator elevator = new Elevator();
     public Flipper flipper = new Flipper();
-    
+
+
     private Hardware() {
         initializeHardware();
     }
 
     public void initializeHardware(){
+        //UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    	//camera.setFPS(20);
+    	//camera.setResolution(128, 96);
         navx.reset();
         limelight.initialize();
         drivetrain.initialize();
         cargoManipulator.initialize();
         hatchManipulator.initialize();
         elevator.initialize();
-        flipper.initialize();
-       
+        flipper.initialize();       
     }
 
     public void defaultAll(){
@@ -49,8 +55,9 @@ public class Hardware {
         System.out.println("Elevator encoder: "+elevator.elevatorEncoder.getPosition());
         System.out.println("Four Bar encoder: "+elevator.fourBarTalon.getSensorCollection().getQuadraturePosition());
         System.out.println("Flipper: "+flipper.flipperTalonMain.getSensorCollection().getAnalogIn());
-        //System.out.println("Camera " + Arrays.toString(limelight.get3DPosition()));
-        //System.out.println("XY "+Arrays.toString(limelight.getXYPos()));
+        System.out.println("Camera " + Arrays.toString(limelight.get3DPosition()));
+        System.out.println("XY "+Arrays.toString(limelight.getXYPos()));
+
     }
 
 	public static Hardware getInstance() {

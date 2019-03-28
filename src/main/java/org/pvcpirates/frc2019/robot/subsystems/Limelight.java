@@ -76,7 +76,7 @@ public class Limelight extends BaseSubsystem{
     // Camera is flipped on its side so we're really getting y here
     // The angle offset is how much the limelight is tilted, and so we subtract that so really its like it's parallel
     public double getTargetYAngle(){
-        double angleOffset = 0;
+        double angleOffset = 24;
         return -(limelight.getEntry("tx").getNumber(0).doubleValue()-angleOffset);
     }
 

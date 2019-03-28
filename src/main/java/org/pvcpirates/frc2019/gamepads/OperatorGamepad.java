@@ -4,6 +4,7 @@ import org.pvcpirates.frc2019.commands.CargoManipulationCommand;
 import org.pvcpirates.frc2019.commands.ElevatorCommand;
 import org.pvcpirates.frc2019.commands.FlipperCommand;
 import org.pvcpirates.frc2019.commands.HatchManipulationCommand;
+import org.pvcpirates.frc2019.commands.ZeroAll;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -18,9 +19,9 @@ public class OperatorGamepad extends BaseGamepad {
 
     @Override
     void mapCommandsToController() {
-        this.teleopCommands.add(new HatchManipulationCommand(this));
-        this.teleopCommands.add(new CargoManipulationCommand(this));
-        this.teleopCommands.add(new FlipperCommand(this));
+        //this.teleopCommands.add(new HatchManipulationCommand(this));
+        //this.teleopCommands.add(new CargoManipulationCommand(this));
+        //this.teleopCommands.add(new FlipperCommand(this));
         //this.teleopCommands.add(new ElevatorCommand(this));
     }
 

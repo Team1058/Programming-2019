@@ -8,11 +8,12 @@ public class RobotMap {
         public static final int LEFT_DRIVE_2 = 4;
         public static final int PCM = 5;
         public static final int FOUR_BAR = 6;
-        public static final int ELEVATOR_SPARKMAX = 7;
+        public static final int ELEVATOR_SPARKMAX = 14;
         public static final int FLIPPER_MAIN = 8;
         public static final int FLIPPER_FOLLOWER = 9;
         public static final int FLIPPER_MINI_WHEEL = 10;
         public static final int CARGO_VICTOR = 11;
+        public static final int BUDDY_CLIMB_SPARKMAX = 12;
         
     }
 
@@ -24,8 +25,6 @@ public class RobotMap {
     public static final int doubleSliderSolenoidForwardPCM = 2;
     public static final int doubleSliderSolenoidReversePCM = 1;
     
-    public static final int doubleCargoSolenoidForwardPCM = 3;
-    public static final int doubleCargoSolenoidReversePCM = 4;
     
     }
 
@@ -49,6 +48,7 @@ public class RobotMap {
         // Inches! will be 43.25 
         public static final double CAMERA_LENS_HEIGHT = 43.4;
         public static final double FLIPPER_GEAR_RATIO = 1;
+        
     }
 
     public static final class DIO{
@@ -70,11 +70,12 @@ public class RobotMap {
         // This is in ms, how fast we want to run the buffer processing thread
         public static final int FRAME_PERIOD = 5;
         public static final double FRAME_PERIOD_SECONDS = 0.005;
+        public static final double BUMPER_TO_CAMERA_DISTANCE = 27;
         // This is the distance we want to stop at from the vision targets to figure out the angle of them
         // Notes: our donut of consistency for percent diff is 35" inner radius 53" outer radius
-        public static final double BUBBLE_RADIUS = 45;
+        public static final double BUBBLE_RADIUS = 30;
         // How many area data points we want to average before calculating the angle
-        public static final double ANGLE_AVG_CNT = 50;
+        public static final double ANGLE_AVG_CNT = 10;
     }
 
 }

@@ -13,18 +13,18 @@ public class ZeroFourBar extends Command{
     }
     @Override
     public void init() {
-        hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, -0.1);
+        //hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, -0.1);
     }
     @Override
     public void exec() {
-        if (hardware.elevator.fourBarTalon.getSensorCollection().isRevLimitSwitchClosed()){
-            hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
-            hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, Constants.ROBOT_TIMEOUT);
-        }
+       // if (hardware.elevator.fourBarTalon.getSensorCollection().isRevLimitSwitchClosed()){
+        //    hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
+          //  hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, Constants.ROBOT_TIMEOUT);
+        //}
 
     }
     @Override
     public void finished() {
-        hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
+        //hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
     }
 }

@@ -16,7 +16,8 @@ public class DriverGamepad extends BaseGamepad {
 
     void mapCommandsToController() {
         this.teleopCommands.add(new TeleopDriveCommand(this));
-        //this.teleopCommands.add(new TeleopAutoHatchAssist(this));
+
+        this.teleopCommands.add(new TeleopAutoHatchAssist(this));
 
     }
 

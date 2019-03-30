@@ -35,18 +35,20 @@ public class FlipperCommand extends TeleopCommand {
         if (this.gamepad.getButton(GamepadEnum.RIGHT_BUMPER) && (Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_Y));
             System.out.println("gp manual")
-        }else*/ if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
+        }else*/ 
+        
+        if (ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0) != 0){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, ShuffleBoardManager.flipperPercentOutputEntry.getDouble(0));
-        }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
+        }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT) && this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) ) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2FrontString)){
             flipper.lvl0to2Front();
             System.out.println("0-2 front");
-        }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
+        }else if((!this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR) && this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) ) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl0to2BackString)){
             flipper.lvl0to2Back();
             System.out.println("0-2 back");
-        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
+        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_FRONT) && this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) ) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3FrontString)){
             flipper.lvl2to3Front();
             System.out.println("2-3 front");
-        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR)) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
+        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR) && this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) ) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
             flipper.lvl2to3Back();
             System.out.println("2-3 back");
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){

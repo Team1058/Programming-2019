@@ -43,6 +43,6 @@ public class CargoManipulator extends BaseSubsystem {
     }
 
     public void cargoStop(){
-        cargoVictor.set(ControlMode.PercentOutput, 0);
+        cargoVictor.set(ControlMode.PercentOutput, -.2);
     }
 }

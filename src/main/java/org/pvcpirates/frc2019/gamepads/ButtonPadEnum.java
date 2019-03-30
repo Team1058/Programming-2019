@@ -1,6 +1,7 @@
 package org.pvcpirates.frc2019.gamepads;
 
-public enum ButtonPadEnum {
+public enum 
+ButtonPadEnum {
 
     FLIPPER_X(1),
     FLIPPER_Y(2),

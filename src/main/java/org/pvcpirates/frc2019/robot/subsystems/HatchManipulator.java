@@ -44,8 +44,8 @@ public class HatchManipulator extends BaseSubsystem {
 
     public void grabHatch(){
         hatchClawExpand();
-        Timer.delay(0.75);
-        hatchSliderIn();
+        //Timer.delay(2);
+        //hatchSliderIn();
     }
 
     public void placeHatch(){

@@ -28,7 +28,6 @@ public class FlipperCommand extends TeleopCommand {
     public void exec(){
         
         String shuffleBoardSelection = ShuffleBoardManager.flipperPositionChooser.getSelected();
-        System.out.println("ShuffleBoard selection: " + shuffleBoardSelection);
         /* if(this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && Math.abs(this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y)) > Math.abs(DriverGamepad.driverStickDeadband))){
             flipper.flipperTalonMain.set(ControlMode.PercentOutput, this.gamepad.getAxis(ButtonPadEnum.FLIPPER_Y))
         }
@@ -53,10 +52,8 @@ public class FlipperCommand extends TeleopCommand {
             System.out.println("2-3 back");
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
             flipper.defaultPosition();
-            System.out.println("default position");
         }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_STOW))){   
             flipper.defaultPosition();
-            System.out.println("default position");
         }
 
         if(ShuffleBoardManager.miniWheelControl.getDouble(0)!= 0){

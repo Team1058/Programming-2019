@@ -62,12 +62,11 @@ public class HatchManipulationCommand extends TeleopCommand {
       //   hatchManipulator.defaultPosition();
       // }
 
-      if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.CLOSE_GRABBER)){
+     /* if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.CLOSE_GRABBER)){
         hatchManipulator.hatchClawRetract();
       }else if (this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) && this.gamepad.getButton(ButtonPadEnum.RETRACT_ALL)){
         hatchManipulator.defaultPosition();
-      }
-
+      }*/
     } 
 
     @Override

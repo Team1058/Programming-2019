@@ -38,6 +38,12 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
     @Override
     public void exec(){
         long timeDiff = System.currentTimeMillis()-start;
+        if (this.gamepad.getButton(ButtonPadEnum.RETRACT_ALL)){
+            hatchManipulator.defaultPosition();
+            elevator.moveToDefault();
+          }
+        
+        
         if (this.gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)){
             if(gamepad.getButton(ButtonPadEnum.PICKUP)){
                 elevator.moveToIntake();
@@ -94,11 +100,11 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 isSpittingPiece = false;
             }
         } else if (!gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)) {
-            if(gamepad.getButton(ButtonPadEnum.PICKUP)){
+            if(gamepad.getButton(ButtonPadEnum.PICKUP)||gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE)){
                 elevator.moveToHatchLow();
                 hatchManipulator.prepGrab();
                 isGrabbingHatch = true;
-            }else if(!gamepad.getButton(ButtonPadEnum.PICKUP) && isGrabbingHatch){
+            }else if((!gamepad.getButton(ButtonPadEnum.PICKUP) && !gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE)) && isGrabbingHatch){
                 hatchManipulator.grabHatch();
                 elevator.defaultState();              
                 isGrabbingHatch = false;

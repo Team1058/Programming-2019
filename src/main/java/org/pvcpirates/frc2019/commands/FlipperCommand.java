@@ -52,7 +52,7 @@ public class FlipperCommand extends TeleopCommand {
         }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
             flipper.defaultPosition();
             System.out.println("default position");
-        }else{   
+        }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_STOW))){   
             flipper.defaultPosition();
             System.out.println("default position");
         }

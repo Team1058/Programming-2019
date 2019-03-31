@@ -3,7 +3,8 @@ package org.pvcpirates.frc2019.commands;
 public class ZeroAll extends Command{
     public ZeroAll(){
         commands.add(new ZeroElevator());
-        commands.add(new ZeroFourBar());
+        //Fourbar cant zero
+        //commands.add(new ZeroFourBar());
     }
     
     @Override

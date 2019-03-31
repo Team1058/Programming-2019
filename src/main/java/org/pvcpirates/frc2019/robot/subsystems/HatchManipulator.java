@@ -14,6 +14,7 @@ public class HatchManipulator extends BaseSubsystem {
     public final DoubleSolenoid sliderSolenoid = new DoubleSolenoid(5,RobotMap.PCMIDS.doubleSliderSolenoidForwardPCM,RobotMap.PCMIDS.doubleSliderSolenoidReversePCM);
     public void initialize(){
         compressor.setClosedLoopControl(true);
+        defaultPosition();
     }
 
     @Override

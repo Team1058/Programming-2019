@@ -28,8 +28,9 @@ public class Elevator extends BaseSubsystem {
     public final CANSparkMax elevatorSparkMax = new CANSparkMax(RobotMap.CANTalonIds.ELEVATOR_SPARKMAX,MotorType.kBrushless);
     public final CANPIDController elevatorPIDController = elevatorSparkMax.getPIDController();
     public final CANEncoder elevatorEncoder = elevatorSparkMax.getEncoder();
-    public final CANDigitalInput forwardLimitSwitch = elevatorSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
-    public final CANDigitalInput reverseLimitSwitch = elevatorSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
+    //Yes these SHOULD be opposit/mismatched
+    public final CANDigitalInput forwardLimitSwitch = elevatorSparkMax.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
+    public final CANDigitalInput reverseLimitSwitch = elevatorSparkMax.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
 
     public static double intakeSetpoint = 0;
     public static double defaultSetpoint =intakeSetpoint + 1;
@@ -47,7 +48,7 @@ public class Elevator extends BaseSubsystem {
     public static double fourBarLowSetpoint = 450;
 
     public static double ELEVATOR_F = 0;
-    public static double ELEVATOR_P = 0.5;
+    public static double ELEVATOR_P = 0.7;
     public static double ELEVATOR_I = 0;
     public static double ELEVATOR_D = 0;
     public static double ELEVATOR_LOOP_RAMP_RATE = 0;
@@ -65,16 +66,16 @@ public class Elevator extends BaseSubsystem {
     public void initialize(){
         fourBarTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         //fourBarTalon.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-        //fourBarTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+        //fourBarTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed);
         fourBarTalon.setNeutralMode(NeutralMode.Brake);
         fourBarTalon.setSensorPhase(true);
         fourBarTalon.setInverted(true);
-        fourBarTalon.configPeakOutputForward(.35);
+        fourBarTalon.configPeakOutputForward(.25);
         fourBarTalon.configPeakOutputReverse(-.7);
         elevatorSparkMax.setInverted(true);
-        elevatorPIDController.setOutputRange(-.5, 1);
+        elevatorPIDController.setOutputRange(-.4, 1);
         forwardLimitSwitch.enableLimitSwitch(false);
-        reverseLimitSwitch.enableLimitSwitch(false);
+        reverseLimitSwitch.enableLimitSwitch(true);
         if(Robot.DEBUG){
             setConstantsFromShuffleboard();
         }

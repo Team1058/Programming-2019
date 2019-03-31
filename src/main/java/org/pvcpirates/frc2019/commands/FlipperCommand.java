@@ -50,10 +50,9 @@ public class FlipperCommand extends TeleopCommand {
         }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_SWITCH) && this.gamepad.getButton(ButtonPadEnum.CLIMB_REAR) && this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL) ) || shuffleBoardSelection.equals(ShuffleBoardManager.fpLvl2to3BackString)){
             flipper.lvl2to3Back();
             System.out.println("2-3 back");
-        }else if(shuffleBoardSelection.equals(ShuffleBoardManager.fpDefaultString)){
-            flipper.defaultPosition();
         }else if((this.gamepad.getButton(ButtonPadEnum.CLIMB_STOW))){   
             flipper.defaultPosition();
+            System.out.println("Stow");
         }
 
         if(ShuffleBoardManager.miniWheelControl.getDouble(0)!= 0){

@@ -16,6 +16,8 @@ public class DisabledState extends State {
 
     @Override
     public void exec() {
+
+        
         if (ShuffleBoardManager.fourBarZero.getBoolean(false)){
             Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0,10);
             Hardware.getInstance().elevator.elevatorEncoder.setPosition(0);

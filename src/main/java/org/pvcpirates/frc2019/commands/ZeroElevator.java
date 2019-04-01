@@ -12,26 +12,20 @@ public class ZeroElevator extends Command{
     }
     @Override
     public void init() {
-        hardware.elevator.elevatorSparkMax.set(-0.1);
+        //This is zero so gravity can pull it down because driving it down doesnt help always
+        hardware.elevator.elevatorSparkMax.set(-0.0);
     }
     @Override
     public void exec() {
-        if (ShuffleBoardManager.fourBarZero.getBoolean(false)){
-            Hardware.getInstance().elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
-        }
-        if (ShuffleBoardManager.elevatorZero.getBoolean(false)){
-            Hardware.getInstance().elevator.elevatorEncoder.setPosition(0);
-        }
-        
         if (hardware.elevator.reverseLimitSwitch.get()){
             hardware.elevator.elevatorSparkMax.set(0);
             
             hardware.elevator.elevatorEncoder.setPosition(0);
+            setStatus(status.STOP);
         }
 
     }
     @Override
     public void finished() {
-        //hardware.elevator.fourBarTalon.set(ControlMode.PercentOutput, 0);
     }
 }

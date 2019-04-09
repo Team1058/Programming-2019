@@ -17,8 +17,10 @@ public class DriverGamepad extends BaseGamepad {
 
     void mapCommandsToController() {
         this.teleopCommands.add(new PlagiarismDriveCommand(this));
-        this.teleopCommands.add(new TeleopAutoHatchAssist(this));
 
+        //this.teleopCommands.add(new TeleopDriveCommand(this));
+        // TODO: Uncomment once we are comfortable with auto-assist
+        //this.teleopCommands.add(new TeleopAutoHatchAssist(this));
     }
 
     @Override

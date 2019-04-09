@@ -27,6 +27,8 @@ public class TeleopState extends State {
 
     @Override
     public void exec() {
+        //System.out.println("ZeroR "+Hardware.getInstance().elevator.reverseLimitSwitch.get());
+        //System.out.println("ZeroF "+Hardware.getInstance().elevator.forwardLimitSwitch.get());
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();

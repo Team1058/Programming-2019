@@ -18,6 +18,7 @@ public class CargoManipulator extends BaseSubsystem {
 
     public void initialize(){
         cargoVictor.setInverted(true);
+        cargoHold();
     }
 
     @Override
@@ -39,10 +40,10 @@ public class CargoManipulator extends BaseSubsystem {
     }
 
     public void cargoHold(){
-        cargoVictor.set(ControlMode.PercentOutput, -.2);
+        cargoVictor.set(ControlMode.PercentOutput, -.3);
     }
 
     public void cargoStop(){
-        cargoVictor.set(ControlMode.PercentOutput, 0);
+        cargoVictor.set(ControlMode.PercentOutput, -.3);
     }
 }

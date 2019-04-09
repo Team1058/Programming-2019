@@ -23,6 +23,8 @@ public class PlagiarismDriveCommand extends TeleopCommand{
             quickTurn = true;
             left /= 2;
             right /= 2;
+        }else if(this.gamepad.getButton(GamepadEnum.RIGHT_BUMPER)){
+            left/=2;
         }
         double[] output = helper.cheesyDrive(left, right, quickTurn);
         Hardware.getInstance().drivetrain.leftDrive1.set(ControlMode.PercentOutput, output[0]);

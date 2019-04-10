@@ -4,6 +4,7 @@ import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.OperatorButtonPad;
 import org.pvcpirates.frc2019.gamepads.OperatorGamepad;
 import org.pvcpirates.frc2019.robot.Hardware;
+import org.pvcpirates.frc2019.robot.subsystems.Limelight.Camtran;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Pipelines;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.ControlType;
@@ -29,6 +30,9 @@ public class TeleopState extends State {
     public void exec() {
         //System.out.println("ZeroR "+Hardware.getInstance().elevator.reverseLimitSwitch.get());
         //System.out.println("ZeroF "+Hardware.getInstance().elevator.forwardLimitSwitch.get());
+        //System.out.println("Distance "+hardware.limelight.getDiagonalRobotToVisTarget());
+        System.out.println("Distance "+hardware.limelight.get3DPosition()[Camtran.Y.value]);
+        System.out.println("Angle "+hardware.limelight.get3DPosition()[Camtran.YAW.value]);
         // Code here will all get called periodically (every ms) in Auto
         driverGamepad.executeCommands();
         operatorGamepad.executeCommands();

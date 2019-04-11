@@ -37,7 +37,7 @@ public class Elevator extends BaseSubsystem {
     public static double defenseSetpoint = intakeSetpoint +1.5;
     public static double hatchLowSetpoint =intakeSetpoint + .76;
     public static double hatchMidSetpoint =intakeSetpoint + 72;
-    public static double hatchHighSetpoint =intakeSetpoint + 81;
+    public static double hatchHighSetpoint =intakeSetpoint + 85;
     public static double cargoLowSetpoint =intakeSetpoint + 52.66;
     public static double cargoMidSetpoint =intakeSetpoint + 71.8;
     public static double cargoHPSetpoint =intakeSetpoint+ 48;
@@ -75,7 +75,7 @@ public class Elevator extends BaseSubsystem {
         elevatorSparkMax.setInverted(true);
         elevatorPIDController.setOutputRange(-.4, 1);
         forwardLimitSwitch.enableLimitSwitch(false);
-        reverseLimitSwitch.enableLimitSwitch(true);
+        reverseLimitSwitch.enableLimitSwitch(false);
         if(Robot.DEBUG){
             setConstantsFromShuffleboard();
         }

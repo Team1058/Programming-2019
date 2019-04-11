@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class TeleopDriveCommand extends TeleopCommand {
-    
+  QuickAutoAssist qaa; 
+  boolean qaaActive = false;
     public TeleopDriveCommand(BaseGamepad gp) {
       super(gp);
     }
@@ -27,6 +28,7 @@ public class TeleopDriveCommand extends TeleopCommand {
 
         if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
+            qaaActive = false;
                 
             double percentOfTotalSpeed = 1;
 
@@ -61,7 +63,22 @@ public class TeleopDriveCommand extends TeleopCommand {
             // 0,0 because if nothing is pressed nothing should be moving
             hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
             hardware.flipper.miniWheelRotate(0);
-        }
+            qaaActive = false;
+        }else if (this.gamepad.getButton(GamepadEnum.X_BUTTON)){
+          System.out.println("X pressed"+qaaActive);
+          if (!qaaActive){
+              qaa = new QuickAutoAssist(this.gamepad);
+              qaaActive = true;
+              System.out.println("create object");
+          }
+          if (qaa.getStatus() == Status.INIT){
+              qaa.init();
+              System.out.println("init");
+          }else if(qaa.getStatus() == Status.EXEC){
+              qaa.exec();
+              System.out.println("Exec");
+          }
+      }
     }
 
     private void updateDriveBaseShufleBoardEntries(double lJoy, double rJoy, double lSpeed, double rSpeed){
@@ -76,10 +93,10 @@ public class TeleopDriveCommand extends TeleopCommand {
       if (hardware.limelight.hasTarget() == true){
         gamepad.setRumble(RumbleType.kLeftRumble, .5);
         gamepad.setRumble(RumbleType.kRightRumble, .5);
-    }else {
-        gamepad.setRumble(RumbleType.kLeftRumble, 0);
-        gamepad.setRumble(RumbleType.kRightRumble, 0);
-    }
+      }else {
+          gamepad.setRumble(RumbleType.kLeftRumble, 0);
+          gamepad.setRumble(RumbleType.kRightRumble, 0);
+      }
     }
 
     

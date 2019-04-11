@@ -9,6 +9,8 @@ import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.util.PlagiarismDriveHelper;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+
 public class PlagiarismDriveCommand extends TeleopCommand{
     PlagiarismDriveHelper helper = new PlagiarismDriveHelper();
     public PlagiarismDriveCommand(BaseGamepad gp) {
@@ -18,8 +20,9 @@ public class PlagiarismDriveCommand extends TeleopCommand{
     boolean qaaActive = false;
     @Override
     public void exec(){
+        rumbleIfSeeTarget();
         if (this.gamepad.getButton(GamepadEnum.X_BUTTON)){
-            System.out.println("X pressed");
+            System.out.println("X pressed"+qaaActive);
             if (!qaaActive){
                 qaa = new QuickAutoAssist(this.gamepad);
                 qaaActive = true;
@@ -48,4 +51,14 @@ public class PlagiarismDriveCommand extends TeleopCommand{
         }
         
     }
+    private void rumbleIfSeeTarget(){
+        double rumble = Math.abs(hardware.limelight.getTargetXAngle()) ;
+        if (rumble > 0){
+          gamepad.setRumble(RumbleType.kLeftRumble, 1-rumble/45);
+          gamepad.setRumble(RumbleType.kRightRumble, 1-rumble/45);
+        }else {
+            gamepad.setRumble(RumbleType.kLeftRumble, 0);
+            gamepad.setRumble(RumbleType.kRightRumble, 0);
+        }
+      }
 }

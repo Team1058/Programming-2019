@@ -12,11 +12,11 @@ public class PlagiarismDriveHelper{
 
 	// These factor determine how fast the wheel traverses the "non linear" sine
 	// curve.
-	private static final double kWheelNonLinearity = 0.65;
+	private static final double kWheelNonLinearity = 0.95;
 
 	private static final double kNegInertiaScalar = 4.0;
 
-	private static final double kSensitivity = 0.95;
+	private static final double kSensitivity = 0.65;
 
 	private static final double kQuickStopDeadband = 0.2; 
 	private static final double kQuickStopWeight = 0.1;
@@ -38,7 +38,8 @@ public class PlagiarismDriveHelper{
 		final double denominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
 		// Apply a sin function that's scaled to make it feel better.
 		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
-
+		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
+		//wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / denominator;
 		double leftPwm, rightPwm, overPower;
 		double sensitivity;
 

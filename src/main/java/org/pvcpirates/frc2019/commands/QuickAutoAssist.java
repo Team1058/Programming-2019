@@ -14,10 +14,11 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 public class QuickAutoAssist extends TeleopCommand{
-    public double distanceMin = 20;
+    public double distanceMin = 27;
     public double[] output = new double[]{0,0};
     public PlagiarismDriveHelper helper;// = new PlagiarismDriveHelper();
     //RotatePIDCommand rotatePID;// = new RotatePIDCommand(.16, 0, 0);
@@ -41,7 +42,7 @@ public class QuickAutoAssist extends TeleopCommand{
         
             @Override
             public double pidGet() {
-                return Hardware.getInstance().limelight.get3DPosition()[Camtran.YAW.value];
+                return Hardware.getInstance().limelight.getTargetXAngle();
             }
         
             @Override
@@ -50,7 +51,7 @@ public class QuickAutoAssist extends TeleopCommand{
             }
         };
         
-        pid = new PIDController(.15, 0, 0, pidSource, (double output) -> {pidOutput = output;});
+        pid = new PIDController(.08, 0, 0.1, pidSource, (double output) -> {pidOutput = output;});
         pid.enable();
         //rotatePID.setSetpoint(0);
         //rotatePID.start();
@@ -58,15 +59,20 @@ public class QuickAutoAssist extends TeleopCommand{
     }
     @Override
     public void exec() {
-        if(-Hardware.getInstance().limelight.get3DPosition()[Camtran.Y.value]  < distanceMin){
-            setStatus(Status.STOP);
-        }
+        /*if(hardware.limelight.getDiagonalRobotToVisTarget()  < distanceMin && hardware.limelight.getDiagonalRobotToVisTarget() > 15){
+            Hardware.getInstance().hatchManipulator.hatchSliderOut();
+            Timer.delay(.5);
+            Hardware.getInstance().hatchManipulator.grabHatch();
+            //setStatus(Status.STOP);
+
+
+        }*/
 
 
         if(status != Status.STOP){
             //System.out.println("PID status"+ rotatePID.isRunning()+" "+rotatePID.isCompleted());
             System.out.println("Pid output"+pidOutput);
-            output = helper.cheesyDrive(-this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y), pidOutput, false);
+            output = helper.cheesyDrive(-this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)/2, pidOutput, false);
             Hardware.getInstance().drivetrain.leftDrive1.set(ControlMode.PercentOutput, output[0]);
             Hardware.getInstance().drivetrain.rightDrive1.set(ControlMode.PercentOutput, output[1]);
         }else{

@@ -43,9 +43,9 @@ public class Elevator extends BaseSubsystem {
     public static double cargoHPSetpoint =intakeSetpoint+ 48;
 
     private static double activeSetpoint = 0;
-    public static double fourBarHighSetpoint = -1815;
-    public static double fourBarMidSetpoint = -390;
-    public static double fourBarLowSetpoint = 450;
+    public static double fourBarHighSetpoint = -1815*1.375;
+    public static double fourBarMidSetpoint = -390*1.375;
+    public static double fourBarLowSetpoint = 450*1.375;
 
     public static double ELEVATOR_F = 0;
     public static double ELEVATOR_P = 0.7;

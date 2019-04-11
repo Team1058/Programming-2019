@@ -30,7 +30,7 @@ public class TeleopState extends State {
     public void exec() {
         //System.out.println("ZeroR "+Hardware.getInstance().elevator.reverseLimitSwitch.get());
         //System.out.println("ZeroF "+Hardware.getInstance().elevator.forwardLimitSwitch.get());
-        System.out.println("Distance "+hardware.limelight.getDiagonalRobotToVisTarget());
+        //System.out.println("Distance "+hardware.limelight.getDiagonalRobotToVisTarget());
         //System.out.println("Distance 3d"+hardware.limelight.get3DPosition()[Camtran.Y.value]);
         //System.out.println("Angle "+hardware.limelight.get3DPosition()[Camtran.YAW.value]);
         //System.out.println("Angle "+hardware.limelight.get3DPosition()[Camtran.TILT.value]);

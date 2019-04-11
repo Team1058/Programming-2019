@@ -25,7 +25,7 @@ public class TeleopDriveCommand extends TeleopCommand {
     public void exec(){
 
       rumbleIfSeeTarget();
-
+      Hardware.getInstance().limelight.driverMode(true);
         if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
             Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
             qaaActive = false;
@@ -64,19 +64,21 @@ public class TeleopDriveCommand extends TeleopCommand {
             hardware.drivetrain.setDrive(ControlMode.PercentOutput, 0, 0);
             hardware.flipper.miniWheelRotate(0);
             qaaActive = false;
+            Hardware.getInstance().limelight.driverMode(true);
         }else if (this.gamepad.getButton(GamepadEnum.X_BUTTON)){
-          System.out.println("X pressed"+qaaActive);
+          //System.out.println("X pressed"+qaaActive);
+          Hardware.getInstance().limelight.driverMode(false);
           if (!qaaActive){
               qaa = new QuickAutoAssist(this.gamepad);
               qaaActive = true;
-              System.out.println("create object");
+              //System.out.println("create object");
           }
           if (qaa.getStatus() == Status.INIT){
               qaa.init();
-              System.out.println("init");
+              //System.out.println("init");
           }else if(qaa.getStatus() == Status.EXEC){
               qaa.exec();
-              System.out.println("Exec");
+              //System.out.println("Exec");
           }
       }
     }

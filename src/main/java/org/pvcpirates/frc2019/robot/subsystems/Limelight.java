@@ -91,7 +91,9 @@ public class Limelight extends BaseSubsystem{
     public double[] get3DPosition(){
         return limelight.getEntry("camtran").getDoubleArray(new double[]{0,0,0,DEFAULT_CAM_TRAN,0,0});
     }
-
+    public void driverMode(boolean enable){
+        limelight.getEntry("camMode").setNumber(enable? 1:0);
+    }
     // gets the area of the vision target in % area of the screen
     public double getLeftVisTargetArea(){
         return limelight.getEntry("ta1").getNumber(0).doubleValue();

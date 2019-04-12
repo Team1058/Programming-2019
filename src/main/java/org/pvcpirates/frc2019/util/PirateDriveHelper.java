@@ -5,8 +5,9 @@ package org.pvcpirates.frc2019.util;
  * its rate of heading change. This helps make the robot more controllable at
  * high speeds. Also handles the robot's quick turn functionality - "quick turn" 
  * overrides constant-curvature turning for turn-in-place maneuvers.*/
-public class PlagiarismDriveHelper{
+public class PirateDriveHelper{
 
+	
 	private static final double kThrottleDeadband = 0.0;
 	private static final double kWheelDeadband = 0.0;
 

@@ -1,7 +1,7 @@
 package org.pvcpirates.frc2019.gamepads;
 
 import org.pvcpirates.frc2019.commands.HatchManipulationCommand;
-import org.pvcpirates.frc2019.commands.PlagiarismDriveCommand;
+import org.pvcpirates.frc2019.commands.PirateDriveCommand;
 import org.pvcpirates.frc2019.commands.TeleopAutoHatchAssist;
 import org.pvcpirates.frc2019.commands.TeleopDriveCommand;
 

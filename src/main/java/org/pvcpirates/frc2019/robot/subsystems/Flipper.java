@@ -18,7 +18,7 @@ public class Flipper extends BaseSubsystem {
      final TalonSRX flipperTalonMain = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_MAIN);
     public final TalonSRX flipperTalonFollower = new TalonSRX(RobotMap.CANTalonIds.FLIPPER_FOLLOWER);
     
-    public static double defaultPosConstant = 605;
+    public static double defaultPosConstant = 565;
     public static double lvl2to3FrontConstant = defaultPosConstant + 212;
     public static double lvl2to3BackConstant = defaultPosConstant - 474;
     public static double lvl0to2FrontConstant = defaultPosConstant + 183;

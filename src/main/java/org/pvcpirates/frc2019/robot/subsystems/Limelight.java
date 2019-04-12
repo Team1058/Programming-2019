@@ -17,8 +17,6 @@ public class Limelight extends BaseSubsystem{
     @Override
     public void initialize() {
         limelight = NetworkTableInstance.getDefault().getTable("limelight");
-        //set picture in picture mode for secondary camera
-        limelight.getEntry("stream").setNumber(2);
         driverMode(true);
         
     }
@@ -93,6 +91,7 @@ public class Limelight extends BaseSubsystem{
         return limelight.getEntry("camtran").getDoubleArray(new double[]{0,0,0,DEFAULT_CAM_TRAN,0,0});
     }
     public void driverMode(boolean enable){
+        limelight.getEntry("ledMode").setNumber(enable? 1:0);
         limelight.getEntry("camMode").setNumber(enable? 1:0);
     }
     // gets the area of the vision target in % area of the screen

@@ -40,10 +40,10 @@ public class CargoManipulator extends BaseSubsystem {
     }
 
     public void cargoHold(){
-        cargoVictor.set(ControlMode.PercentOutput, -.3);
+        cargoVictor.set(ControlMode.PercentOutput, -.4);
     }
 
     public void cargoStop(){
-        cargoVictor.set(ControlMode.PercentOutput, -.3);
+        cargoVictor.set(ControlMode.PercentOutput, -.4);
     }
 }

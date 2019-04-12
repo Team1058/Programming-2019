@@ -7,13 +7,13 @@ import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.DriverGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
-import org.pvcpirates.frc2019.util.PlagiarismDriveHelper;
+import org.pvcpirates.frc2019.util.PirateDriveHelper;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
-public class PlagiarismDriveCommand extends TeleopCommand{
-    PlagiarismDriveHelper helper = new PlagiarismDriveHelper();
-    public PlagiarismDriveCommand(BaseGamepad gp) {
+public class PirateDriveCommand extends TeleopCommand{
+    PirateDriveHelper helper = new PirateDriveHelper();
+    public PirateDriveCommand(BaseGamepad gp) {
         super(gp);
     }
     QuickAutoAssist qaa; //= new QuickAutoAssist(this.gamepad);

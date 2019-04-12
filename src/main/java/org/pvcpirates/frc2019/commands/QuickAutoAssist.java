@@ -7,7 +7,7 @@ import org.pvcpirates.frc2019.gamepads.BaseGamepad;
 import org.pvcpirates.frc2019.gamepads.GamepadEnum;
 import org.pvcpirates.frc2019.robot.Hardware;
 import org.pvcpirates.frc2019.robot.subsystems.Limelight.Camtran;
-import org.pvcpirates.frc2019.util.PlagiarismDriveHelper;
+import org.pvcpirates.frc2019.util.PirateDriveHelper;
 import org.pvcpirates.frc2019.util.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 public class QuickAutoAssist extends TeleopCommand{
     public double distanceMin = 27;
     public double[] output = new double[]{0,0};
-    public PlagiarismDriveHelper helper;// = new PlagiarismDriveHelper();
+    public PirateDriveHelper helper;// = new PlagiarismDriveHelper();
     //RotatePIDCommand rotatePID;// = new RotatePIDCommand(.16, 0, 0);
     PIDController pid;
     double pidOutput;
@@ -32,7 +32,7 @@ public class QuickAutoAssist extends TeleopCommand{
 
     @Override
     public void init() {
-        helper = new PlagiarismDriveHelper();
+        helper = new PirateDriveHelper();
         PIDSource pidSource = new PIDSource(){
         
             @Override
@@ -51,7 +51,7 @@ public class QuickAutoAssist extends TeleopCommand{
             }
         };
         
-        pid = new PIDController(.08, 0, 0.1, pidSource, (double output) -> {pidOutput = output;});
+        pid = new PIDController(.01, 0, 0, pidSource, (double output) -> {pidOutput = output;});
         pid.enable();
         //rotatePID.setSetpoint(0);
         //rotatePID.start();
@@ -72,7 +72,7 @@ public class QuickAutoAssist extends TeleopCommand{
         if(status != Status.STOP){
             //System.out.println("PID status"+ rotatePID.isRunning()+" "+rotatePID.isCompleted());
             System.out.println("Pid output"+pidOutput);
-            output = helper.cheesyDrive(-this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)/2, pidOutput, false);
+            output = helper.cheesyDrive(-this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)/2, pidOutput, true);
             Hardware.getInstance().drivetrain.leftDrive1.set(ControlMode.PercentOutput, output[0]);
             Hardware.getInstance().drivetrain.rightDrive1.set(ControlMode.PercentOutput, output[1]);
         }else{

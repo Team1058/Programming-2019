@@ -126,7 +126,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                     start = System.currentTimeMillis();
                 }else if(!gamepad.getButton(ButtonPadEnum.SPIT_PIECE) && isSpittingPiece){
                     hatchManipulator.placeHatch();
-                    if (timeDiff > 750){
+                    if (timeDiff > 1750){
                         elevator.defaultState();
                         isSpittingPiece = false;
                         start = 0;

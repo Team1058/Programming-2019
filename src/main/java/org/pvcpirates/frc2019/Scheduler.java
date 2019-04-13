@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 public class Scheduler extends TimedRobot {
 
 	public static final Robot robot = Robot.getInstance();
-	
+	private double start = 0;
+	private boolean startHatch = false;
 	@Override
 	public void robotInit() {
 	  robot.setState(new TeleopState());
@@ -25,7 +26,11 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-	  robot.setState(new TeleopState());
+		robot.hardware.hatchManipulator.hatchSliderOut();
+		robot.hardware.hatchManipulator.grabHatch();
+		start = System.currentTimeMillis();
+		startHatch = false;
+	  	robot.setState(new TeleopState());
 		robot.state.init();
 		robot.hardware.elevator.fourBarTalon.getSensorCollection().setQuadraturePosition(0, 10);
 		robot.hardware.elevator.elevatorEncoder.setPosition(0);
@@ -34,6 +39,10 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void autonomousPeriodic() {
+		if(System.currentTimeMillis() - start > 100 && !startHatch){
+			startHatch = true;
+			robot.hardware.hatchManipulator.hatchSliderIn();
+		}
 		robot.state.exec();
 	}
 

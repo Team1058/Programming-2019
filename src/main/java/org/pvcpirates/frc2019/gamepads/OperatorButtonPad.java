@@ -16,7 +16,6 @@ public class OperatorButtonPad extends BaseGamepad {
 
     void mapCommandsToController() {
         this.teleopCommands.add(new FlipperCommand(this));
-        this.teleopCommands.add(new CargoManipulationCommand(this));
         this.teleopCommands.add(new ElevatorManipulatorCommand(this));
         // TODO: We shouldn't need these anymore
         //this.teleopCommands.add(new HatchManipulationCommand(this));

@@ -23,7 +23,6 @@ public class CargoManipulator extends BaseSubsystem {
 
     @Override
     public void defaultState() {
-        cargoStop();
     }
     
     @Override
@@ -44,6 +43,6 @@ public class CargoManipulator extends BaseSubsystem {
     }
 
     public void cargoStop(){
-        cargoVictor.set(ControlMode.PercentOutput, -.4);
+        cargoVictor.set(ControlMode.PercentOutput, 0);
     }
 }

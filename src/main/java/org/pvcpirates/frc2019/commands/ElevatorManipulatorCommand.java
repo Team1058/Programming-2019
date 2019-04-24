@@ -90,7 +90,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                     cargoManipulator.cargoOut();
                     isSpittingPiece = true;
                 }else if(!gamepad.getButton(ButtonPadEnum.SPIT_PIECE) && isSpittingPiece){
-                    cargoManipulator.cargoStop();
+                    cargoManipulator.cargoHold();
                     elevator.defaultState();
                     isSpittingPiece = false;
                 }else {
@@ -100,11 +100,13 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                     isSpittingPiece = false;
                 }
             } else if (!gamepad.getButton(ButtonPadEnum.GAMEPIECE_SWITCH) && !this.gamepad.getButton(ButtonPadEnum.ENABLE_MANUAL)) {
+                cargoManipulator.cargoStop();
                 if(gamepad.getButton(ButtonPadEnum.PICKUP)||gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE)){
                     elevator.moveToHatchLow();
                     hatchManipulator.prepGrab();
                     start = System.currentTimeMillis();
                     isGrabbingHatch = true;
+                    isSpittingPiece = false;
                 }else if((!gamepad.getButton(ButtonPadEnum.PICKUP) && !gamepad.getButton(ButtonPadEnum.CARGO_HP_INTAKE)) && isGrabbingHatch){
                     hatchManipulator.grabHatch();
                     if (timeDiff > 750){
@@ -123,8 +125,10 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                 }else if(gamepad.getButton(ButtonPadEnum.SPIT_PIECE)){
                     hatchManipulator.prepPlace();
                     isSpittingPiece = true;
+                    isGrabbingHatch = false;
                     start = System.currentTimeMillis();
                 }else if(!gamepad.getButton(ButtonPadEnum.SPIT_PIECE) && isSpittingPiece){
+
                     hatchManipulator.placeHatch();
                     if (timeDiff > 1750){
                         elevator.defaultState();
@@ -133,6 +137,7 @@ public class ElevatorManipulatorCommand extends TeleopCommand {
                     }
                 }else {
                     isGrabbingHatch = false;
+                    isSpittingPiece = false;
                 }
             }
     }

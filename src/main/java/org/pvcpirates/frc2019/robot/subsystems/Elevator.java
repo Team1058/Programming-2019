@@ -35,11 +35,13 @@ public class Elevator extends BaseSubsystem {
     public static double intakeSetpoint = 0;
     public static double defaultSetpoint =intakeSetpoint + 1;
     public static double defenseSetpoint = intakeSetpoint +1.5;
+
     public static double hatchLowSetpoint =intakeSetpoint + .76;
     public static double hatchMidSetpoint =intakeSetpoint + 72;
     public static double hatchHighSetpoint =intakeSetpoint + 85;
-    public static double cargoLowSetpoint =intakeSetpoint + 52.66;
-    public static double cargoMidSetpoint =intakeSetpoint + 71.8;
+
+    public static double cargoLowSetpoint =intakeSetpoint + 57.0;
+    public static double cargoMidSetpoint =intakeSetpoint + 87.0;
     public static double cargoHPSetpoint =intakeSetpoint+ 48;
 
     private static double activeSetpoint = 0;

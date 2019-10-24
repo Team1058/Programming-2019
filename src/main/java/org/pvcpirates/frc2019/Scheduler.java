@@ -54,6 +54,7 @@ public class Scheduler extends TimedRobot {
 
 	@Override
 	public void teleopPeriodic() {
+		//robot.hardware.printAllHardwareSensorValues();
 		robot.state.exec();
 		
 	}

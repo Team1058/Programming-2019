@@ -105,8 +105,20 @@ public class Drivetrain extends BaseSubsystem {
     }
 
     public void setDrive(ControlMode controlMode, double left, double right) {
+        // Standing still -200 to 200
+        // going 
         leftDrive1.set(controlMode, left);
+        // if (left <=500 && left >=-500){
+        //     System.out.println("yellow");
+        // }
+        // System.out.println("Left: "+ left);
+    
         rightDrive1.set(controlMode, right);
+        // if (right <=500 && right>=-500){
+        //     System.out.println("yellow");
+        // }
+        
+        // System.out.println("Right: " + right);
     }
 
     

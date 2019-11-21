@@ -6,6 +6,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Spark;
 
 public class Hardware {
  
@@ -18,7 +19,7 @@ public class Hardware {
     public HatchManipulator hatchManipulator = new HatchManipulator();
     public Elevator elevator = new Elevator();
     public Flipper flipper = new Flipper();
-
+    public Spark blinkin = new Spark(0);
 
     private Hardware() {
         initializeHardware();

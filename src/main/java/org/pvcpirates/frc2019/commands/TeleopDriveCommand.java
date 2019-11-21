@@ -15,6 +15,12 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class TeleopDriveCommand extends TeleopCommand {
+  final double green = .75;
+  final double red = .61;
+  final double yellow = .67;
+  final double blue = .87;
+  final double deadBand = DriverGamepad.driverStickDeadband;
+
   QuickAutoAssist qaa; 
   boolean qaaActive = false;
     public TeleopDriveCommand(BaseGamepad gp) {
@@ -26,8 +32,8 @@ public class TeleopDriveCommand extends TeleopCommand {
 
       rumbleIfSeeTarget();
       Hardware.getInstance().limelight.driverMode(true);
-        if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > Math.abs(DriverGamepad.driverStickDeadband) ||
-            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > Math.abs(DriverGamepad.driverStickDeadband))){
+        if (!gamepad.getButton(GamepadEnum.X_BUTTON) && (Math.abs(this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y)) > deadBand||
+            Math.abs(this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X)) > deadBand)){
             qaaActive = false;
                 
             double percentOfTotalSpeed = 1;
@@ -42,8 +48,28 @@ public class TeleopDriveCommand extends TeleopCommand {
               percentOfTotalSpeed = .25;
             }
 
+            // we're seting the doubles for the blinkin colors <3
+            
+
+            // variables for joystick axis
             double leftJoyYAxis = -this.gamepad.getAxis(GamepadEnum.LEFT_STICK_Y);
             double rightJoyXAxis = -this.gamepad.getAxis(GamepadEnum.RIGHT_STICK_X);
+
+            // prints out right joystick data
+            // System.out.println("Left: "+ leftJoyYAxis);
+            System.out.println("Right" + rightJoyXAxis);
+
+            // blinks red for backwards, green for forwards, yellow for stop
+            if (leftJoyYAxis < -deadBand) {
+              hardware.blinkin.set(red);
+            } else if (leftJoyYAxis > deadBand) {
+              hardware.blinkin.set(green);
+            } else {
+              hardware.blinkin.set(blue);
+            }
+
+
+
 
             /* 10 is maximum speed, multiplies by the subtracted/sum of both joysticks to get correct speed
             *  So it doesn't do either turn or drive straight, multiplied by how much of the speed gotton before
@@ -65,6 +91,7 @@ public class TeleopDriveCommand extends TeleopCommand {
             hardware.flipper.miniWheelRotate(0);
             qaaActive = false;
             Hardware.getInstance().limelight.driverMode(true);
+            hardware.blinkin.set(yellow);
         }else if (this.gamepad.getButton(GamepadEnum.X_BUTTON)){
           //System.out.println("X pressed"+qaaActive);
           Hardware.getInstance().limelight.driverMode(false);

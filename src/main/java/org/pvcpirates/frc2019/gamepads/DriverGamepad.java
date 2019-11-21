@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriverGamepad extends BaseGamepad {
 
-    public static double driverStickDeadband = SmartDashboard.getNumber("Driver driverStickDeadband", -0.0078125) ;
+    public static double driverStickDeadband = SmartDashboard.getNumber("Driver driverStickDeadband", 0.075);
 
     public DriverGamepad(int port) {
         super(port);
